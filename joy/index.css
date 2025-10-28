@@ -192,24 +192,30 @@ main {
 }
 .box {
     display: flex;
+    position: relative;
 }
 .ab {
     position: absolute;
     top: 0;
     right: 0;
+    display: flex;
+    text-transform: uppercase;
 }
-.ab > .ab-keys {
-    line-height: .85;
+
+.ab > h4 {
+    font-weight: 100;
 }
-.ab > .ab-keys:nth-child(1) {
+.ab > .ab-key {
+    transition: opacity 650ms ease;
     opacity: 0;
-    animation: ab-keys-one 8s 7.5s infinite;
+    display: none;
 }
-.ab > .ab-keys:nth-child(2) {
-    opacity: 0;
-    /* display: none; */
-    animation: ab-keys-two 8s 7.5s infinite;
+.ab > .ab-key.active {
+    transition: opacity 650ms ease;
+    opacity: 1;
+    display: block;
 }
+
 
 @keyframes ab-keys-one {
     0% {

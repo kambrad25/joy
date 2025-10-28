@@ -3,8 +3,7 @@ const { log } = console;
 
 document.addEventListener("DOMContentLoaded", (e) => {
     const navLogo = [...document.querySelectorAll(".logo > div > h1")];
-    const aboutKeys = [...document.querySelectorAll(".ab-keys > span")];
-    const aboutKeysParent = aboutKeys[0].parentElement;
+    const abKeys = [...document.querySelectorAll(".ab > h4")];
 
     navLogo.forEach((i, idx) => {
         log (i);
@@ -18,47 +17,47 @@ document.addEventListener("DOMContentLoaded", (e) => {
         }, 6200);
     })
 
-
-
-  const aboutKeysHeader = () => {
     let counter = 0;
-    setTimer = setInterval(() => {
-        counter++;
+    // abKeys.map((u, idx) => {
+    //     if (!u.className.includes("active")) {
+    //         u.style.display = "none";
+    //     } else {
+    //         u.style.display = "block";
 
+    //     }
+    // })
+
+    setTimeout(() => {
+    setInterval(() => {
+        counter++;
+        log (counter);
         if (counter > 1) {
             counter = 0;
         }
-        let txt = "";
-        let txt2 = "";
-        let keys = ["Pastor", "Activist"];
-        let idxOne, idxTwo;
-
-        if (keys.includes(keys[0]) && keys.includes(keys[1])) {
-            idxOne = keys[keys.indexOf("Pastor")].split("");
-            idxTwo = keys[keys.indexOf("Activist")].split("");
-        }
 
         if (counter == 0) {
-            idxOne.map((u, idx) => {
-                txt += `<span>${u}</span>`;
-
-                aboutKeysParent.innerHTML = txt;
-            })
+            counter = 0;
+            abKeys[0].classList.remove("active");
+            abKeys[1].classList.add("active");
         }
         if (counter == 1) {
-                    idxTwo.map((u, idx) => {
-                txt2 += `<span>${u}</span>`;
-
-                aboutKeysParent.innerHTML = txt2;
-            })
+            abKeys[1].classList.remove("active");
+            abKeys[0].classList.add("active");   
         }
-        log (counter);
-    }, 8000)
-  }  
 
-  setTimeout(aboutKeysHeader, 6500);
-    
+        // abKeys.map((u) => {
+        //     if (counter == 1) {
+        //         if (u.className.includes("active")) {
+        //             u.classList.remove("active");
+        //         } else {
+        //             u.classList.add("active");
+        //         }
+        //     }
+        // })
+           
+        }, 5000);
 
+    }, 4000);
 
     
 })
