@@ -3,22 +3,8 @@ const { log } = console;
 
 document.addEventListener("DOMContentLoaded", (e) => {
     const navLogo = [...document.querySelectorAll(".logo > div > h1")];
-
-
-    // navLogo.map((u, idx) => {
-    //     let navLogoText = u.textContent.split("");
-    //     let txt = "";
-    //     // navLogo[idx].parentElement.innerHTML = '';
-
-    //     for (let i = 0; i < navLogoText.length; ++i) {
-    //         txt += `<h1>${navLogoText[i]}</h1>`
-    //     }
-
-    //     if (idx == 0) {
-    //         navLogo[idx].parentElement.innerHTML = (txt)
-    //     }
-    // })
-
+    const aboutKeys = [...document.querySelectorAll(".ab-keys > span")];
+    const aboutKeysParent = aboutKeys[0].parentElement;
 
     navLogo.forEach((i, idx) => {
         log (i);
@@ -31,4 +17,48 @@ document.addEventListener("DOMContentLoaded", (e) => {
             }, 100)
         }, 6200);
     })
+
+
+
+  const aboutKeysHeader = () => {
+    let counter = 0;
+    setTimer = setInterval(() => {
+        counter++;
+
+        if (counter > 1) {
+            counter = 0;
+        }
+        let txt = "";
+        let txt2 = "";
+        let keys = ["Pastor", "Activist"];
+        let idxOne, idxTwo;
+
+        if (keys.includes(keys[0]) && keys.includes(keys[1])) {
+            idxOne = keys[keys.indexOf("Pastor")].split("");
+            idxTwo = keys[keys.indexOf("Activist")].split("");
+        }
+
+        if (counter == 0) {
+            idxOne.map((u, idx) => {
+                txt += `<span>${u}</span>`;
+
+                aboutKeysParent.innerHTML = txt;
+            })
+        }
+        if (counter == 1) {
+                    idxTwo.map((u, idx) => {
+                txt2 += `<span>${u}</span>`;
+
+                aboutKeysParent.innerHTML = txt2;
+            })
+        }
+        log (counter);
+    }, 8000)
+  }  
+
+  setTimeout(aboutKeysHeader, 6500);
+    
+
+
+    
 })
