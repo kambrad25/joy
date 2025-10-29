@@ -5,7 +5,9 @@ document.addEventListener("DOMContentLoaded", (e) => {
     const navLogo = [...document.querySelectorAll(".logo > div > h1")];
     const abKeys = [...document.querySelectorAll(".ab > h4")];
     const bioInfo = [...document.querySelectorAll(".bio-info > div")];
-    
+    const bioImg = document.querySelector(".bio-img");
+    const bioImgI = [...bioImg.querySelectorAll(".img")];
+    const menu = document.querySelector(".mobile-menu");
 
     navLogo.forEach((i, idx) => {
         setTimeout(() => {
@@ -31,7 +33,6 @@ document.addEventListener("DOMContentLoaded", (e) => {
     setTimeout(() => {
         setInterval(() => {
             counter++;
-            log (counter);
             if (counter > 2) {
                 counter = 0;
             }
@@ -70,7 +71,7 @@ document.addEventListener("DOMContentLoaded", (e) => {
         bioInfoEleOne.map((i, idx) => {
             setTimeout(() => {
                 i.style.transform=`translate3d(0px, 0%, 0px)`;
-            }, idx * 250)
+            }, idx * 250);
         })
 
         setTimeout(() => {
@@ -91,5 +92,40 @@ document.addEventListener("DOMContentLoaded", (e) => {
         }, 3000);
     }, 6000);
 
+
+    bioImgI.map((i, idx) => {
+        if (idx == 0) {
+            setTimeout(() => {
+                i.style.opacity = 1;
+            }, 7500);
+        }
+        if (idx == 1) {
+            setTimeout(() => {
+                i.style.opacity = 1;
+            }, 9000);
+        }
+        if (idx == bioImgI.length - 1) {
+            setTimeout(() => {
+                i.style.opacity = 1;
+            }, 10500);
+        }
+    })
+
+    
+    document.querySelector(".nav-menu").addEventListener("click", (e) => {
+        menu.style.display= "block";
+
+        setTimeout(() => {
+            menu.style.opacity=1;
+        }, 100)
+    })
+
+    document.querySelector(".close-menu-btn").addEventListener("click", (e) => {
+        menu.style.opacity = 0;
+        
+        setTimeout(() => {
+            menu.style.display="none";
+        }, 500)
+    })
     
 })
