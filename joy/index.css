@@ -418,11 +418,11 @@ main {
     display: flex;
     justify-content: end;
     gap: 1rem;
-    font-size: 4.95rem;
+    font-size: 4rem;
     text-transform: uppercase;
 }
 .injustice-header-bottom {
-    font-size: 4.95rem;
+    font-size: 4rem;
     text-transform: uppercase;
     text-align: end;
 }
@@ -480,7 +480,7 @@ main {
     align-content: center;
 }
 .injustice-txt > h1 {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     font-weight: 100;
     overflow: hidden;
     text-align: end;
