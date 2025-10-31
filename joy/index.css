@@ -193,6 +193,7 @@ nav > .container > .nav-menu > span {
 /* MAIN */
 main {
     color: black;
+    height: 200%;
 }
 .box {
     display: flex;
@@ -391,3 +392,102 @@ main {
 
 /* END BIO */
 
+
+/* INJUSTICE */
+
+.injustice {
+    margin: 10rem 0;
+    height: 0;
+    min-height: calc(100% / 2);
+}
+.injustice > .container
+{
+    height: 100%;
+}
+.injustice-header {
+    height: min-content;
+}
+.injustice > * > .injustice-header > h1 {
+    font-size: 9.5rem;
+    direction: rtl;
+    font-weight: 900;
+    text-transform: uppercase;
+    color: lightgrey;
+}
+.injustice-header-top {
+    display: flex;
+    justify-content: end;
+    gap: 1rem;
+    font-size: 4.95rem;
+    text-transform: uppercase;
+}
+.injustice-header-bottom {
+    font-size: 4.95rem;
+    text-transform: uppercase;
+    text-align: end;
+}
+
+.inj > h1 {
+    overflow: hidden;
+}
+.inj > h1 > span {
+    display: inline-block;
+    transform: translate3d(0px, 100%, 0px);
+    transition: 1.5s ease;
+}
+
+.injustice-info {
+    height: calc(100% - 200px);
+    display: flex;
+}
+.injustice-img {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+}
+.injustice-img,
+.injustice-desc {
+    flex: 1;
+}
+.injustice-desc { 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+.iji {
+    width: 150px;
+    height: 150px;
+    align-self: center;
+    opacity: 0;
+    transition: opacity 1s ease;
+}
+.iji:last-child {
+    grid-column: 1;
+    grid-row: 2;
+}
+.iji > img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+.iji:first-child > img {
+    object-position: left;
+}
+.iji:last-child > img {
+    object-position: right;
+}
+.injustice-txt {
+    align-content: center;
+}
+.injustice-txt > h1 {
+    font-size: 1.5rem;
+    font-weight: 100;
+    overflow: hidden;
+    text-align: end;
+}
+.injustice-txt > h1 > span {
+    transform: translate3d(0px, 100%, 0px);
+    display: inline-block;
+    transition: 1.5s ease;
+}
+/* END INJUSTICE */

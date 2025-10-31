@@ -1,5 +1,15 @@
 const { log } = console;
 
+window.addEventListener("load", (e) => {
+    window.scroll({ top: 0, behavior: 'smooth'})
+
+    document.documentElement.style.overflow = "hidden";
+
+
+    setTimeout(() => {
+        document.documentElement.style.overflow = "scroll";
+    }, 7000);
+})
 
 document.addEventListener("DOMContentLoaded", (e) => {
     const navLogo = [...document.querySelectorAll(".logo > div > h1")];
@@ -8,6 +18,25 @@ document.addEventListener("DOMContentLoaded", (e) => {
     const bioImg = document.querySelector(".bio-img");
     const bioImgI = [...bioImg.querySelectorAll(".img")];
     const menu = document.querySelector(".mobile-menu");
+
+    const justiceHeaderTop = document.querySelector(".injustice-header-top");
+    const justiceHeaderBottom = document.querySelector(".injustice-header-bottom");
+
+
+    const injusticeSec = document.querySelector(".injustice");
+    const injusticeSecImg = document.querySelectorAll(".iji")
+    const injusticeTxt = [...document.querySelectorAll(".injustice-txt")];
+
+
+    let getTxtOne = injusticeTxt.filter((u, idx) => idx === 0);
+    let getTxtTwo = injusticeTxt.filter((u, idx) => idx === 1);
+    
+
+    // getTxtOne = getTxtOne[0];
+
+    // getTxtTwo = getTxtTwo[0];
+
+
 
     navLogo.forEach((i, idx) => {
         setTimeout(() => {
@@ -127,5 +156,61 @@ document.addEventListener("DOMContentLoaded", (e) => {
             menu.style.display="none";
         }, 500)
     })
+
+
+    let c = 0;
+    const init = () => {
+
+        let y = window.pageYOffset || document.documentElement.scrollTop;
+
+        let justiceHeader = document.querySelector(".injustice-header");
+        let justiceHeaderSpan = [...justiceHeader.querySelectorAll("h1 > span")];
+
+        let justiceHeaderTop = ( y - (justiceHeader.parentElement.offsetTop - window.innerHeight)) / (justiceHeader.offsetHeight)
+
+        justiceHeaderTop = justiceHeaderTop < 0 ? justiceHeaderTop : justiceHeaderTop > 1 ? 1 : justiceHeaderTop;
+
+        if (justiceHeaderTop >= 1) {
+            justiceHeaderSpan.map((u, idx) => {
+                u.style.transform = `translate3d(0px, 0%, 0px)`;
+            })
+        }
+
+
+        let injusticeSecTop = ( y - (injusticeSec.offsetTop - window.innerHeight)) / (injusticeSec.offsetHeight)
+
+
+        if (injusticeSecTop > .8 && injusticeSecTop < 1) {
+            injusticeSecImg[0].style.opacity = 1;
+
+            [...getTxtOne[0].children].map((u, idx) => {
+                let span = [...u.querySelectorAll("span")];
+                span.map((u, idx) => {
+                    setTimeout(() => {
+                        u.style.transform=`translate3d(0px,0%,0px)`;
+                    }, idx * 150);
+                })
+            })
+        }
+
+
+        if (injusticeSecTop >= 1) {
+            injusticeSecImg[injusticeSecImg.length - 1].style.opacity = 1;
+
+              [...getTxtTwo[0].children].map((u, idx) => {
+                let span = [...u.querySelectorAll("span")];
+                span.map((u, idx) => {
+                    setTimeout(() => {
+                        u.style.transform=`translate3d(0px,0%,0px)`;
+                    }, idx * 150);
+                })
+            })
+        }
+        
+
+
+        window.requestAnimationFrame(init);
+    }
     
+    init()
 })
