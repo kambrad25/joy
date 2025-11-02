@@ -27,6 +27,8 @@ document.addEventListener("DOMContentLoaded", (e) => {
     const injusticeSecImg = document.querySelectorAll(".iji")
     const injusticeTxt = [...document.querySelectorAll(".injustice-txt")];
 
+    const action = document.querySelector(".action");
+
 
     let getTxtOne = injusticeTxt.filter((u, idx) => idx === 0);
     let getTxtTwo = injusticeTxt.filter((u, idx) => idx === 1);
@@ -188,7 +190,7 @@ document.addEventListener("DOMContentLoaded", (e) => {
                 span.map((u, idx) => {
                     setTimeout(() => {
                         u.style.transform=`translate3d(0px,0%,0px)`;
-                    }, idx * 150);
+                    }, idx * 500);
                 })
             })
         }
@@ -202,12 +204,34 @@ document.addEventListener("DOMContentLoaded", (e) => {
                 span.map((u, idx) => {
                     setTimeout(() => {
                         u.style.transform=`translate3d(0px,0%,0px)`;
-                    }, idx * 150);
+                    }, idx * 500);
                 })
             })
         }
         
 
+
+        let actionTop = 1 - ((action.offsetTop + action.offsetHeight) -y) / window.innerHeight;
+
+        if (actionTop >= 0) {
+            action.querySelector(".action-header").style.transform = `translate(-50%, -50%) scale(1)`;
+        }
+
+
+        let actionSec = document.querySelector(".action-text");
+
+        let actionSecTop = 1 - ((actionSec.offsetTop + actionSec.offsetHeight) - y) / window.innerHeight;
+
+        if (actionSecTop >= 0) {
+            document.querySelectorAll(".action-sec").forEach((u) => {
+                let text = u.querySelectorAll("h1 >span");
+                [...text].map((u, idx) => {
+                    setTimeout(() =>{
+                        u.style.transform=`translate3d(0px, 0%, 0px)`;
+                    }, idx * 150);
+                })
+            })
+        }
 
         window.requestAnimationFrame(init);
     }
