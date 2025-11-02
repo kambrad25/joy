@@ -233,8 +233,49 @@ document.addEventListener("DOMContentLoaded", (e) => {
             })
         }
 
+
+        const sliders = document.querySelector(".sliders");
+
+
+        let slidersTop = ( y - (sliders.offsetTop - window.innerWidth)) / (sliders.offsetWidth) - .40;
+        
+
+        slidersTop = slidersTop <= 0 ? 0 :  slidersTop > (window.innerWidth * 2 / 1000) ? (window.innerWidth * 2 / 1000): slidersTop;
+
+        
+        slidersTop = slidersTop * 1000;
+
+        document.querySelector(".slider").style.transform=`translate3d(${-slidersTop}px, 0px, 0px)`;
+
+    
+        const story = document.querySelector("section");
+        let storyTop = ( y - (story.offsetTop - window.innerHeight)) / (story.offsetHeight);
+
+        let storyImg = [...document.querySelectorAll(".st")];
+
+        storyImg.map((i, idx, arr) => {
+           
+              if (idx == 0) {
+                 if (storyTop >= .5) {
+                    i.style.opacity = 0;
+                  }  else {
+                    i.style.opacity = 1;
+                  }
+                } 
+
+                if (idx == 1) {
+                    if (storyTop >= .8) {
+                        i.style.opacity = 0;
+                    } else {
+                        i.style.opacity = 1;
+                    }
+                }
+            
+        })
+
         window.requestAnimationFrame(init);
     }
+    
     
     init()
 })
