@@ -589,6 +589,7 @@ main {
     display: flex;
     transform: translate3d(0%,0px,0px);
     transition: transform 350ms ease-out;
+    will-change: transform;
 }
 
 .s {
@@ -647,6 +648,7 @@ section {
     opacity: 1;
     transition: opacity 1s ease;
     color: white;
+    will-change: opacity;
 }
 .st-one {
     z-index: 3;

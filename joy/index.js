@@ -144,6 +144,7 @@ document.addEventListener("DOMContentLoaded", (e) => {
 
     
     document.querySelector(".nav-menu").addEventListener("click", (e) => {
+        document.documentElement.style.overflow="hidden";
         menu.style.display= "block";
 
         setTimeout(() => {
@@ -152,6 +153,8 @@ document.addEventListener("DOMContentLoaded", (e) => {
     })
 
     document.querySelector(".close-menu-btn").addEventListener("click", (e) => {
+        document.documentElement.style.overflow="scroll";
+
         menu.style.opacity = 0;
         
         setTimeout(() => {
@@ -256,7 +259,7 @@ document.addEventListener("DOMContentLoaded", (e) => {
         storyImg.map((i, idx, arr) => {
            
               if (idx == 0) {
-                 if (storyTop >= .5) {
+                 if (storyTop >= .6) {
                     i.style.opacity = 0;
                   }  else {
                     i.style.opacity = 1;
@@ -264,7 +267,7 @@ document.addEventListener("DOMContentLoaded", (e) => {
                 } 
 
                 if (idx == 1) {
-                    if (storyTop >= .8) {
+                    if (storyTop >= .95) {
                         i.style.opacity = 0;
                     } else {
                         i.style.opacity = 1;
