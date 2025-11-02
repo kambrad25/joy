@@ -259,7 +259,7 @@ document.addEventListener("DOMContentLoaded", (e) => {
         storyImg.map((i, idx, arr) => {
            
               if (idx == 0) {
-                 if (storyTop >= .6) {
+                 if (storyTop >= .2) {
                     i.style.opacity = 0;
                   }  else {
                     i.style.opacity = 1;
@@ -267,14 +267,61 @@ document.addEventListener("DOMContentLoaded", (e) => {
                 } 
 
                 if (idx == 1) {
-                    if (storyTop >= .95) {
+                    if (storyTop >= .4) {
                         i.style.opacity = 0;
                     } else {
                         i.style.opacity = 1;
                     }
                 }
+
+                
+                if (idx == 2) {
+                    if (storyTop >= .5) {
+                        i.style.opacity = 0;
+                    } else {
+                        i.style.opacity = 1;
+                    }
+                }
+
+                
+                if (idx == 3) {
+                    if (storyTop >= .6) {
+                        i.style.opacity = 0;
+                    } else {
+                        i.style.opacity = 1;
+                    }
+                }
+
+                
+                if (idx == 4) {
+                    if (storyTop >= .7) {
+                        i.style.opacity = 0;
+                    } else {
+                        i.style.opacity = 1;
+                    }
+                }
+
+                if (idx == 5) {
+                    if (storyTop >= .8) {
+                        i.style.opacity = 0;
+                    } else {
+                        i.style.opacity = 1;
+                    }
+                }
+
+
             
+
+                
+                if (idx == 5) {
+                    if (storyTop >= .8) {
+                        i.style.opacity = 0;
+                    } else {
+                        i.style.opacity = 1;
+                    }
+                }
         })
+        
 
         window.requestAnimationFrame(init);
     }

@@ -579,7 +579,7 @@ main {
 .sliders-top 
 {
     position: sticky;
-    top: 0;
+    top: 50px;
     height: calc(100% / 3);
     overflow: hidden;
 }
@@ -620,7 +620,7 @@ main {
 }
 
 section {
-    height: 100%;
+    height: 400%;
 }
 
 /* END SLIDERS */
@@ -629,7 +629,7 @@ section {
 .story-top {
     position: sticky;
     top: 0;
-    height: 40%;
+    height: 10%;
 }
 .story {
     position: relative;
@@ -651,17 +651,37 @@ section {
     will-change: opacity;
 }
 .st-one {
-    z-index: 3;
-    background: black;
+    z-index: 8;
 }
 .st-two {
-    z-index: 2;
-    background: red;
+    z-index: 7;
 }
 .st-three {
-    z-index: 1;
-    background: blue;
+    z-index: 6;
 }
-
+.st-four {
+    z-index: 5;
+}
+.st-five {
+    z-index: 4;
+}
+.st-six {
+    z-index: 3;
+}
+.st-seven {
+    z-index: 2;
+}
+.st-eight {
+    z-index: 1;
+}
+.st > .img {
+    width: 100%;
+    height: 100%;
+}
+.st > .img > img {
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+}
 
 /* END STORY */
