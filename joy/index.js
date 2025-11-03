@@ -325,6 +325,8 @@ document.addEventListener("DOMContentLoaded", (e) => {
         
         slidersTop = slidersTop * 1000;
 
+        slidersTop = Math.ceil(slidersTop);
+
         document.querySelector(".slider").style.transform=`translate3d(${-slidersTop}px, 0px, 0px)`;
 
     
