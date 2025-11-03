@@ -690,19 +690,24 @@ section {
 .activism {
     height: 50%;
     position: relative;
-    top: 50px;
+    top: 150px;
 }
 .activism > .container {
     height: 100%;
 }
 .activism > .container > h1 {
     text-align: center;
-    font-size: 6.5rem;
+    font-size: 5.5rem;
     text-transform: uppercase;
+    opacity: .1;
+    transition: opacity 1s ease-out;
 }
 .activism-info {
     height: 100%;
     border-top: 1px solid;
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
 }
 .activism-info > .info {
     display: flex;
@@ -728,18 +733,44 @@ section {
 .info-text > .img {
     width: 150px;
     height: 150px;
+    opacity: 0;
+    transition: opacity 650ms ease;
 }
 .info-text > .img > img {
     width: 100%;
     height: 100%;
     object-fit: contain;
+    object-position: left;
 }
 .info-text.sec > .text{
-    place-content: center;
-    gap: .5rem;
+    place-content: start;
+    gap: .3rem;
 }
 .info-text.sec > .text > p {
     text-align: start;
 }
+.highlight {
+    color: red;
+}
+.facts { 
+    display: grid;
+    gap: 1.5rem;
+}
+.facts > p {
+    text-align: end;
+}
+.text > p > span {
+    display: inline-block;
+    margin: .8px;
+    opacity: .1;
+    transition: opacity 650ms ease;
+}
+.facts > p > span {
+    display: inline-block;
+    margin: .8px;
+    opacity: 0;
+    transition: opacity 650ms ease;
+}
 
 /* END ACTIVISM */
+

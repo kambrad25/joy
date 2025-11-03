@@ -11,6 +11,83 @@ window.addEventListener("load", (e) => {
     }, 7000);
 })
 
+
+const appendNewChild = () => {
+    let info = [...document.querySelectorAll(".info-text > .text")];
+
+    let infoOne = info.filter((u, idx) => Number(idx) === 0);
+    let infoTextOne = "";
+    infoOne.map((u, idx) => {
+        let txt = u.querySelectorAll("p");
+        if (idx == 0) {
+            let tTxt = txt[idx].textContent.split(" ")
+            tTxt.map(u => {
+                infoTextOne += `<span>${u}</span>`;
+            })
+
+            info[idx].querySelector("p").innerHTML = infoTextOne
+        }
+
+    let infoP = [...info[0].querySelectorAll("p")];
+    let infoTextTwo = "";
+    infoP.map((u, idx) => {
+        if (idx == 1) {
+            let tTxt = u.textContent.split(" ");
+
+            tTxt.map(u => {
+                infoTextTwo += `<span>${u}</span>`
+            })
+
+            infoP[idx].innerHTML = infoTextTwo
+        }
+    })
+
+    })
+}
+const facts = [...document.querySelectorAll(".facts > p")];
+const appendChild = () => {
+    facts.map((u, idx) => {
+        let text = [...u.textContent.split(" ")]
+        let txt = "";
+
+        if (idx == 0) {
+            text.forEach(u => {
+                txt += `<span>${u}</span>`
+            })
+
+            facts[idx].innerHTML = txt;
+        }
+
+         if (idx == 1) {
+            text.forEach(u => {
+                txt += `<span>${u}</span>`
+            })
+
+            facts[idx].innerHTML = txt;
+        }
+
+         if (idx == 2) {
+            text.forEach(u => {
+                txt += `<span>${u}</span>`
+            })
+
+            facts[idx].innerHTML = txt;
+        }
+         if (idx == 3) {
+            text.forEach(u => {
+                txt += `<span>${u}</span>`
+            })
+
+            facts[idx].innerHTML = txt;
+        }
+    })
+}
+
+appendChild();
+
+
+appendNewChild()
+
 document.addEventListener("DOMContentLoaded", (e) => {
     const navLogo = [...document.querySelectorAll(".logo > div > h1")];
     const abKeys = [...document.querySelectorAll(".ab > h4")];
@@ -308,10 +385,6 @@ document.addEventListener("DOMContentLoaded", (e) => {
                         i.style.opacity = 1;
                     }
                 }
-
-
-            
-
                 
                 if (idx == 5) {
                     if (storyTop >= .8) {
@@ -323,6 +396,87 @@ document.addEventListener("DOMContentLoaded", (e) => {
         })
         
 
+        let activism = document.querySelector(".activism");
+        let infoText = [...document.querySelectorAll(".info-text > .text > p")];
+        let facts = [...document.querySelectorAll(".facts > p")]
+
+        let activismTop = ( y - (activism.offsetTop - window.innerHeight)) / (activism.offsetHeight);
+
+        if (activismTop >= .5) {
+            document.querySelector(".activism-header").style.opacity = 1;
+            infoText.map((u, idx) => {
+                let span = u.querySelectorAll("span");
+                document.querySelector(".info-text > .img").style.opacity=1;
+                if (idx == 0) {
+                    span.forEach((u, idx) => {
+                        setTimeout(() => {
+                            u.style.opacity = 1;
+                        }, idx * 50);
+                    })
+                }
+
+                if (idx == 1) {
+                    setTimeout(() => {
+                        span.forEach((u, idx) => {
+                            setTimeout(() => {
+                                u.style.opacity = 1;
+                            }, idx * 50);
+                        })   
+                    }, 1550);
+                }
+            })
+
+
+            facts.map((u, idx) => {
+
+                if (idx == 0) {
+                let span = u.querySelectorAll("span");
+
+                setTimeout(() => {
+                        span.forEach((u, idx) => {
+                        setTimeout(() => {
+                            u.style.opacity = 1;
+                        }, idx * 100);   
+                    })
+                }, 1000)
+            }
+
+            if (idx == 1) {
+                let span = u.querySelectorAll("span");
+
+                setTimeout(() => {
+                        span.forEach((u, idx) => {
+                        setTimeout(() => {
+                            u.style.opacity = 1;
+                        }, idx * 100);   
+                    })
+                }, 1500)
+            }
+
+            if (idx == 2) {
+                let span = u.querySelectorAll("span");
+
+                setTimeout(() => {
+                        span.forEach((u, idx) => {
+                        setTimeout(() => {
+                            u.style.opacity = 1;
+                        }, idx * 100);   
+                    })
+                }, 2000)
+            }
+            if (idx == 3) {
+                let span = u.querySelectorAll("span");
+
+                setTimeout(() => {
+                        span.forEach((u, idx) => {
+                        setTimeout(() => {
+                            u.style.opacity = 1;
+                        }, idx * 100);   
+                    })
+                },2500)
+            }
+        })
+    }
         window.requestAnimationFrame(init);
     }
     
