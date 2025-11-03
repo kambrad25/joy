@@ -587,9 +587,13 @@ main {
     height: 100%;
     width: min-content;
     display: flex;
-    transform: translate3d(0%,0px,0px);
+    transform: translate3d(0,0,0);
+    -webkit-transform: translate3d(0,0,0);
     transition: transform 350ms ease-out;
+    transform-style: flat;
     will-change: transform;
+    -webkit-backface-visibility: hidden;
+
 }
 
 .s {
