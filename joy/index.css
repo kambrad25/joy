@@ -574,7 +574,7 @@ main {
 
 /* SLIDERS */
 .sliders {
-    height: 100%;
+    height: 150%;
 }
 .sliders-top 
 {
@@ -757,8 +757,10 @@ section {
     color: red;
 }
 .facts { 
-    display: grid;
+    display: flex;
+    flex: 5;
     gap: 1.5rem;
+    
 }
 .facts > p {
     text-align: end;
@@ -774,6 +776,13 @@ section {
     margin: .8px;
     opacity: 0;
     transition: opacity 650ms ease;
+}
+.text.w {
+    overflow: hidden;
+}
+.text.w > p {
+    transform: translate3d(0,100%,0);
+    transition: transform 1s ease;
 }
 
 /* END ACTIVISM */

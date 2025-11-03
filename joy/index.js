@@ -321,20 +321,31 @@ document.addEventListener("DOMContentLoaded", (e) => {
         const sliders = document.querySelector(".sliders");
 
 
-        let slidersTop = ( y - (sliders.offsetTop - window.innerWidth)) / (sliders.offsetWidth) - .50;
+
+        let slidersTop = 1 - (((sliders.offsetTop + sliders.offsetHeight) - y)- sliders.offsetHeight) / window.innerHeight - .50;
+
+        // log (slidersTop - .50)
+        slidersTop = slidersTop <= 0 ? 0 : slidersTop > 2 ? 2 : slidersTop;
+
+
+        
+        slidersTop = (slidersTop * window.innerWidth) * .1;
         
 
-        slidersTop = slidersTop * 100;
+        // let slidersTop = ( y - (sliders.offsetTop - window.innerWidth)) / (sliders.offsetWidth) - .50;
+        
+
+        // slidersTop = slidersTop * 100;
 
         // log (slidersTop * 100);
-        slidersTop = slidersTop <= 0 ? 0 : slidersTop >= 66 ? 66 : slidersTop;
+        // slidersTop = slidersTop <= 0 ? 0 : slidersTop >= 66 ? 66 : slidersTop;
         // slidersTop = slidersTop <= 0 ? 0 :  slidersTop > (window.innerWidth * 2 / 1000) ? (window.innerWidth * 2 / 1000): slidersTop;
 
         
         // slidersTop = slidersTop * 1000;
 
 
-        document.querySelector(".slider").style.transform=`translate3d(${-slidersTop}%, 0px, 0px)`;
+        document.querySelector(".slider").style.transform=`translate3d(${-slidersTop * 10}px, 0px, 0px)`;
 
     
         const story = document.querySelector("section");
@@ -413,6 +424,7 @@ document.addEventListener("DOMContentLoaded", (e) => {
 
         if (activismTop >= .5) {
             document.querySelector(".activism-header").style.opacity = 1;
+            document.querySelector(".text.w > p").style.transform=`translate3d(0,0%,0)`;
             infoText.map((u, idx) => {
                 let span = u.querySelectorAll("span");
                 document.querySelector(".info-text > .img").style.opacity=1;
