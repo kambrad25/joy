@@ -3,6 +3,10 @@ const { log } = console;
 window.addEventListener("load", (e) => {
     window.scroll({ top: 0, behavior: 'smooth'})
 
+
+    setTimeout(() => {
+        window.scrollTo(0, 0);
+    }, 100);
     document.documentElement.style.overflow = "hidden";
 
 
@@ -317,17 +321,20 @@ document.addEventListener("DOMContentLoaded", (e) => {
         const sliders = document.querySelector(".sliders");
 
 
-        let slidersTop = ( y - (sliders.offsetTop - window.innerWidth)) / (sliders.offsetWidth) - .40;
+        let slidersTop = ( y - (sliders.offsetTop - window.innerWidth)) / (sliders.offsetWidth) - .50;
         
 
-        slidersTop = slidersTop <= 0 ? 0 :  slidersTop > (window.innerWidth * 2 / 1000) ? (window.innerWidth * 2 / 1000): slidersTop;
+        slidersTop = slidersTop * 100;
+
+        // log (slidersTop * 100);
+        slidersTop = slidersTop <= 0 ? 0 : slidersTop >= 66 ? 66 : slidersTop;
+        // slidersTop = slidersTop <= 0 ? 0 :  slidersTop > (window.innerWidth * 2 / 1000) ? (window.innerWidth * 2 / 1000): slidersTop;
 
         
-        slidersTop = slidersTop * 1000;
+        // slidersTop = slidersTop * 1000;
 
-        slidersTop = Math.ceil(slidersTop);
 
-        document.querySelector(".slider").style.transform=`translate3d(${-slidersTop}px, 0px, 0px)`;
+        document.querySelector(".slider").style.transform=`translate3d(${-slidersTop}%, 0px, 0px)`;
 
     
         const story = document.querySelector("section");
@@ -346,7 +353,7 @@ document.addEventListener("DOMContentLoaded", (e) => {
                 } 
 
                 if (idx == 1) {
-                    if (storyTop >= .4) {
+                    if (storyTop >= .3) {
                         i.style.opacity = 0;
                     } else {
                         i.style.opacity = 1;
@@ -355,7 +362,7 @@ document.addEventListener("DOMContentLoaded", (e) => {
 
                 
                 if (idx == 2) {
-                    if (storyTop >= .5) {
+                    if (storyTop >= .4) {
                         i.style.opacity = 0;
                     } else {
                         i.style.opacity = 1;
@@ -364,7 +371,7 @@ document.addEventListener("DOMContentLoaded", (e) => {
 
                 
                 if (idx == 3) {
-                    if (storyTop >= .6) {
+                    if (storyTop >= .5) {
                         i.style.opacity = 0;
                     } else {
                         i.style.opacity = 1;
@@ -373,7 +380,7 @@ document.addEventListener("DOMContentLoaded", (e) => {
 
                 
                 if (idx == 4) {
-                    if (storyTop >= .7) {
+                    if (storyTop >= .6) {
                         i.style.opacity = 0;
                     } else {
                         i.style.opacity = 1;
@@ -381,7 +388,7 @@ document.addEventListener("DOMContentLoaded", (e) => {
                 }
 
                 if (idx == 5) {
-                    if (storyTop >= .8) {
+                    if (storyTop >= .7) {
                         i.style.opacity = 0;
                     } else {
                         i.style.opacity = 1;
@@ -389,7 +396,7 @@ document.addEventListener("DOMContentLoaded", (e) => {
                 }
                 
                 if (idx == 5) {
-                    if (storyTop >= .8) {
+                    if (storyTop >= .85) {
                         i.style.opacity = 0;
                     } else {
                         i.style.opacity = 1;
