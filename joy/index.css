@@ -690,9 +690,10 @@ section {
 
 /* ACTIVISM */
 .activism {
-    height: 50%;
+    height: 30%;
     position: relative;
-    top: 150px;
+    margin-top: 150px;
+    /* top: 150px; */
 }
 .activism > .container {
     height: 100%;
@@ -727,7 +728,6 @@ section {
 .info-text > .text {
     display: grid;
     gap: 1rem;
-    text-transform: capitalize;
 }
 .info-text > .text > p {
     text-align: end;
@@ -753,6 +753,8 @@ section {
 }
 .highlight {
     color: red;
+    display: inline-block;
+    margin-right: .3rem;
 }
 .facts { 
     display: flex;
@@ -784,4 +786,39 @@ section {
 }
 
 /* END ACTIVISM */
+
+/* INFO FACTS */
+.info-facts {
+    height: 100%;
+}
+.info-facts > .container {
+    height: 100%;
+    display: flex;
+}
+.info-facts-header {
+    position: sticky;
+    top: 400px;
+    width: min-content;
+    height: min-content;
+    font-size: 1.5rem;
+    flex: 6;
+}
+
+.info-fact {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    flex: 4;
+}
+.f > p {
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: 0px 0px 3px 0.1px black;
+    color: #244f24;
+    font-size: 1.8rem;
+    text-align: end;
+    opacity: 0;
+    transition: opacity 650ms ease;
+}
+/* INFO FACTS */
 

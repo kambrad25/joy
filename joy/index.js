@@ -1,4 +1,7 @@
+"use strict";
+
 const { log } = console;
+
 
 window.addEventListener("load", (e) => {
     window.scroll({ top: 0, behavior: 'smooth'})
@@ -418,13 +421,12 @@ document.addEventListener("DOMContentLoaded", (e) => {
 
         let activism = document.querySelector(".activism");
         let infoText = [...document.querySelectorAll(".info-text > .text > p")];
-        let facts = [...document.querySelectorAll(".facts > p")]
 
         let activismTop = ( y - (activism.offsetTop - window.innerHeight)) / (activism.offsetHeight);
 
         if (activismTop >= .5) {
             document.querySelector(".activism-header").style.opacity = 1;
-            document.querySelector(".text.w > p").style.transform=`translate3d(0,0%,0)`;
+            // document.querySelector(".text.w > p").style.transform=`translate3d(0,0%,0)`;
             infoText.map((u, idx) => {
                 let span = u.querySelectorAll("span");
                 document.querySelector(".info-text > .img").style.opacity=1;
@@ -446,61 +448,47 @@ document.addEventListener("DOMContentLoaded", (e) => {
                     }, 1550);
                 }
             })
-
-
-            facts.map((u, idx) => {
-
-                if (idx == 0) {
-                let span = u.querySelectorAll("span");
-
-                setTimeout(() => {
-                        span.forEach((u, idx) => {
-                        setTimeout(() => {
-                            u.style.opacity = 1;
-                        }, idx * 100);   
-                    })
-                }, 1000)
-            }
-
-            if (idx == 1) {
-                let span = u.querySelectorAll("span");
-
-                setTimeout(() => {
-                        span.forEach((u, idx) => {
-                        setTimeout(() => {
-                            u.style.opacity = 1;
-                        }, idx * 100);   
-                    })
-                }, 1500)
-            }
-
-            if (idx == 2) {
-                let span = u.querySelectorAll("span");
-
-                setTimeout(() => {
-                        span.forEach((u, idx) => {
-                        setTimeout(() => {
-                            u.style.opacity = 1;
-                        }, idx * 100);   
-                    })
-                }, 2000)
-            }
-            if (idx == 3) {
-                let span = u.querySelectorAll("span");
-
-                setTimeout(() => {
-                        span.forEach((u, idx) => {
-                        setTimeout(() => {
-                            u.style.opacity = 1;
-                        }, idx * 100);   
-                    })
-                },2500)
-            }
-        })
     }
+
+
+
+    const infoFacts = document.querySelector(".info-facts");
+
+    var infoFactsTop = ( y - (infoFacts.offsetTop - window.innerHeight)) / (infoFacts.offsetHeight);
+
+
+    const lerp = (start, end, delta) => {
+        return start + (end - start) * delta;
+    }
+
+    let infoFactsTopDelta = Number(lerp(0, 1, infoFactsTop).toFixed(2));
+
+    // SAME AS BELOW
+    infoFactsTopDelta = infoFactsTopDelta <= 0 ? 0 : infoFactsTopDelta >= 1 ? 1: infoFactsTopDelta;
+
+    // PREFERRED LOGIC
+    let ifd = Math.min(Math.max(0, infoFactsTopDelta), 1);
+
+    let targetHits = [0.25, 0.45, 0.65, 1];
+
+    let targetIdx = null;
+    let fP = document.querySelectorAll(".f > p");
+
+    targetHits.map((u, idx) => {
+        if (u <= ifd) {
+            // targetIdx = idx;
+            fP[idx].style.opacity = 1;
+        }
+    })
+
+
+    // document.querySelectorAll(".f")[targetIdx == null ? 0 : targetIdx]?.style.opacity = 1;
+    
+
         window.requestAnimationFrame(init);
     }
     
     
     init()
 })
+
