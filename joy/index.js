@@ -482,6 +482,44 @@ document.addEventListener("DOMContentLoaded", (e) => {
     })
 
 
+
+    const donate = document.querySelector(".donate");
+    let donateTop = (y - (donate.offsetTop - window.innerHeight)) / (donate.offsetHeight);
+
+
+    let donateStrTarget = ".1,.3";
+    donateStrTarget = donateStrTarget.split(",");
+    donateStrTarget = donateStrTarget.map(u => Number(u));
+
+    let donateMaxMin = Math.min(Math.max(0, donateTop), 1);
+
+
+    if (donateMaxMin >= .1) {
+        document.querySelector(".donate-header > h1").style.transform = `translate3d(0, 0, 0)`;
+    } 
+
+
+
+    const dT = [...document.querySelectorAll(".dt")];
+
+    // calculate child's top from parent's top
+
+
+    dT.map((u, idx) => {
+        let dTd = ( 1- ((u.parentElement.parentElement.offsetTop + u.offsetTop + 500) - y) / window.innerHeight)
+
+        let dTdL = lerp(1,0,dTd);
+
+        dTdL = Math.max(Math.min(1, dTdL), 0.5);
+
+        u.style.transform = `scale(${dTdL})`;
+        // if (idx == 0) {
+        //     let dTd = 1 - ((u.offsetTop + u.offsetHeight) - y) / window.innerHeight;
+
+        //     log (dTd);
+        // }
+    })
+
     // document.querySelectorAll(".f")[targetIdx == null ? 0 : targetIdx]?.style.opacity = 1;
     
 

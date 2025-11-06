@@ -618,7 +618,7 @@ main {
     gap: 2rem;
 }
 .quote > h4 {
-    font-size: 4rem;
+    font-size: 3.5rem;
 }
 
 section {
@@ -818,17 +818,18 @@ section {
     font-size: 1.8rem;
     text-align: end;
     opacity: 0;
-    transition: opacity 650ms ease;
+    transition: opacity 1s ease;
 }
 /* INFO FACTS */
 
 /* DONATE */
 .donate {
     margin-top: 20rem;
-    height: 100%;
+    height: 150%;
 }
 .donate > .container {
     height: 100%;
+    padding: 0 3rem;
 }
 .donate-top {
     height: calc(100% - 60px);
@@ -853,9 +854,24 @@ section {
     z-index: 2;
 }
 .dt:nth-child(3) {
-    background: green;
     z-index: 3;
-    /* margin-bottom: 3rem; */
+    display: grid;
+    place-content: center;
+    color: white;
+    background: #244f24;
+    border-radius: 10px;
+}
+.dt:nth-child(3) > h1 {
+    max-width: min-content;
+    font-size: 4rem;
+    text-transform: uppercase;
+    -webkit-text-stroke: .1px;
+    -webkit-text-stroke-color: white;
+    text-align: center;
+    font-size: 6rem;
+    letter-spacing: 2px;
+    line-height: .9;
+    width: 36rem;
 }
 .donate-header {
     margin: auto;
@@ -864,8 +880,56 @@ section {
     text-transform: uppercase;
     font-size: 2rem;
     line-height: .95;
+    overflow: hidden;
+}
+.donate-header > h1 {
+    transform: translate3d(0, 100%, 0);
+    transition: 1s ease;
+}
+#pay-link {
+    border-bottom: 5px solid;
+    display: inline-block;
+    line-height: .8;
 }
 
 
 /* END DONATE */
 
+
+/* ACCOMPLISHMENTS */
+.accomp {
+    height: 100%;
+    /* overflow: hidden; */
+    border: 1px solid red;
+}
+.accomp > .container {
+    height: 100%;
+}
+.accomp-top {
+    position: sticky;
+    top: 0;
+    border: 1px solid;
+    height: 50%;
+}
+.accomp-rel {
+    position: relative;
+    height: 100%;
+    overflow: hidden;
+}
+.accomp-header {
+    position: absolute;
+    display: flex;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.mid {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+
+/* END ACCOMPLISHMENTS */
