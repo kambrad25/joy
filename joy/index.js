@@ -3,6 +3,20 @@
 const { log } = console;
 
 
+// Initialize Lenis
+const lenis = new Lenis();
+
+// Use requestAnimationFrame to continuously update the scroll
+function raf(time) {
+  lenis.raf(time);
+  requestAnimationFrame(raf);
+}
+
+requestAnimationFrame(raf);
+
+lenis.stop();
+
+
 window.addEventListener("load", (e) => {
     window.scroll({ top: 0, behavior: 'smooth'})
 
@@ -15,6 +29,7 @@ window.addEventListener("load", (e) => {
 
     setTimeout(() => {
         document.documentElement.style.overflow = "scroll";
+        lenis.start();
     }, 7000);
 })
 
@@ -513,15 +528,53 @@ document.addEventListener("DOMContentLoaded", (e) => {
         dTdL = Math.max(Math.min(1, dTdL), 0.5);
 
         u.style.transform = `scale(${dTdL})`;
-        // if (idx == 0) {
-        //     let dTd = 1 - ((u.offsetTop + u.offsetHeight) - y) / window.innerHeight;
-
-        //     log (dTd);
-        // }
+    
     })
 
-    // document.querySelectorAll(".f")[targetIdx == null ? 0 : targetIdx]?.style.opacity = 1;
+
+    let accomp = document.querySelector(".accomp");
+
+    let accompRel = document.querySelector(".accomp-rel");
+
+    // target middle of child element height => 300 / 2
+    let accompTop = (y - (accomp.offsetTop - window.innerHeight + (accompRel.offsetHeight / 2) )) / (accomp.offsetHeight);    
+
+    accompTop = Math.min(Math.max(0, accompTop), 1);
+
+    let accompTopScale =(y - (accomp.offsetTop - window.innerHeight + (window.innerHeight / 2) - 200)) / (accomp.offsetHeight); 
+
+    accompTopScale = Math.min(Math.max(0, accompTopScale), 1);
+
+
+    const  accompHeaders = [...document.querySelectorAll(".accomp-header > h1")];
+
+
+    let accHDeltaOne = lerp(0,-accompHeaders[0].offsetWidth-accomp.querySelector(".accomp-header").offsetWidth,accompTop);
+    let accHDeltaTwo = lerp(0,accompHeaders[0].offsetWidth+accomp.querySelector(".accomp-header").offsetWidth,accompTop);
+
+
+
+    accompHeaders[0].style.transform = `translate3d(${accHDeltaOne}px, 0, 0)`;
+    accompHeaders[accompHeaders.length - 1].style.transform=`translate3d(${accHDeltaTwo}px,0,0)`;
     
+
+
+    document.querySelector(".mid").style.transform = `translate(0%, 0%) scale(${accompTopScale})`;
+
+    let midAccomp = document.querySelectorAll(".mid-accomp > h1");
+
+    if (accompTopScale >= .5) {
+        midAccomp[0].style.clipPath = `polygon(100% 0%, 0% 0%, 0% 0%, 100% 0%)`;
+    } else {
+        midAccomp[0].style.clipPath = `polygon(100% 100%, 0% 100%, 0% 0%, 100% 0%)`;
+
+    }
+    if (accompTopScale >= .8) {
+        midAccomp[1].style.clipPath = `polygon(100% 0%, 0% 0%, 0% 0%, 100% 0%)`;
+    } else {
+        midAccomp[1].style.clipPath = `polygon(100% 100%, 0% 100%, 0% 0%, 100% 0%)`;
+
+    }
 
         window.requestAnimationFrame(init);
     }
