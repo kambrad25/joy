@@ -1063,7 +1063,7 @@ section {
     height: 100%;
     transform: translate3d(0px,0,0);
     font-size: 1.8rem;
-    color: black;
+    color: #969595;
     display: flex;
 
 }
@@ -1072,7 +1072,6 @@ section {
     width: 100vw;
     align-content: center;
     text-align: end;
-    color: black;
 }
 
 
