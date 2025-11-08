@@ -2,38 +2,38 @@
 
 const { log } = console;
 
-if (navigator.userAgent.indexOf("Mozilla") !== -1 || navigator.userAgent.indexOf("Firefox") !== -1) {
-    document.documentElement.innerHTML = "";
+// if (navigator.userAgent.indexOf("Mozilla") !== -1 || navigator.userAgent.indexOf("Firefox") !== -1) {
+//     document.documentElement.innerHTML = "";
 
-    let bodyMsg = "Please use another browser!";
+//     let bodyMsg = "Please use another browser!";
 
-    let createEle = document.createElement("p");
+//     let createEle = document.createElement("p");
 
-    createEle.textContent = bodyMsg;
+//     createEle.textContent = bodyMsg;
 
-    createEle.style.color="black";
-
-
-    document.body.appendChild(createEle);
-
-    const bodyStyle = {
-        display: "flex",
-        flexDirection: "column",
-        justifyContent:"center",
-        alignItems: "center",
-        height: "100%"
-    }
-
-    for (let i in bodyStyle) {
-
-        if (i == "height") {
-            document.body.style[i] = document.documentElement.style[i] = bodyStyle[i]
-        }
+//     createEle.style.color="black";
 
 
-        document.body.style[i] = bodyStyle[i];
-    }
-}
+//     document.body.appendChild(createEle);
+
+//     const bodyStyle = {
+//         display: "flex",
+//         flexDirection: "column",
+//         justifyContent:"center",
+//         alignItems: "center",
+//         height: "100%"
+//     }
+
+//     for (let i in bodyStyle) {
+
+//         if (i == "height") {
+//             document.body.style[i] = document.documentElement.style[i] = bodyStyle[i]
+//         }
+
+
+//         document.body.style[i] = bodyStyle[i];
+//     }
+// }
 
 // Initialize Lenis
 const lenis = new Lenis();
@@ -619,8 +619,8 @@ document.addEventListener("DOMContentLoaded", (e) => {
 
     let epiTopDelta = (y - (epiS.offsetTop - window.innerHeight + (epiS.offsetHeight / 2))) / epiS.offsetHeight;
 
-    epiTopDelta = Math.min(Math.max(0, epiTopDelta), 1);
-
+    epiTopDelta = Math.min(Math.max(0, epiTopDelta), .5);
+    log (epiTopDelta)
     let epiTopLerp = lerp(0, ((epiSlideHeaderWidth * 100)), epiTopDelta);
 
 
