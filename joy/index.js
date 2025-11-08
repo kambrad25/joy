@@ -576,6 +576,26 @@ document.addEventListener("DOMContentLoaded", (e) => {
 
     }
 
+
+    const epilouge = document.querySelector(".epilouge");
+
+    const epiTop = document.querySelector(".epi-top");
+    const epiSlide = document.querySelector(".epi-sli");
+    const epiS = document.querySelector(".epi-s");
+
+    const epiSlideHeaderWidth = document.querySelectorAll(".epi-sli > h1").length+1.2;
+
+    let epiTopDelta = (y - (epiS.offsetTop - window.innerHeight + (epiS.offsetHeight / 2))) / epiS.offsetHeight;
+
+    epiTopDelta = Math.min(Math.max(0, epiTopDelta), 1);
+
+    let epiTopLerp = lerp(0, ((epiSlideHeaderWidth * 100)), epiTopDelta);
+
+
+    epiSlide.style.transform = `translate3d(${-epiTopLerp}vw, 0, 0)`;
+    
+
+
         window.requestAnimationFrame(init);
     }
     

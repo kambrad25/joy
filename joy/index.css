@@ -1015,6 +1015,7 @@ section {
     padding: 1rem;
     border: 1px solid;
     background: white;
+    padding: 2rem;
 }
 
 /* END IN */
@@ -1026,13 +1027,53 @@ section {
     margin-top: 10rem;
 }
 
+.epi-s > .container {
+    height: 100%;
+    position: relative;
+}
 .epilouge > h1 {
     text-align: center;
     text-transform: uppercase;
     color: black;
     font-size: 10rem;
 }
+.epi-s {
+    height: calc(100% - 10rem);
+    border: 1px solid;
+}
+.epi-top {
+    position: sticky;
+    top: 0;
+    height: 50%;
+    overflow: hidden;
+}
+.epi-top > .epi-img {
+    width: 50vw;
+    height: 100vw;
+}
+.epi-top > .epi-img > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.epi-sli {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: min-content;
+    height: 100%;
+    transform: translate3d(0px,0,0);
+    font-size: 1.8rem;
+    color: lightgrey;
+    display: flex;
 
+}
+
+.epi-sli > h1 {
+    width: 100vw;
+    align-content: center;
+    text-align: end;
+}
 
 
 /* END EPILOUGE */
