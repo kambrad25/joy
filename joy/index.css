@@ -994,7 +994,7 @@ section {
 /* IN */
 .in {
     padding: 1rem;
-    height: 50%;
+    height: 100%;
     margin-top: 10rem;
     color: #969595;
 }
