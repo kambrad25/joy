@@ -64,7 +64,7 @@ function init() {
             let e2 = easeOutQuint(c);
             let d = 110 + (0 - 110) * e;
             let cd = 50 + (0 - 50) * e;
-            let od = 300 + (0 - 300) * e2;
+            let od = 500 + (0 - 500) * e2;
             if (c < 2) {
                 navcontent.map((u,idx) => {
                     if (idx <= 0) {
@@ -196,6 +196,7 @@ function init() {
                 if (id !== null) {
                     id = requestAnimationFrame(va);
                     setTimeout(() => {
+                        document.querySelector(".bg").style.opacity=0;
                         cancelAnimationFrame(id);
                     }, 1090);
                 }
@@ -212,23 +213,7 @@ function init() {
             let img = document.querySelectorAll(".img-c")[0];
             let imgW = img.clientWidth;
             let totalImg = imgW * document.querySelectorAll(".img-c").length;
-            log (totalImg);
-
-            pos += (e.deltaY / 120 * 20) / 5;
-
-            // pos = Math.min(0, pos);
-            pos = Math.min(Math.max(0, pos), 900)
-
-            document.querySelector(".slider").style.transform=`translate3d(${-pos}%,0%,0)`;
-        })
-
-        document.addEventListener("touchmove", (e) => {
-            if (!isClickedView) return;
-
-            let img = document.querySelectorAll(".img-c")[0];
-            let imgW = img.clientWidth;
-            let totalImg = imgW * document.querySelectorAll(".img-c").length;
-            log (totalImg);
+            // log (totalImg);
 
             pos += (e.deltaY / 120 * 20) / 5;
 
@@ -239,11 +224,55 @@ function init() {
         })
 
 
+        window.addEventListener("wheel", (e) => {
+            // log(e)
+        })
+      
        
         click()
 
     }
 
+    function gal () {
+        function back () {
+
+        }
+        back();
+    }
+
     pre();
+    gal();
 }
+
+
+
+
+
+const horizontalContainer = document.querySelector('.slider');
+
+// 2. Define the options for the observer
+const options = {
+  root: null, // Set the container as the root
+  rootMargin: '0px',
+  threshold: 0.5 // Trigger when 50% of the target is visible
+};
+
+const callback = (entries, observer) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      console.log(`${entry.target.id} is now visible horizontally!`);
+    } else {
+      console.log(`${entry.target.id} is no longer visible.`);
+    }
+  });
+};
+
+const observer = new IntersectionObserver(callback, options);
+
+  horizontalContainer.querySelectorAll(".img-c").forEach(u => {
+    observer.observe(u)
+  })
+
+
+
 
