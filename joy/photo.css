@@ -221,10 +221,10 @@ nav {
     /* height: 50%; */
 }
 .img-c:nth-child(2n + 1) > img {
-    top: 20%;
+    top: 10%;
 }
 .img-c:nth-child(2n) > img {
-    top: 60%;
+    top: 80%;
 }
 .slider {
     height: 100%;

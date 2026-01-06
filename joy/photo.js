@@ -1,5 +1,7 @@
 const { log } = console;
-log ('yeah')
+
+let touched = false;
+
 
 document.addEventListener("DOMContentLoaded", (e) => {
     init()
@@ -50,6 +52,7 @@ function init() {
     function pre () {
         let navcontent = [...document.querySelector("nav").children];
         let precontent = [...document.querySelector(".pre").children];
+
     
 
         let s;
@@ -128,6 +131,12 @@ function init() {
                 isClickedView = true;
                 let id;
                 let s;
+
+                setTimeout(() => {
+                    touched = true;
+                }, 4500)
+
+
                 function va (t) {
                     if (!s) s = t;
                     let c = Math.min((t-s)/1000,1);
@@ -142,10 +151,11 @@ function init() {
                     let uop = 100 + (0 - 100) * e;
                     let top = 0 + (-100 - 0) * e2;
                     let iop = 0 + (1 - 0) * c;
-                    let top2 = 20 + (30 - 20) * e3;
-                    let top3 = 60 + (30 - 60) * e3;
+                    let top2 = 10 + (30 - 10) * e3;
+                    let top3 = 80 + (30 - 80) * e3;
                     let ins = 25 + (100 - 25) * e4;
                     
+
 
 
                     if (c<2) {
@@ -191,6 +201,7 @@ function init() {
 
                         id=requestAnimationFrame(va);
                     }
+
                 }
 
                 if (id !== null) {
@@ -224,11 +235,14 @@ function init() {
             document.querySelector(".slider").style.transform=`translate3d(${-pos}%,0%,0)`;
         })
 
+
         document.addEventListener("touchstart", (e) => {
             y2 = e.touches[0].clientY;
+
         }, { passive: false});
 
         document.addEventListener("touchmove", (e) => {
+            if (!touched) return;        
             let y = e.touches[0].clientY;
 
             let diff = y - y2;
@@ -237,12 +251,22 @@ function init() {
 
             if (Math.abs(diff) > threshold) {
                 if (diff > 0) {
-                    pos -= 1;
+                    pos -= 1 * 5;
                 } else {
-                    pos +=1;
+                    pos +=1 * 5;
                 }
                 y2 = y;
             }
+
+
+            if (pos > 900) {
+                pos = 900;
+            }
+            if (pos < 0) {
+                pos = 0;
+            }
+            pos = Math.min(pos, 900);
+
 
             document.querySelector(".slider").style.transform=`translate3d(${-pos}%, 0,0)`;
         }, { passive: false});
