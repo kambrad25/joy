@@ -23,8 +23,11 @@ body {
     font-size: 1.6rem;
     font-weight: 400;
     line-height: 1;
+    touch-action: auto;
 }
 html, body {
+    width: 100%;
+    height: 100%;
     background-color: #f5f5f5;
     scrollbar-width: none !important;
 
@@ -226,6 +229,6 @@ nav {
 .slider {
     height: 100%;
     touch-action: pan-y;
-    overflow-y: auto;
+    /* overflow-y: auto; */
     -webkit-overflow-scrolling: touch;
 }

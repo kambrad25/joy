@@ -206,7 +206,8 @@ function init() {
 
         window.addEventListener("resize", resizepa);
 
-        let pos = document.scrollingElement.scrollTop;
+        let pos = 0;
+        let y2=0;
         document.addEventListener("wheel", (e) => {
             if (!isClickedView) return;
 
@@ -223,10 +224,31 @@ function init() {
             document.querySelector(".slider").style.transform=`translate3d(${-pos}%,0%,0)`;
         })
 
+        document.addEventListener("touchstart", (e) => {
+            y2 = e.touches[0].clientY;
+        }, { passive: false});
 
-        window.addEventListener("wheel", (e) => {
-            // log(e)
-        })
+        document.addEventListener("touchmove", (e) => {
+            let y = e.touches[0].clientY;
+
+            let diff = y - y2;
+
+            let threshold = 10;
+
+            if (Math.abs(diff) > threshold) {
+                if (diff > 0) {
+                    pos -= 1;
+                } else {
+                    pos +=1;
+                }
+                y2 = y;
+            }
+
+            document.querySelector(".slider").style.transform=`translate3d(${-pos}%, 0,0)`;
+        }, { passive: false});
+
+
+
       
        
         click()
@@ -272,7 +294,4 @@ const observer = new IntersectionObserver(callback, options);
   horizontalContainer.querySelectorAll(".img-c").forEach(u => {
     observer.observe(u)
   })
-
-
-
 
