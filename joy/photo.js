@@ -1,6 +1,7 @@
 const { log } = console;
 
 let touched = false;
+let reveal = false;
 
 
 document.addEventListener("DOMContentLoaded", (e) => {
@@ -128,6 +129,7 @@ function init() {
 
         function click () {
             document.querySelector(".views > button").addEventListener("click", (e) => {
+             
                 isClickedView = true;
                 let id;
                 let s;
@@ -149,7 +151,7 @@ function init() {
                     let op = 0 + (0.7 - 0) * e;
                     let pop = 1 + (0.9 - 1) * e;
                     let uop = 100 + (0 - 100) * e;
-                    let top = 0 + (-100 - 0) * e2;
+                    let top = 0 + (-110 - 0) * e2;
                     let iop = 0 + (1 - 0) * c;
                     let top2 = 10 + (30 - 10) * e3;
                     let top3 = 80 + (30 - 80) * e3;
@@ -169,6 +171,7 @@ function init() {
 
                             document.querySelector(".exit > * > *").style.transform=`translate3d(0,${uop}%,0)`;
 
+                            document.querySelector(".links").style.pointerEvents = "none"
 
                             document.querySelectorAll(".img-c > *").forEach((u, idx) => {
                                 setTimeout(()=>{
@@ -204,18 +207,25 @@ function init() {
 
                 }
 
-                if (id !== null) {
-                    id = requestAnimationFrame(va);
-                    setTimeout(() => {
-                        document.querySelector(".bg").style.opacity=0;
-                        cancelAnimationFrame(id);
-                    }, 1090);
+                if (reveal == true) {
+                    cancelAnimationFrame(id);
+                    id = null;
                 }
+
+                    if (id !== null) {
+                        reveal = true;
+                        id = requestAnimationFrame(va);
+                        setTimeout(() => {
+                            document.querySelector(".bg").style.opacity=0;
+                            cancelAnimationFrame(id);
+                            id = null;
+                        }, 1090);
+                    }
             })
         }
 
 
-        window.addEventListener("resize", resizepa);
+        // window.addEventListener("resize", resizepa);
 
         let pos = 0;
         let y2=0;
@@ -281,6 +291,68 @@ function init() {
 
     function gal () {
         function back () {
+            let content = document.querySelector(".content");
+            let hide_h = document.querySelector(".hide > h4");
+            let exit_h = document.querySelector(".exit  > .hide > p");
+
+            let logo_h = document.querySelector(".logo > h2");
+            let links_h = document.querySelectorAll(".links > a");
+
+
+            
+
+            let s;
+            let id;
+
+
+            let prevPage = (t) => {
+                if (!s) s = t;
+                let c = Math.min((t-s)/650, 1);
+                let c2 = Math.min((t-s)/ 1000, 1);
+                let e = easeInOutBack(c);
+                let io = easeOutCirc(c2);
+                let d = 0 + (-100 - 0) * e;
+                let d2 = 100 + (0 - 100) * e;
+                let d3 = 110 + (0 - 110) * e;
+                let d4 = 0 + (100 - 0) * io;
+                let d5 = .9 + (1 - .9) * e;
+    
+                if (c < 2) {
+                    hide_h.style.transform = `translate3d(0,${d}%, 0)`;
+                    exit_h.style.transform=`translate3d(0,${d}%,0)`;
+
+                    content.style.transform = `translate3d(0,${d4}%,0)`;
+
+
+                    setTimeout(() => {
+                        logo_h.style.transform=`translate3d(0,${d2}%,0)`;
+                        links_h[0].parentElement.style.pointerEvents = "all";
+                        links_h.forEach((u) => {
+                            u.style.transform=`translate3d(0,${d3}%,0)`;
+                        });
+                        setTimeout(() => {
+                            document.querySelector(".pre").style.transform=`scale(${d5})`;
+                        }, 200);
+                    }, 100);
+
+
+                    id = requestAnimationFrame(prevPage);
+                }
+            }
+
+        
+
+            exit_h.addEventListener('click', (e) => {
+                reveal = true;
+                if (id !== null) {
+                    id = requestAnimationFrame(prevPage);
+
+                    setTimeout(() => {
+                        s=null;
+                        cancelAnimationFrame(id);
+                    }, 1050);
+                 }
+            });
 
         }
         back();
@@ -288,34 +360,116 @@ function init() {
 
     pre();
     gal();
+
+
+
+
+
+    function revealReverse () {
+        let id;
+        let s;
+
+
+        let hide_h = document.querySelector(".hide > h4");
+        let exit_h = document.querySelector(".exit  > .hide > p");
+
+        let logo_h = document.querySelector(".logo > h2");
+        let links_h = document.querySelectorAll(".links > a");
+
+        function rr (t) {
+            if (!s) s = t;
+            let c = Math.min((t-s)/1000,1);
+            let c2 = Math.min((t-s)/650, 1);
+            let e = easeOutCirc(c);
+            let e2 = easeInOutBack(c2)
+            let d = 100 + (0 - 100) * e;
+            let d2 = 0 + (-100 - 0) * e2;
+            let d3 = 1 + (.9 - 1) * c2;
+            if (c < 2) {
+                logo_h.style.transform=`translate3d(0,${d2}%,0)`;
+                links_h.forEach(u => u.style.transform=`translate3d(0,${d2}%,0)`);
+                links_h[0].parentElement.style.pointerEvents = "none"
+
+                document.querySelector(".pre").style.transform=`scale(${d3})`;
+
+                
+
+
+                setTimeout(() => {
+                    hide_h.style.transform = `translate3d(0,${d}%, 0)`;
+                    exit_h.style.transform=`translate3d(0,${d}%,0)`;
+
+                    
+
+                }, 1000)
+               
+
+                document.querySelector(".content").style.transform=`translate3d(0,${d}%,0)`;
+                id = requestAnimationFrame(rr);
+            } 
+        }
+
+        
+        document.querySelector(".views > button > span").addEventListener("click", (e) => {
+            if (!reveal) return;
+            if (id !== null) {
+                id = requestAnimationFrame(rr);
+                
+
+                setTimeout(() => {
+                    s = null;
+                    cancelAnimationFrame(id)
+                }, 1650);
+            }
+        })
+    }
+
+    function navigateHeaderTitle () {
+        let logo = document.querySelector(".logo > h2");
+
+        let path = "/";
+        let url = window.location.origin;
+
+        let nUrl = new URL(path, url);
+
+        logo.addEventListener("click", (e) => {
+            location.href = nUrl.href;
+        })
+    }
+    navigateHeaderTitle()
+    revealReverse();
 }
 
 
 
 
 
-const horizontalContainer = document.querySelector('.slider');
 
-// 2. Define the options for the observer
-const options = {
-  root: null, // Set the container as the root
-  rootMargin: '0px',
-  threshold: 0.5 // Trigger when 50% of the target is visible
-};
 
-const callback = (entries, observer) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      console.log(`${entry.target.id} is now visible horizontally!`);
-    } else {
-      console.log(`${entry.target.id} is no longer visible.`);
-    }
-  });
-};
 
-const observer = new IntersectionObserver(callback, options);
 
-  horizontalContainer.querySelectorAll(".img-c").forEach(u => {
-    observer.observe(u)
-  })
+
+// const horizontalContainer = document.querySelector('.slider');
+
+// const options = {
+//   root: null, 
+//   rootMargin: '0px',
+//   threshold: 0.5 
+// };
+
+// const callback = (entries, observer) => {
+//   entries.forEach(entry => {
+//     if (entry.isIntersecting) {
+//       console.log(`${entry.target.id} is now visible horizontally!`);
+//     } else {
+//       console.log(`${entry.target.id} is no longer visible.`);
+//     }
+//   });
+// };
+
+// const observer = new IntersectionObserver(callback, options);
+
+//   horizontalContainer.querySelectorAll(".img-c").forEach(u => {
+//     observer.observe(u)
+//   })
 

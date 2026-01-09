@@ -49,6 +49,7 @@ requestAnimationFrame(raf);
 lenis.stop();
 
 
+
 window.addEventListener("load", (e) => {
     window.scroll({ top: 0, behavior: 'smooth'})
 
@@ -98,6 +99,40 @@ const appendNewChild = () => {
 
     })
 }
+
+function directLinks () {
+    const links = [...document.querySelectorAll(".menu-links")];
+
+    let navigateTo = "/photo.html";
+
+    const linkLogic = links && links.length === 1;
+    if (linkLogic) {
+        let linkChildren = links[links.length -1];
+        linkChildren = [...linkChildren.children];
+
+        let linksQueue = ["Home", "Photos", "Blog", "Contact"];
+    
+        linkChildren = linkChildren.map(link => link.textContent).filter((link, idx) => link.toLowerCase()
+        .includes(linksQueue.find(u => u == "Photos")[0]?.toLowerCase()));
+         
+
+        linkChildren !== "" ? linkChildren = linkChildren[0] : linkChildren = [...links[0].children];
+     
+
+        [...links[links.length - 1].children].map((u, idx) => {
+            if (u.textContent.includes(linkChildren)) {
+                links[links.length-1].children[idx].addEventListener("click", (e) => {
+                    let url = new URL(navigateTo, window.location.origin);
+
+                    window.location = url;
+                })
+            } 
+        }) 
+    }
+}
+
+directLinks();
+
 const facts = [...document.querySelectorAll(".facts > p")];
 const appendChild = () => {
     facts.map((u, idx) => {
@@ -620,7 +655,7 @@ document.addEventListener("DOMContentLoaded", (e) => {
     let epiTopDelta = (y - (epiS.offsetTop - window.innerHeight + (epiS.offsetHeight / 2))) / epiS.offsetHeight;
 
     epiTopDelta = Math.min(Math.max(0, epiTopDelta), .5);
-    log (epiTopDelta)
+    // log (epiTopDelta)
     let epiTopLerp = lerp(0, ((epiSlideHeaderWidth * 100)), epiTopDelta);
 
 
@@ -632,6 +667,163 @@ document.addEventListener("DOMContentLoaded", (e) => {
     }
     
     
+    let menuLinks = [...document.querySelectorAll(".menu-links > h1")];
+    let docEle = document.documentElement;
+
+
+//     document.addEventListener("click", async (e) => {
+//         if (!e.target.matches(".menu-links > h1")) return;
+//         e.preventDefault();
+
+
+//         let link = e.target.getAttribute("href");
+
+//         window.history.pushState({}, "", link);
+
+
+//         let html = await fetch("http://127.0.0.1:5501/templates/photo.html");
+//         let text = await html.text();
+    
+//         // docEle.insertAdjacentHTML("beforeend", text)
+
+
+
+//         let s;
+//         let id;
+//         function opacityAnimate(t) {
+//             if (!s) s = t;
+//             let c = t - s;
+//             let m = Math.min(c/650,1);
+//             let e = 1 - (Math.pow(1-m,3));
+//             let d = 1 + (0 - 1) * e;
+//             if (m < 2) {
+//                 docEle.style.opacity=d;
+//                 id = requestAnimationFrame(opacityAnimate);
+//             }
+//         }
+
+//         if (id !== null) {
+//             id =requestAnimationFrame(opacityAnimate);
+//             setTimeout(() => {
+//                 cancelAnimationFrame(id);
+//             },650)
+//         }
+
+//         setTimeout(() => {
+//             docEle.style.opacity=1;
+//             docEle.style.transition='opacity 650ms'
+
+//             setTimeout(() => {docEle.removeAttribute("style")}, 100);
+//             docEle.innerHTML = text;
+//         },650)
+        
+//         let docEleLinks = [...docEle.children];
+//         // docEleLinks.map((u,idx) => {
+//         //     if (idx < docEle.children.length) {
+//         //         log (u);
+//         //         u.remove();
+//         //     }
+//         // })
+
+
+//         if (window.location.pathname == "/photo.html") {
+//             function create() {
+//                 let h;
+//                 let t;
+//                 if (document.querySelector("#h")) {
+//                     h= document.querySelector("#h");
+//                      t = h.textContent.split("");
+//                     h.innerHTML = "";
+
+                    
+//                 t.map((u) => {
+//                     let ce = document.createElement("span");
+//                     ce.style.display="inline-block";
+//                     ce.textContent = u;
+
+//                     h.append(ce);
+//                 })
+
+
+
+
+                
+//             }
+
+              
+
+//             }
+
+//             setTimeout(() => {
+//                 create();
+
+
+//                 setTimeout(() => {
+//                     document.querySelectorAll("#h > span").forEach((u,idx) => {
+//                         u.style.transform=`translate3d(0,0%,0)`
+//                     })
+//                 }, 300)
+                
+//             //     setTimeout(() => {
+//             //         let s;
+//             //         let id;
+//             //         function a(t) {
+//             //             if (!s) s=t;
+//             //             let c = Math.min((t-s)/650, 1);
+//             //             let e =  Math.sqrt(1 - Math.pow(c - 1, 2));
+//             //             let se =  c< 0.5 ? 4 * c* c* c: 1 - Math.pow(-2 * c+ 2, 3) / 2;
+//             //             let d = 100 + (0 - 100) * e;
+//             //             let sc = .9 + (3.9 - .9) * se;
+
+//             //             if (c < 3) {
+//             //                 document.querySelectorAll("#h > span").forEach((u, idx) => {
+//             //                     setTimeout(() => {
+//             //                         u.style.transform=`translate3d(0,${d}%,0)`;
+//             //                     }, idx * 30);
+//             //                 });
+
+//             //                 setTimeout(() => {
+//             //                     document.querySelector(".img > img").style.transform=`scale(${sc})`;
+//             //                 }, 1200)
+//             //                 id = requestAnimationFrame(a);
+//             //             }
+//             //         }
+
+//             //         if (id !== null) {
+//             //             id = requestAnimationFrame(a);
+
+//             //             setTimeout(() => {
+//             //                 cancelAnimationFrame(id);
+//             //             }, 650);
+//             //         }
+//             //     }, 300);
+//             },650)
+// }
+
+//     }, { passive: false})
+
+    
+
+
+    window.onpopstate = async function() {
+        let html = await fetch("http://127.0.0.1:5501/index.html");
+        let text = await html.text();
+
+
+        docEle.innerHTML = text;
+    }
+
+
+
+
+    
+
+
+
+
+
+
+
     init()
 })
 
