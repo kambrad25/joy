@@ -2,6 +2,7 @@ const { log } = console;
 
 let touched = false;
 let reveal = false;
+let pos = 0;
 
 
 document.addEventListener("DOMContentLoaded", (e) => {
@@ -156,6 +157,7 @@ function init() {
                     let top2 = 10 + (30 - 10) * e3;
                     let top3 = 80 + (30 - 80) * e3;
                     let ins = 25 + (100 - 25) * e4;
+                    let op1 = 0 + (.8 - 0) * e;
                     
 
 
@@ -188,6 +190,12 @@ function init() {
                                         setTimeout(() => {
                                             document.querySelectorAll(".img-c").forEach((u) => {
                                                 u.style.flex=`0 0 ${ins}%`;
+
+
+                                                setTimeout(() => {
+                                                    document.querySelector(".follow-img-content").style.transform=`translate3d(0,${uop}%,0)`;
+                                                    document.querySelector(".indicator").style.opacity = op1;
+                                                }, 50);
                                             })
                                         }, 1500);
                                         // u.style.top=idx % 3 == 0 ? `${top2}%` : `${top3}%`
@@ -227,7 +235,6 @@ function init() {
 
         // window.addEventListener("resize", resizepa);
 
-        let pos = 0;
         let y2=0;
         document.addEventListener("wheel", (e) => {
             if (!isClickedView) return;
@@ -436,8 +443,39 @@ function init() {
             location.href = nUrl.href;
         })
     }
+
+
+    function slideIndicator () {
+        let follow = document.querySelector(".follow");
+        let slideIndic=document.querySelector(".indicator");
+        let slideWidth = slideIndic.clientWidth;
+        let followWidth = follow.clientWidth;
+
+        let offset = 0;
+        let isEnd = false;
+
+        let slideDiff = Math.ceil(followWidth - slideWidth);
+
+        let imgIndicImg = [...document.querySelectorAll(".img-f")];
+        let slider = document.querySelector(".slider");
+
+        imgIndicImg.map((u, idx) => {
+            u.addEventListener("click", (e) => {
+                // slideIndic.style.width = `${u.clientWidth}px`;
+
+                let xPos = idx * 100;
+                slideIndic.style.transform=`translate3d(${xPos}%,0,0)`;
+                slider.style.transform = `translate3d(${-xPos}%,0,0)`;
+                pos = xPos;
+                
+            })
+        })
+        
+    
+    }
     navigateHeaderTitle()
     revealReverse();
+    slideIndicator()
 }
 
 

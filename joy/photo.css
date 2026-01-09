@@ -234,7 +234,38 @@ nav {
     /* overflow-y: auto; */
     -webkit-overflow-scrolling: touch;
 }
-
+.follow {
+    position: absolute;
+    bottom: 50px;
+    width: 80%;
+    /* border: 2px solid red; */
+    margin: auto;
+    left: 50%;
+    transform: translateX(-50%);
+    overflow: hidden;
+}
+.follow-img-content {
+    display: flex;
+    gap: .5rem;
+    transform: translate3d(0,110%,0);
+}
+.img-f > img {
+    aspect-ratio: 1;
+    height: 100%;
+}
+.indicator {
+    width: 40px;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: white;
+    opacity: 0;
+    /* opacity: .8; */
+    border: 1px solid;
+    pointer-events: none;
+    
+}
 
 @media (min-width: 414px){
     .placeholder {
