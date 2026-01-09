@@ -238,6 +238,7 @@ nav {
     position: absolute;
     bottom: 50px;
     width: 80%;
+    height: 200px;
     /* border: 2px solid red; */
     margin: auto;
     left: 50%;
