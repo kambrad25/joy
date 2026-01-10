@@ -238,7 +238,7 @@ nav {
     position: absolute;
     bottom: 50px;
     width: 80%;
-    /* border: 2px solid red; */
+    height: 50px;
     margin: auto;
     left: 50%;
     transform: translateX(-50%);
