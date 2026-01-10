@@ -238,7 +238,6 @@ nav {
     position: absolute;
     bottom: 50px;
     width: 80%;
-    height: 200px;
     /* border: 2px solid red; */
     margin: auto;
     left: 50%;
@@ -251,7 +250,6 @@ nav {
     transform: translate3d(0,110%,0);
 }
 .img-f > img {
-    aspect-ratio: 1;
     height: 100%;
 }
 .indicator {
