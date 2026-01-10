@@ -249,6 +249,10 @@ nav {
     gap: .5rem;
     transform: translate3d(0,110%,0);
 }
+.img-f {
+    width: 100px;
+    height: 100px;
+}
 .img-f > img {
     height: 100%;
     object-fit: cover;
