@@ -251,6 +251,7 @@ nav {
 }
 .img-f > img {
     height: 100%;
+    object-fit: cover;
 }
 .indicator {
     width: 40px;
