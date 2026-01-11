@@ -23,6 +23,7 @@ body {
     font-size: 1.6rem;
     font-weight: 400;
     line-height: 1;
+    overflow: hidden;
     touch-action: auto;
 }
 html, body {
@@ -144,6 +145,8 @@ nav {
     background: transparent;
     pointer-events: all;
     color: black;
+    border: none;
+    outline: none;
 }
 .views > * > * {
     background: transparent;
@@ -238,6 +241,7 @@ nav {
     position: absolute;
     bottom: 50px;
     width: 80%;
+    /* height: 80px; */
     height: 50px;
     margin: auto;
     left: 50%;
@@ -246,16 +250,20 @@ nav {
 }
 .follow-img-content {
     display: flex;
-    gap: .5rem;
     transform: translate3d(0,110%,0);
+    height: 100%;
 }
 .img-f {
     width: 100px;
-    height: 100px;
+    height: 100%;
+    /* height: 50px; */
 }
 .img-f > img {
+    width: 100%;
     height: 100%;
+    /* height: 50px; */
     object-fit: cover;
+    object-position: top;
 }
 .indicator {
     width: 40px;
@@ -284,6 +292,9 @@ nav {
 @media (min-width: 700px) {
     .placeholder > .img {
         width: 460px;
+    }
+    .follow { 
+        height: 80px;
     }
 }
 
