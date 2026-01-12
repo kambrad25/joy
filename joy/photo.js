@@ -297,12 +297,12 @@ function init() {
 
 
             if (pos > 900) {
-                pos = 900;
+                pos = 1600;
             }
             if (pos < 0) {
                 pos = 0;
             }
-            pos = Math.min(pos, 900);
+            pos = Math.min(pos, 1600);
 
 
             document.querySelector(".slider").style.transform=`translate3d(${-pos}%, 0,0)`;
@@ -470,8 +470,18 @@ function init() {
         let slideIndic=document.querySelector(".indicator");
         let slideWidth = slideIndic.clientWidth;
         let followWidth = follow.clientWidth;
+        let dimensionWidth = 1000;
+        let isStopped = false;
 
         let offset = 0;
+
+        if (dimensionWidth <= 1000) {
+            offset =offset* .3;
+        } else {
+            offset = offset *.2;
+        }
+
+    
 
         if (window.innerWidth <= 500) {
             offset = offset * .1;
@@ -487,6 +497,7 @@ function init() {
 
         imgIndicImg.map((u, idx) => {
             u.addEventListener("click", (e) => {
+                if (isStopped) return;
                 // slideIndic.style.width = `${u.clientWidth}px`;
                 let xPos = idx * 100;
                 slideIndic.style.transform=`translate3d(${xPos}%,0,0)`;
@@ -502,22 +513,31 @@ function init() {
             let delta = e.deltaY;
 
             if (Math.abs(delta) > 1) {
-                isScroll = true;
+
 
                 offset = pos;
-
-                log (pos, offset)
                 let width = follow.clientWidth - slideIndic.clientWidth;
-                offset = Math.min(Math.max(0, offset), width);
+                let totalWidth = follow.querySelectorAll("* > .img-f > *")[0].getBoundingClientRect().width * follow.clientWidth;
                 
-                // offset = offset <= 0 ? 0 : offset >= width ? width : offset;
-                // log (offset,width);
+                offset = Math.min(Math.max(0, offset), totalWidth);
+
+                log (offset, width);
+                
         
-                slideIndic.style.transform=`translate3d(${offset}px,0,0)`;
+                slideIndic.style.transform=`translate3d(${offset}%,0,0)`;
             } else {
-                isClicked = true;
+                isStopped = true;
+                // isClicked = true;
             }
         });
+
+        window.addEventListener("resize", (e) => {
+            let width = window.innerWidth;
+
+            if (width < 1000) {
+                offset = offset * .3;
+            }
+        })
 
         
     
