@@ -1,0 +1,98 @@
+@font-face {
+    font-family: "Bueno";
+    src: url("./public/font/Bueno\ Regular\ Free/OpenType-TT/Bueno-Regular.ttf")
+}
+
+:root {
+    --main-font-family: "Bueno";
+}
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: antialiased;
+    overscroll-behavior: none;
+    font-family: var(--main-font-family)
+}
+
+html {
+    font-size: 62.5%;
+}
+body {
+    font-size: 1.6rem;
+    font-weight: 400;
+    line-height: 1.4;
+    background-color: white;
+}
+a {
+    text-decoration: none;
+}
+.h {
+    overflow: hidden;
+}
+#app {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #f5f5f5;
+    /* clip-path: polygon(0% 0%, 0% 0%, 0% 0%, 0% 0%); */
+    /* clip-path: polygon(100% 100%, 100% 100%, 100% 100%, 100% 100%) */
+
+}
+
+.t {
+    position: absolute;
+    top: 2rem;
+    right: 30px;
+    transform: translate3d(-50%, 0%, 0%);
+    text-transform: uppercase;
+}
+.t > * > h1 {
+    font-size: 1.5rem;
+    letter-spacing: -.5px;
+    /* width: min-content; */
+    font-family: var(--main-font-family);
+    text-align: center;
+    line-height: .9;
+    padding-top: .15rem;
+    transform: translate3d(0,100%,0)
+}
+.pre {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: white;
+    display: grid;
+    place-content: center;
+    text-transform: uppercase;
+    clip-path: inset(0% 0%);
+}
+.pr {
+    display: inline-block;
+    transform: translate3d(0,100%,0);
+}
+.f {
+    position: absolute;
+    bottom: 1rem;
+    left: 20px;
+}
+.f > * > * > h1 {
+    /* transform: translate3d(0,100%,0); */
+    text-transform: uppercase;
+    letter-spacing: -.1px;
+    line-height: 1;
+    /* transition: transform 650ms ease; */
+}
+
+.f > * > * > h1 > * {
+    transform: translate3d(0,110%,0);
+    display: inline-block;
+
+}

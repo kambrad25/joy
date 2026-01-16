@@ -92,6 +92,7 @@ nav {
 }
 .links > *:nth-child(2) {
     text-decoration: line-through;
+    pointer-events: none;
 }
 .pre {
     position: fixed;
@@ -279,6 +280,26 @@ nav {
     
 }
 
+.iss {
+    height: 100%;
+    background: white;
+    z-index: 999999;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    align-content: center;
+    text-align: center;
+    display: none;
+}
+.iss > * {
+    overflow: hidden;
+}
+.iss > * > * {
+    margin: 0 .1rem;
+    transform: translate3d(0,100%,0);
+    will-change: transform;
+}
 @media (min-width: 414px){
     .placeholder {
         left: 50%;
@@ -346,5 +367,11 @@ nav {
     }
     .placeholder > .img {
         width: 360px;
+    }
+}
+
+@media (max-height: 550px) {
+    .iss {
+        display: block;
     }
 }

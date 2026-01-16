@@ -111,23 +111,44 @@ function directLinks () {
         linkChildren = [...linkChildren.children];
 
         let linksQueue = ["Home", "Photos", "Blog", "Contact"];
+
+        if (Array.isArray(linkChildren)) {
+            linkChildren = linkChildren.map((u, idx) => {
+                let t = u.textContent;
+
+        
+                if (linksQueue[idx] == t) {
+                    let nt = "/" + linksQueue[idx].toLowerCase() + ".html";
+                    nt = nt.split("/").join("");
+                    nt = nt.split("photos.html").join("photo.html");
+                    
+                    let url = new URL (`/${nt}`, window.location.origin);
+
+                    u.addEventListener("click", (e) => {
+                        e.preventDefault();
+
+                        window.location = url.href;
+                    }, { passive: false });
+                }
+            })
+        }
     
-        linkChildren = linkChildren.map(link => link.textContent).filter((link, idx) => link.toLowerCase()
-        .includes(linksQueue.find(u => u == "Photos")[0]?.toLowerCase()));
+        // linkChildren = linkChildren.map(link => link.textContent).filter((link, idx) => link.toLowerCase()
+        // .includes(linksQueue.find(u => u == "")[0]?.toLowerCase()));
          
 
-        linkChildren !== "" ? linkChildren = linkChildren[0] : linkChildren = [...links[0].children];
+        // linkChildren !== "" ? linkChildren = linkChildren[0] : linkChildren = [...links[0].children];
      
 
-        [...links[links.length - 1].children].map((u, idx) => {
-            if (u.textContent.includes(linkChildren)) {
-                links[links.length-1].children[idx].addEventListener("click", (e) => {
-                    let url = new URL(navigateTo, window.location.origin);
+        // [...links[links.length - 1].children].map((u, idx) => {
+        //     if (u.textContent.includes(linkChildren)) {
+        //         links[links.length-1].children[idx].addEventListener("click", (e) => {
+        //             let url = new URL(navigateTo, window.location.origin);
 
-                    window.location = url;
-                })
-            } 
-        }) 
+        //             window.location = url;
+        //         })
+        //     } 
+        // }) 
     }
 }
 

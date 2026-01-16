@@ -550,9 +550,76 @@ function init() {
 
 
 
+function display_iss () {
+    let iss = document.querySelector(".iss");
+    let t;
+
+    let s = iss.children;
+    if (s.length > 0) {
+        s = s[0];
+        t = s.textContent.split(" ");
+        let gt = [...t];
+
+        s.innerHTML = "";
+        
+        gt.map((u,idx) => {
+            let c = document.createElement("span");
+            c.style.display="inline-block";
+
+            c.textContent = u;
+
+            iss.children[0].appendChild(c);
+
+        })
+    }
 
 
 
+    let id;
+    let st;
+
+    function a (t) {
+        if (!st) st = t;
+        let m = Math.min(Math.max(0, (t - st)/650),1);
+        let e = easeInOutCirc(m);
+        let d = 100 + (0 - 100) * e;
+        if (m < 2) {
+            [...document.querySelectorAll(".iss > h3 > span")].map((u, idx) => {
+                setTimeout(() => {
+                    u.style.transform=`translate3d(0,${d}%,0)`;
+                }, idx * 100);
+            })
+            id = requestAnimationFrame(a);
+        }
+    }
+
+    if (id !== null) {
+        window.addEventListener('resize', (e) => {
+            let h = window.innerHeight;
+            if (h < 550) {
+                id = requestAnimationFrame(a);
+
+                setTimeout(() => {
+                    cancelAnimationFrame(id)
+                }, 650);
+            }
+        })
+
+        if (window.innerHeight < 550) {
+            id = requestAnimationFrame(a);
+
+            setTimeout(() => {
+                cancelAnimationFrame(id);
+            }, 650)
+            st = null;
+        }
+    }
+}
+
+
+
+
+display_iss()
 
 
 

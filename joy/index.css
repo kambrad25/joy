@@ -618,7 +618,7 @@ main {
     gap: 2rem;
 }
 .quote > h4 {
-    font-size: 3.5rem;
+    font-size: 3rem;
 }
 
 section {
@@ -1142,3 +1142,16 @@ section {
     text-align: end;
 }
 /* END FOOTER */
+
+
+@media (max-width: 460px) {
+    .bio-info > div > span > p {
+        font-size: 1.3rem;   
+    }
+}
+
+@media (max-width: 425px) {
+    .bio-info > div > span > p {
+        font-size: 1rem;   
+    }
+}
