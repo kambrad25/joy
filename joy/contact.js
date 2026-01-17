@@ -30,7 +30,7 @@ function splitWords (ele) {
         function a (t) {
             if (!s) s = t;
             let m = Math.min(Math.max(0, (t-s)/1200), 1);
-            let m2 = Math.min(Math.max(0, (t-s)/1800), 1);
+            let m2 = Math.min((t-s)/1800,1);
             let e = easings()[3](m);
             let e2 = easings()[1](m2);
             let e3 = easings()[5](m2);
@@ -55,20 +55,6 @@ function splitWords (ele) {
                 tt.style.transform=`translate3d(0,${d}%,0)`
                 yy.style.transform=`translate3d(0,${d}%,0)`;
 
-
-
-                setTimeout(() => {
-                    oph.map((u, idx) => {
-                        setTimeout(() => {
-                            u.style.transform=`translate3d(0,${d}%,0)`;
-                        }, idx * 150);
-                    });
-
-                setTimeout(() => {
-                        document.querySelector(".oph").style.opacity = d2;
-                    }, 1800);
-                }, 100);
-
                 id=requestAnimationFrame(a);
             }
         }
@@ -79,14 +65,52 @@ function splitWords (ele) {
 
             setTimeout(() => {
                 cancelAnimationFrame(id)
-            }, 2000);
+            }, 1500);
         }
-    }, 1600)
+    }, 4900)
+    }
+}
+
+function qmsg () {
+    
+    let id;
+    let s;
+    function msg (t) {
+        if (!s) s = t;
+        let m = Math.min(Math.max(0, (t-s)/1500), 1);
+        let e = easings()[3](m);
+        let e2 = easings()[5](m);
+        let d = 100 + (0 - 100) * e;
+        let d2 = 1 + (0 - 1) * e2;
+
+        if (m < 2) {
+            setTimeout(() => {
+                oph.map((u, idx) => {
+                    setTimeout(() => {
+                        u.style.transform=`translate3d(0,${d}%,0)`;
+                    }, idx * 150);
+                });
+
+            setTimeout(() => {
+                    document.querySelector(".oph").style.opacity = Math.max(0, d2)
+                }, 1800);
+            }, 1600);
+            id = requestAnimationFrame(msg);
+        }
+    }
+
+    if (id !== null) {
+        id = requestAnimationFrame(msg);
+
+        setTimeout(() => {
+            cancelAnimationFrame(id)
+        }, 2000);
     }
 
 }
 
 splitWords(fs)
+qmsg();
 
 function easings () {
     function easeOutCirc(x) {
