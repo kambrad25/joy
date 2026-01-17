@@ -186,7 +186,7 @@ a {
     font-size: 1rem;
     line-height: 1;
     pointer-events: none;
-    opacity: 1;
+    /* opacity: 1; */
 }
 .oph > * {
     max-width: 100%;
@@ -200,4 +200,5 @@ a {
     color: #6c3f3f;
     transform: translate3d(0,100%,0);
     will-change: transform;
+    font-weight: 600;
 }
