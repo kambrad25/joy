@@ -296,7 +296,7 @@ function init() {
             }
 
 
-            if (pos > 900) {
+            if (pos > 1600) {
                 pos = 1600;
             }
             if (pos < 0) {
