@@ -3,6 +3,10 @@ let pr = [...document.querySelectorAll(".pr")];
 let pres= document.querySelector(".pre");
 let fs = document.querySelector(".f > * > * > h1");
 let ts = document.querySelectorAll(".t > * > h1");
+let tll = [...document.querySelectorAll(".tl * > * > a")];
+let tt = document.querySelector(".tt > * > *");
+let yy = document.querySelector(".yy > * > *");
+let oph = [...document.querySelectorAll(".oph > * > * > h2")]
 
 
 function splitWords (ele) {
@@ -26,21 +30,44 @@ function splitWords (ele) {
         function a (t) {
             if (!s) s = t;
             let m = Math.min(Math.max(0, (t-s)/1200), 1);
+            let m2 = Math.min(Math.max(0, (t-s)/1800), 1);
             let e = easings()[3](m);
+            let e2 = easings()[1](m2);
+            let e3 = easings()[5](m2);
             let d = 110 + (0 - 110) * e;
+            let d2 = 1 + (0 - 1) * e3;
+        
 
             if (m < 2) {
                 [...document.querySelectorAll(".fsf")].map((u, idx) => {
-                    // setTimeout(() => {
-                        u.style.transform=`translate3d(0,${d}%,0)`
-                    // }, idx * 10)
+                    u.style.transform=`translate3d(0,${d}%,0)`
                 })
 
                 ts.forEach((u, idx) => {
-                    // setTimeout(() => {
-                        u.style.transform=`translate3d(0,${d}%,0)`
-                    // }, idx *200);
+                    u.style.transform=`translate3d(0,${d}%,0)`
+                });
+
+
+                tll.map((u) => {
+                    u.style.transform=`translate3d(0,${d}%,0)`;
                 })
+
+                tt.style.transform=`translate3d(0,${d}%,0)`
+                yy.style.transform=`translate3d(0,${d}%,0)`;
+
+
+
+                setTimeout(() => {
+                    oph.map((u, idx) => {
+                        setTimeout(() => {
+                            u.style.transform=`translate3d(0,${d}%,0)`;
+                        }, idx * 150);
+                    });
+
+                setTimeout(() => {
+                        document.querySelector(".oph").style.opacity = d2;
+                    }, 1800);
+                }, 100);
 
                 id=requestAnimationFrame(a);
             }
@@ -48,6 +75,11 @@ function splitWords (ele) {
 
         if (id !== null) {
             id = requestAnimationFrame(a)
+
+
+            setTimeout(() => {
+                cancelAnimationFrame(id)
+            }, 2000);
         }
     }, 1600)
     }
@@ -79,7 +111,10 @@ function easings () {
         return x < 0.5 ? 16 * x * x * x * x * x : 1 - Math.pow(-2 * x + 2, 5) / 2;
     }
 
-    return [easeOutCirc, easeInCirc, easeInOutCubic, easeOutCubic, easeInOutQuint];
+    function easeInSine(x) {
+        return 1 - Math.cos((x * Math.PI) / 2);
+    }
+    return [easeOutCirc, easeInCirc, easeInOutCubic, easeOutCubic, easeInOutQuint, easeInSine];
 }
 
 function animate () {
@@ -91,7 +126,7 @@ function animate () {
         let m = Math.min(Math.max(0, (t-s)/550), 1);
         let m2 = Math.min(Math.max(0, (t-s)/1000),1);
         let e = easings()[2](m);
-        let e2 = easings()[easings().length - 1](m2);
+        let e2 = easings()[easings().length - 2](m2);
         let d = 100 + (0 - 100) * e;
         let d2 = 0 + (50 - 0) * e2;
         let d3 = 0 + (100 - 0) * e2;
@@ -123,7 +158,7 @@ function animate () {
 
         setTimeout(() => {
             cancelAnimationFrame(id);
-        }, 950)
+        }, 1050)
     }
 }
 
