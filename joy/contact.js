@@ -6,7 +6,12 @@ let ts = document.querySelectorAll(".t > * > h1");
 let tll = [...document.querySelectorAll(".tl * > * > a")];
 let tt = document.querySelector(".tt > * > *");
 let yy = document.querySelector(".yy > * > *");
-let oph = [...document.querySelectorAll(".oph > * > * > h2")]
+let oph = [...document.querySelectorAll(".oph > * > * > h2")];
+let con = [...document.querySelectorAll(".bez > .con > .h > *")];
+let fo = document.querySelector(".fo > button");
+let fos = [...document.querySelectorAll(".fo > * > * > *")];
+let foc = fo.parentElement;
+let lex = document.querySelector(".line > .hl > * > *")
 
 
 function splitWords (ele) {
@@ -109,8 +114,139 @@ function qmsg () {
 
 }
 
+
+function bez () {
+    let id;
+    let s;
+    function a (t) {
+        if (!s) s=t;
+        let m = Math.min(Math.max(0, (t-s)/1050), 1);
+        let m2 = Math.min(Math.max(0, (t-s)/850), 1);
+        let e = easings()[3](m);
+        let e2 = easings()[4](m);
+        let e3 = easings()[2](m2);
+
+        let d = 110 + (0 - 110) * e;
+
+
+
+
+        let d2 = 0 + (1 - 0) * e2;
+        let d3 = 110 + (0 - 110) * e3;
+
+
+        if (m < 2) {
+            con.map((u,idx) => {
+                setTimeout(() => {
+                    u.style.transform=`translate3d(0,${d}%,0)`;
+                }, idx * 105);
+            });
+
+            setTimeout(() => {
+                fo.style.opacity = d2;
+                setTimeout(() => {
+                    fos.map((u,idx) =>{
+                        setTimeout(() => {
+                            u.style.transform=`translate3d(0,${d3}%,0)`
+                        }, idx * 65)
+                    })
+                }, 200);
+            }, 535); 
+
+            id = requestAnimationFrame(a);
+        }
+    }
+
+    
+    if (id !== null) {
+        setTimeout(() => {
+            id = requestAnimationFrame(a);
+
+            setTimeout(() => {
+                cancelAnimationFrame(id);
+            }, 1000);
+        }, 4900) 
+    }
+}
+
+
+function af () {
+    foc.addEventListener("click", (e) => {
+        let id;
+        let s;
+        function a(t) {
+            if (!s) s= t;
+            let m = Math.min((t-s)/1000,1);
+            let e = easings()[3](m);
+            let d = 0 + (100 - 0) * e;
+            let d2 = 110 + (0 - 110) * e;
+
+            if (m < 2) {
+                document.querySelector(".line").style.maxWidth = `${d}%`;
+
+                setTimeout(() => {
+                    document.querySelector(".line").style.height = `${d}%`;
+
+                    lex.style.transform = `translate3d(0,${d2}%,0)`
+                }, 900);
+                id = requestAnimationFrame(a);
+            }
+        }
+
+        if (id !== null) {
+            id = requestAnimationFrame(a);
+
+            setTimeout(() => {
+                cancelAnimationFrame(id);
+            }, 1000);
+        }
+
+        s = null;
+    })
+
+
+    lex.addEventListener("click", (e) => {
+          let id;
+         let s;
+        function a(t) {
+            if (!s) s= t;
+            let m = Math.min((t-s)/1000,1);
+            let e = easings()[3](m);
+            let d = 100 + (0 - 100) * e;
+            let d2 = 100 + (.3 - 100) * e;
+            let d3 = 0 + (110 - 0) * e;
+
+
+            if (m < 2) {
+                    document.querySelector(".line").style.height = `${d2}%`;
+                    lex.style.transform = `translate3d(0,${d3}%,0)`
+
+                setTimeout(() => {
+                    document.querySelector(".line").style.maxWidth = `${d}%`;
+
+
+                }, 1000);
+                id = requestAnimationFrame(a);
+            }
+        }
+
+        if (id !== null) {
+            id = requestAnimationFrame(a);
+
+            setTimeout(() => {
+                cancelAnimationFrame(id);
+            }, 1000);
+        }
+
+        s = null;
+    })
+}
+
+
 splitWords(fs)
 qmsg();
+bez();
+af()
 
 function easings () {
     function easeOutCirc(x) {
@@ -191,3 +327,69 @@ function init() {
 }
 
 document.addEventListener("DOMContentLoaded", init)
+
+
+
+// EXAMPLE 1
+
+// let raid;
+// let p1 = 0;
+
+// function a () {
+//     p1 += 1;
+
+//     log (p1);
+//     if (p1 >= 100) {
+//         p1 = 100;
+//         cancelAnimationFrame(raid)
+//     }
+
+//     raid = requestAnimationFrame(a)
+// }
+
+// a()
+// setTimeout(() => {
+//     cancelAnimationFrame(raid);
+// }, 1630);
+
+
+
+// EXAMPLE 2
+
+// let r = 0;
+// let e = 0;
+// let rid;
+// function b () {
+//     r+=1;
+//     if (r <= 200) {
+//         log (r);
+//         rid = requestAnimationFrame(b);
+//     }
+// }
+
+// rid = requestAnimationFrame(b);
+
+
+// let pos = 0;
+
+// let isScrolling = true;
+
+// let start = 0;
+// let end = 100;
+// document.addEventListener("wheel", (e) => {
+//     if (!isScrolling) return;
+//     e.preventDefault();
+
+//     let y = e.deltaY / 50;
+    
+//     let threshold = .6;
+
+//     pos += y;
+
+//     pos = Math.min(Math.max(start, pos), end);
+
+//     document.querySelector(".f").style.transform=`translate3d(0,${-pos}%,0)`;
+
+    
+// }, { passive: false});
+

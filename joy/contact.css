@@ -111,7 +111,7 @@ a {
 }
 
 .line {
-    position: absolute;
+    position: fixed;
     top: 3px;
     width: 100%;
     /* border: 1px solid; */
@@ -121,6 +121,36 @@ a {
     height: 2px;
     left: 50%;
     transform: translate3d(-50%,0,0);
+    color: white;
+}
+.hl {
+    position: absolute;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    /* padding-top: 2rem; */
+}
+.hl > * {
+    width: min-content;
+    position: absolute;
+    left: 50%;
+    top: 2rem;
+    padding-top: .1rem;
+}
+.hl > * > * {
+    pointer-events: all;
+    border-bottom: 1px solid;
+    line-height: .8;
+    text-transform: uppercase;
+    font-weight: 500;
+    cursor: pointer;
+    font-size: 1.6rem;
+    letter-spacing: -.3px;
+    transform: translate3d(0,110%,0);
+    will-change: transform;
 }
 
 .head {
@@ -201,4 +231,59 @@ a {
     transform: translate3d(0,100%,0);
     will-change: transform;
     font-weight: 600;
+}
+.bez {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    display: grid;
+    place-content: center;
+}
+.bez > .con {
+    /* border: 1px solid; */
+    position: relative;
+    height: calc(100% + 3rem);
+}
+.bez > * > * {
+    line-height: .8;
+    padding-top: .2rem;
+    font-size: 1.3rem;
+}
+.bez > * > * > h1 {
+    font-weight: 100;
+    letter-spacing: -.4px;
+    transform: translate3d(0,110%,0);
+    will-change: transform;
+}
+.fo {
+    position: absolute;
+    bottom: 0;
+    right: 30px;
+}
+.fo > * {
+    border-radius: 50px;
+    padding: 1rem;
+    border-bottom: 1px solid;
+    line-height: .5;
+    cursor: pointer;
+    pointer-events: all;
+    opacity: 0;
+}
+.fo > * > * {
+    padding-top: 1rem;
+    letter-spacing: -.95px;
+    padding-right: .1rem;
+}
+.fo > * > * > span{
+    display: inline-block;
+    line-height: 1;
+    transform: translate3d(0,110%,0);
+}
+@media (max-width: 300px) {
+    .oph > * > * > h2 {
+        font-size: 5vw;
+    }
 }
