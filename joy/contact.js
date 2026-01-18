@@ -11,7 +11,11 @@ let con = [...document.querySelectorAll(".bez > .con > .h > *")];
 let fo = document.querySelector(".fo > button");
 let fos = [...document.querySelectorAll(".fo > * > * > *")];
 let foc = fo.parentElement;
-let lex = document.querySelector(".line > .hl > * > *")
+let lex = document.querySelector(".line > .hl > * > *");
+let frnh2 = [...document.querySelectorAll(".frn > * > h2 ")];
+let frnp = document.querySelector(".frt > * > p ");
+let frnh3 = [...document.querySelectorAll(".frtn > *>h3 ")];
+let fotf = document.querySelector(".fot")
 
 
 function splitWords (ele) {
@@ -126,7 +130,7 @@ function bez () {
         let e2 = easings()[4](m);
         let e3 = easings()[2](m2);
 
-        let d = 110 + (0 - 110) * e;
+        let d = 150 + (0 - 150) * e;
 
 
 
@@ -211,10 +215,12 @@ function af () {
         function a(t) {
             if (!s) s= t;
             let m = Math.min((t-s)/1000,1);
+            let m2 = Math.min((t-s)/450,1);
             let e = easings()[3](m);
+            let e2 = easings()[2](m2);
             let d = 100 + (0 - 100) * e;
             let d2 = 100 + (.3 - 100) * e;
-            let d3 = 0 + (110 - 0) * e;
+            let d3 = 0 + (110 - 0) * e2;
 
 
             if (m < 2) {
