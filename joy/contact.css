@@ -35,6 +35,9 @@ a {
 .h {
     overflow: hidden;
 }
+.hlii {
+    display: inline-block;
+}
 #app {
     position: fixed;
     top: 0;
@@ -325,7 +328,7 @@ a {
 .frt > * > p {
     color:white;
     border-bottom: 1px solid;
-    transform: translate3d(0,110%,0);
+    transform: translate3d(0,150%,0);
     will-change: transform;
 }
 .frtn {
@@ -340,7 +343,7 @@ a {
     padding-top: .3rem;
 }
 /* f3 */
-.frtn >*>h3 {
+.frtn >*> *> h3 {
     display: inline-block;
     font-weight: 1;
     transform: translate3d(0,350%,0);
@@ -373,7 +376,6 @@ a {
     width: 100%;
     background: transparent;
     border: none;
-    border-bottom: 1px solid white;
     padding-top: .95rem;
     padding-bottom: .6rem;
     padding-left: .4rem;
@@ -388,7 +390,7 @@ a {
 }
 
 .fot > form > * > button {
-    background-color: red;
+    background-color:#6c3f3f;
     border: none;
     cursor: pointer;
     border-radius: 3px;

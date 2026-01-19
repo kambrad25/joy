@@ -15,9 +15,12 @@ let lex = document.querySelector(".line > .hl > * > *");
 let frnh2 = [...document.querySelectorAll(".frn > * > h2 ")];
 let frnp = document.querySelector(".frt > * > p ");
 let frnh3 = [...document.querySelectorAll(".frtn > *>h3 ")];
-let fotf = document.querySelector(".fot")
+let fotf = document.querySelector(".fot");
 
-
+let hli = [...document.querySelectorAll(".hli > *")];
+let fhli = [...hli].slice(23,);
+hli = hli.slice(0,22)
+log (hli)
 function splitWords (ele) {
     let s = ele.textContent.split("");
     fs.innerHTML = "";
@@ -187,8 +190,10 @@ function af () {
 
             if (m < 2) {
                 document.querySelector(".line").style.maxWidth = `${d}%`;
+                
 
                 setTimeout(() => {
+                    hli.map((u) => u.style.opacity=1)
                     document.querySelector(".line").style.height = `${d}%`;
 
                     lex.style.transform = `translate3d(0,${d2}%,0)`
@@ -199,11 +204,17 @@ function af () {
 
         if (id !== null) {
             id = requestAnimationFrame(a);
+            
+            setTimeout(() => {
+                frma()
+            }, 500)
 
             setTimeout(() => {
                 cancelAnimationFrame(id);
             }, 1000);
         }
+
+        
 
         s = null;
     })
@@ -246,6 +257,63 @@ function af () {
 
         s = null;
     })
+}
+
+
+function frma () {
+    let id;
+    let s;
+
+    let isAnimated = false;
+
+    // if (id) {
+    //     isAnimated = true;
+    //     cancelAnimationFrame(id);
+    // }
+
+    function a (t) {
+        if (isAnimated) return;
+        if (!s) s = t;
+
+        let m = Math.min((t - s) / 2000,1);
+
+        let e = easings()[4](m);
+        
+
+        let d1, d2, d3, d4;
+
+        d1 = 250 + (0 - 250) * e;
+
+        d4 = 0 + (1 - 0) * e;
+
+
+        if (m < 2) {
+            hli.map((u, idx) => {
+                if (idx > 0) {
+                    setTimeout(() => {
+                        u.style.transform=`translate3d(0,${d1}%,0)`;
+                    }, idx * 60);
+                }
+            })
+
+            setTimeout(() => {
+                fotf.style.opacity=d4
+            }, 1520)
+            id = requestAnimationFrame(a);
+        }
+    }
+    
+
+    if (id !== null) {
+        id = requestAnimationFrame(a);
+
+
+        setTimeout(() => {
+            cancelAnimationFrame(id);
+        }, 2500);
+    }
+
+    s = null;
 }
 
 
