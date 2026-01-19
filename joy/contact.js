@@ -232,17 +232,20 @@ function af () {
             let d = 100 + (0 - 100) * e;
             let d2 = 100 + (.3 - 100) * e;
             let d3 = 0 + (110 - 0) * e2;
+            let d4 = 1 + (0 - 1) * m2;
 
 
+            setTimeout(() => {
+                hli.map((u) => u.style.opacity = d4);
+                fotf.style.opacity = d4;
+            }, 100);
             if (m < 2) {
+                setTimeout(() => {
                     document.querySelector(".line").style.height = `${d2}%`;
-                    lex.style.transform = `translate3d(0,${d3}%,0)`
-
+                }, 900)
                 setTimeout(() => {
                     document.querySelector(".line").style.maxWidth = `${d}%`;
-
-
-                }, 1000);
+                }, 2000);
                 id = requestAnimationFrame(a);
             }
         }
@@ -265,12 +268,6 @@ function frma () {
     let s;
 
     let isAnimated = false;
-
-    // if (id) {
-    //     isAnimated = true;
-    //     cancelAnimationFrame(id);
-    // }
-
     function a (t) {
         if (isAnimated) return;
         if (!s) s = t;
@@ -313,7 +310,8 @@ function frma () {
         }, 2500);
     }
 
-    s = null;
+
+    // s = null;
 }
 
 
