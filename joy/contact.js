@@ -204,6 +204,10 @@ function af () {
 
         if (id !== null) {
             id = requestAnimationFrame(a);
+            
+            setTimeout(() => {
+                frma()
+            }, 500)
 
             setTimeout(() => {
                 cancelAnimationFrame(id);
@@ -213,11 +217,6 @@ function af () {
         
 
         s = null;
-        
-        setTimeout(() => {
-            frma()
-        }, 500)
-
     })
 
 
@@ -239,6 +238,10 @@ function af () {
             setTimeout(() => {
                 hli.map((u) => u.style.opacity = d4);
                 fotf.style.opacity = d4;
+
+                setTimeout(() => {
+                    document.querySelectorAll(".frtn > * > * > h3").forEach((u, idx) => u.style.transform=`translate3d(0,350%,0)`)
+                }, 500);
             }, 100);
             if (m < 2) {
                 setTimeout(() => {
