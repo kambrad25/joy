@@ -204,10 +204,6 @@ function af () {
 
         if (id !== null) {
             id = requestAnimationFrame(a);
-            
-            setTimeout(() => {
-                frma()
-            }, 500)
 
             setTimeout(() => {
                 cancelAnimationFrame(id);
@@ -217,6 +213,11 @@ function af () {
         
 
         s = null;
+        
+        setTimeout(() => {
+            frma()
+        }, 500)
+
     })
 
 
