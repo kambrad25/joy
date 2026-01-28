@@ -346,6 +346,25 @@ function ease () {
     return [easeOutCubic,easeInOutCubic,easeOutQuint,easeInOutQuint,easeInOutCirc]
     
 }
+let pos = 0;
+let oldY,newY;
+let vY,nY;
+let touched=false;
+
+document.addEventListener("touchstart", (e) => {
+ touched = true;
+ let y = e.touches[0].clientY;
+ oldY = y;
+});
+document.addEventListener("touchmove", (e) => {
+  if (!touched) return;
+  newY = e.changedTouches[0].clientY;
+  let diff = newY - oldY;
+
+  oldY = newY;
+});
+
+
 
 document.addEventListener("DOMContentLoaded", init);
 
