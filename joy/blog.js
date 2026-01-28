@@ -7,6 +7,28 @@ let li = [...document.querySelectorAll(".lin > * > * > * > a")];
 let pggs = [...document.querySelectorAll(".pgg > *")];
 
 
+function lerp (start, end, t) {
+    return start + (end - start) * t;
+}
+
+
+const data = async () => {
+    let path = "/data.json";
+    let origin = window.location.origin
+    let url = new URL(path, origin);
+
+    let dta = await fetch(url);
+    let dtaj = await dta.json();
+
+    log (dtaj)
+}
+
+// log (data());
+// data()
+
+
+
+
 
 let pre = () => {
     let blf = bl.getBoundingClientRect();
@@ -122,6 +144,89 @@ let pre = () => {
 
 
 
+            function pgga (ele, sty, dur, from, to) {
+                let id, s;
+                function pa (t) {
+                    if (!s) s = t;
+                    let m = Math.min((t-s)/dur, 1);
+                    let e = ease()[3](m);
+                    let e2 = ease()[4](m);
+
+                    let d = lerp(from, to, e);
+                    let d2 = lerp(from, to, e2);
+
+
+                    if (ele.length < 2 && sty == "transform") {
+                        ele[0].style.transform=`translate3d(0,${d2}%,0)`;
+                    }else
+
+                    if (ele.length > 1 && sty == "transform") {
+                        ele.forEach((u, idx) => {
+                            setTimeout(() => {
+                                u.style.transform=`translate3d(-50%,${d}%,0)`;
+                            }, idx * 80)
+                        })
+                    }
+
+                    if (sty == "opacity") {
+                        ele.forEach((u) => {
+                            u.style.opacity = d;
+                        })
+                    }
+                    if (m < 2) {
+                        id = requestAnimationFrame(pa);
+                    }
+                }
+
+                id = requestAnimationFrame(pa);
+
+                setTimeout(() => {
+                    cancelAnimationFrame(id);
+                }, dur);
+            }
+
+            // blog content
+
+            function ptiy (ele, dur, from, to, timeVal) {
+                let s, id;
+                function pti (t) {
+                    if (!s) s = t;
+                    let m = Math.min((t-s)/dur, 1);
+                    let e = ease()[3](m);
+                    let d =lerp(from, to, e);
+
+                    ele.forEach((u,idx) => {
+                        setTimeout(() => {
+                            u.style.transform=`translate3d(0,${d}%,0)`;
+                        }, idx*timeVal);
+                    })
+                    if (m < 2) {
+                        id=requestAnimationFrame(pti);
+                    }
+                }
+                id = requestAnimationFrame(pti);
+
+                setTimeout(() => {
+                    cancelAnimationFrame(id);
+                }, dur);
+            }
+
+            setTimeout(() => {
+                pgga(document.querySelectorAll(".pgg > *"), "opacity", 300, 0, 1);
+                setTimeout(() => {
+                    pgga(document.querySelectorAll(".pgg > *"), "transform", 850, 110, 0);
+                    setTimeout(() => {
+                        pgga(document.querySelectorAll(".pgn > * > *"), "transform", 550, 110, 0)
+
+                        setTimeout(() => {
+                            ptiy(document.querySelectorAll(".ti > * > *"), 350, 110, 0, 60)
+                        })
+                    },400)
+                }, 300);
+            }, 500);
+
+
+
         })
     }
 
@@ -131,12 +236,12 @@ let pre = () => {
 
         function iio (t) {
             if (!s) s = t;
-            let m = Math.min((t-s)/650, 1);
+            let m = Math.min((t-s)/1950, 1);
             let e = ease()[4](m);
             
             let logd, lid, pggsd;
 
-            logd = 110 + (0 - 110) * e;
+            logd = 120 + (0 - 120) * e;
             lid = 150 + (0 - 150) * e;
 
             lo.map((u, idx) => {
@@ -153,7 +258,7 @@ let pre = () => {
 
             
 
-            if (m < 2) {
+            if (m < 1.4) {
                 id = requestAnimationFrame(iio);
             }
 
@@ -163,7 +268,7 @@ let pre = () => {
 
         setTimeout(() => {
             cancelAnimationFrame(id);
-        }, 1000)
+        }, 2050)
     }
 
     s1()
@@ -171,7 +276,7 @@ let pre = () => {
         s2();
         setTimeout(() => {
             s3()
-        }, 600);
+        }, 35);
     },1800);
 }
 
