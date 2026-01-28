@@ -24,7 +24,7 @@ const data = async () => {
 }
 
 // log (data());
-data()
+// data()
 
 
 
