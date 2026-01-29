@@ -383,20 +383,31 @@ let pos = 0;
 let oldY,newY;
 let vY,nY;
 let touched=false;
+let isZoom = false;
 
 document.addEventListener("touchstart", (e) => {
  touched = true;
+ isZoom = true;
  let y = e.touches[0].clientY;
  oldY = y;
 });
 document.addEventListener("touchmove", (e) => {
   if (!touched) return;
+
+  if (isZoom) {
+    if (e.scale !== 1 || e.touches.length > 1) {
+       e.preventDefault();
+    } 
+  }
   newY = e.changedTouches[0].clientY;
   let diff = newY - oldY;
 
   oldY = newY;
-});
+}, {passive: false });
 
+document.addEventListener("touchend",(e) => {
+   isZoom = false;
+});
 
 
 document.addEventListener("DOMContentLoaded", init);
