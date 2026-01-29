@@ -396,6 +396,7 @@ document.addEventListener("touchmove", (e) => {
 
   if (isZoom) {
     if (e.scale !== 1 || e.touches.length > 1) {
+        alert("zoom")
        e.preventDefault();
     } 
   }
@@ -405,9 +406,7 @@ document.addEventListener("touchmove", (e) => {
   oldY = newY;
 }, {passive: false });
 
-document.addEventListener("touchend",(e) => {
-   isZoom = false;
-});
+
 
 
 document.addEventListener("DOMContentLoaded", init);
