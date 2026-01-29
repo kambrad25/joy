@@ -372,6 +372,7 @@ function evt() {
     
     pgg.map((u) => {
         u.addEventListener("click", (e) => {
+            alert("clicked");
             ty([document.querySelector(".s")], 850, 100, 0);
         })
     })
