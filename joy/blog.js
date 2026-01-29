@@ -368,7 +368,7 @@ function ty (ele, dur, from, to) {
   }, dur);
 }
 function evt() {
-    let pgg = [...document.querySelectorAll(".pgg > * > *")];
+    let pgg = [...document.querySelectorAll(".pgg > *")];
     
     pgg.map((u) => {
         u.addEventListener("click", (e) => {
