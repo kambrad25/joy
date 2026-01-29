@@ -346,6 +346,39 @@ function ease () {
     return [easeOutCubic,easeInOutCubic,easeOutQuint,easeInOutQuint,easeInOutCirc]
     
 }
+function ty (ele, dur, from, to) {
+  let s, id;
+  function y(t) {
+    if (!s) s = t;
+    let m = Math.min((t-s)/dur, 1);
+    let e = ease()[3](m);
+    let d = lerp(from, to, e);
+    
+    ele.forEach((u) => {
+        u.style.transform=`translate3d(0,${d}%,0)`;
+    })
+    if (m<2) {
+      id = requestAnimationFrame(y);   
+    }
+  }
+ id = requestAnimationFrame(y);
+
+ setTimeout(() => {
+    cancelAnimationFrame(id)
+  }, dur);
+}
+function evt() {
+    let pgg = [...document.querySelectorAll(".pgg > * > *")];
+    
+    pgg.map((u) => {
+        u.addEventListener("click", (e) => {
+            ty([document.querySelector(".s")], 850, 100, 0);
+        })
+    })
+}
+evt();
+
+
 let pos = 0;
 let oldY,newY;
 let vY,nY;
