@@ -395,7 +395,7 @@ document.addEventListener("touchmove", (e) => {
   if (!touched) return;
 
   if (isZoom) {
-    if (e.scale !== 1 || e.touches.length > 1) {
+    if (e.scale <= 1 || e.touches.length > 1) {
        e.preventDefault();
     } 
   }
