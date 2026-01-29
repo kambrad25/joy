@@ -354,9 +354,9 @@ function ty (ele, dur, from, to) {
     let e = ease()[3](m);
     let d = lerp(from, to, e);
     
-    ele.forEach((u) => {
-        u.style.transform=`translate3d(0,${d}%,0)`;
-    })
+    //ele.forEach((u) => {
+    ele[0].style.transform=`translate3d(0,${d}%,0)`;
+   // })
     if (m<2) {
       id = requestAnimationFrame(y);   
     }
