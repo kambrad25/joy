@@ -373,7 +373,11 @@ function click () {
                 window.history.pushState(null, null, url.href)
                  
                 let pgns = document.querySelector(".pgn > * > *")
-                pgns.textContent = u.querySelector("span").textContent;
+                
+                setTimeout(() => {
+                   pgns.textContent = u.querySelector("span").textContent;
+                }, 250)
+
                 
                 dy(".s", 1050,3,"transform", 110, 0);
                 
