@@ -317,11 +317,63 @@ function update() {
 }
 
 
+function dy (ele, dur, from, to, delay=0) {
+    let s, id;
+    function y (t) {
+        if (!s) s = t;
+        let m = Math.min((t-s)/dur, 1);
+        let e = ease()[3](m);
+        let d = lerp(from, to, e);
+
+        
+        [...document.querySelectorAll(ele)].map((u, idx) => {
+            setTimeout(() => {
+                u.style.transform=`translate3d(0,${d}%,0)`;
+            }, idx * delay);
+        })
+
+        if (m < 2) {
+            id = requestAnimationFrame(y);
+        }
+    }
+
+    id = requestAnimationFrame(y);
+
+    setTimeout(() => {
+        cancelAnimationFrame(id);
+    }, dur);
+}
+
+
+function click () {
+    let ti = [...document.querySelectorAll(".pgg")];
+    let s = document.querySelector(".s");
+    let origin = window.location.origin;
+    let path;
+
+
+    if (ti.length > 1) {
+        ti = ti.map((u, idx) => {
+            u.addEventListener("click", (e) => {
+                e.preventDefault();
+
+                path = window.location.pathname + "?page="+ u.querySelector("span").textContent;
+                let url = new URL(path, origin);
+
+                window.history.pushState(null, null, url.href)
+
+                dy(".s", 1050, 110, 0)
+            })
+        })
+    }
+}
+
 
 
 function init() {
     pre();
     update();
+    click()
 }
 
 function ease () {
@@ -346,64 +398,6 @@ function ease () {
     return [easeOutCubic,easeInOutCubic,easeOutQuint,easeInOutQuint,easeInOutCirc]
     
 }
-function ty (ele, dur, from, to) {
-  let s, id;
-  function y(t) {
-    if (!s) s = t;
-    let m = Math.min((t-s)/dur, 1);
-    let e = ease()[3](m);
-    let d = lerp(from, to, e);
-    
-    //ele.forEach((u) => {
-    ele[0].style.transform=`translate3d(0,${d}%,0)`;
-   // })
-    if (m<2) {
-      id = requestAnimationFrame(y);   
-    }
-  }
- id = requestAnimationFrame(y);
-
- setTimeout(() => {
-    cancelAnimationFrame(id)
-  }, dur);
-}
-function evt() {
-    let pgg = [...document.querySelectorAll(".pgg > *")];
-    
-    pgg.map((u) => {
-        u.addEventListener("click", (e) => {
-            ty([document.querySelector(".s")], 850, 150, 0);
-        })
-    })
-}
-evt();
-
-
-let pos = 0;
-let oldY,newY;
-let vY,nY;
-let touched=false;
-let isZoom = false;
-
-document.addEventListener("touchstart", (e) => {
- touched = true;
- isZoom = true;
- let y = e.touches[0].clientY;
- oldY = y;
-});
-document.addEventListener("touchmove", (e) => {
-  if (!touched) return;
-
-  if (isZoom) {
-    if (e.scale > 1 || e.touches.length > 1) {
-       e.preventDefault();
-    } 
-  }
-  newY = e.changedTouches[0].clientY;
-  let diff = newY - oldY;
-
-  oldY = newY;
-}, {passive: false });
 
 
 
