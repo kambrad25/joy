@@ -364,12 +364,6 @@ function click () {
                  
                 let pgns = document.querySelector(".pgn > * > *")
                 pgns.textContent = u.querySelector("span").textContent;
-
-                let nextPage = await fetch(url);
-                nextPage = await nextPage.json();
-                
-                
-                
                 
                 dy(".s", 1050, 110, 0);
                 dy(".pgn > * > *", 1000, 110, 0);
