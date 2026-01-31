@@ -383,8 +383,18 @@ function click () {
 
                 window.history.pushState(null, null, url.href);
 
+                let tpath;
+
+                if (!window.location.href.split("/").includes("joy")) {
+                    tpath = `${window.location.origin}/templates/${pages[idx]}`;
+                } else {
+                    tpath = `${window.location.origin}/joy/joy/templates/${pages[idx]}`;
+
+                }
+
+
                 // log (url.href.split("blog.html").join(`templates/${pages[idx]}`).split("?")[0])
-                let tpath = `${window.location.origin}/templates/${pages[idx]}`;
+                // let tpath = `${window.location.origin}/templates/${pages[idx]}`;
                 tpath = tpath.split(",")[0];
                 log (tpath)
                 
@@ -456,6 +466,7 @@ window.addEventListener("popstate", async (e) => {
     let url = new URL(path, origin);
 
     window.history.pushState(null, null, url.href);
+
 
     // log (url.href.split("blog.html").join(`templates/${pages[idx]}`).split("?")[0])
     let tpath = `${window.location.origin}/templates/${pages[(parseInt(window.location.href.split("=")[1]) - 1)]}`;
