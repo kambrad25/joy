@@ -366,7 +366,9 @@ function click () {
         ti = ti.map((u, idx) => {
             u.addEventListener("click", async (e) => {
                 e.preventDefault();
-
+                
+                dy(".s", 1050,3,"transform", 110, 0);
+                
                 path = window.location.pathname + "?page="+ u.querySelector("span").textContent;
                 let url = new URL(path, origin);
 
@@ -377,9 +379,6 @@ function click () {
                 setTimeout(() => {
                    pgns.textContent = u.querySelector("span").textContent;
                 }, 250)
-
-                
-                dy(".s", 1050,3,"transform", 110, 0);
                 
                 setTimeout(() => {
                     dy(".pgn > * > *", 250, 3,"opacity", 110, 0);
