@@ -317,6 +317,10 @@ function update() {
 }
 
 
+
+
+
+
 function dy (ele, dur, easing, style, from, to, delay=0) {
     let s, id;
     function y (t) {
@@ -331,14 +335,14 @@ function dy (ele, dur, easing, style, from, to, delay=0) {
         [...document.querySelectorAll(ele)].map((u, idx) => {
             if (style == "transform") {
                setTimeout(() => {
-                  u.style[style]=`translate3d(0,${d}%,0)`;
+                  u.style[style]=`translate3d(0,${dyy}%,0)`;
                 }, idx * delay);
             } 
             
             if (style == "opacity") {
                setTimeout(() => {
                   u.style[style] = dop;
-               }, idx * delay);
+               }, (idx + 1) * delay);
             }
         })
 
@@ -358,39 +362,152 @@ function dy (ele, dur, easing, style, from, to, delay=0) {
 function click () {
     let ti = [...document.querySelectorAll(".pgg")];
     let s = document.querySelector(".s");
+    let c = document.querySelector(".c");
     let origin = window.location.origin;
     let path;
 
+    let pages = ["page1.html", "page2.html", "page3.html", "page4.html"];
 
     if (ti.length > 1) {
         ti = ti.map((u, idx) => {
             u.addEventListener("click", async (e) => {
-                e.preventDefault();
+               e.preventDefault();
                 
-                dy(".s", 1050,3,"transform", 110, 0);
+                dy(".p > .s", 1050,3,"transform", 110, 0);
+                dy(".pgn > * > *", 650, 3, "opacity", 1, 0);
+                dy(".bg", 800, 3, "opacity", 0, 1)
+
                 
                 path = window.location.pathname + "?page="+ u.querySelector("span").textContent;
                 let url = new URL(path, origin);
 
-                window.history.pushState(null, null, url.href)
+                window.history.pushState(null, null, url.href);
+
+                // log (url.href.split("blog.html").join(`templates/${pages[idx]}`).split("?")[0])
+                let tpath = `${window.location.origin}/templates/${pages[idx]}`;
+                tpath = tpath.split(",")[0];
+                log (tpath)
+                
+
+                let page = await fetch(tpath, { method: "GET" });
+                page = await page.text();
+
+                let pattern = /<div[^>]class="p"*>((.|\n|\r)*)<\/div>/im;
+                let match = pattern.exec(page)[1];
+
+                log (match)
+
+                let p = document.createElement("div");
+                p.className='p m';
+                c.insertAdjacentElement("beforeend", p)
+                p.innerHTML = match;
+
+
+                setTimeout(() => {
+                    dy(".ti > * >  *", 600, 3, "transform", 110, 0, 50);
+                }, 1000);
+
+
                  
                 let pgns = document.querySelector(".pgn > * > *")
                 
                 setTimeout(() => {
                    pgns.textContent = u.querySelector("span").textContent;
-                }, 250)
+                }, 850)
                 
                 setTimeout(() => {
-                    dy(".pgn > * > *", 250, 3,"opacity", 110, 0);
-                    setTimeout(() => {
-                      dy(".pgn > * > *", 1000, 3,"transform", 110, 0);
-                    }, 500)
-                }, 1000)
+                    dy(".pgn > * > *", 250, 3, "opacity", 0,1, 500);
+                    dy(".bg", 300, 3, "opacity", 1, 0)
 
+                    setTimeout(() => {
+                      dy(".pgn > * > *", 1050, 3, "transform", 110, 0);
+                    }, 100)
+                }, 500);
+
+
+
+
+                 setTimeout(() => {
+                    [...document.querySelectorAll(".p")][0].remove();
+                    setTimeout(() => {
+                        [...document.querySelectorAll(".p")][0].querySelector(".s").remove()
+                    }, 500);
+                }, 800);
             })
         })
     }
 }
+
+
+let pages = ["page1.html", "page2.html", "page3.html", "page4.html"];
+
+
+window.addEventListener("popstate", async (e) => {
+    // window.location.reload()
+
+    let c = document.querySelector(".c");
+
+    dy(".p > .s", 1050,3,"transform", 110, 0);
+    dy(".pgn > * > *", 650, 3, "opacity", 1, 0);
+    dy(".bg", 800, 3, "opacity", 0, 1)
+
+    
+    path = window.location.pathname + "?page=3"
+    let url = new URL(path, origin);
+
+    window.history.pushState(null, null, url.href);
+
+    // log (url.href.split("blog.html").join(`templates/${pages[idx]}`).split("?")[0])
+    let tpath = `${window.location.origin}/templates/${pages[(parseInt(window.location.href.split("=")[1]) - 1)]}`;
+    tpath = tpath.split(",")[0];
+    log (tpath)
+    
+
+    let page = await fetch(tpath, { method: "GET" });
+    page = await page.text();
+
+    let pattern = /<div[^>]class="p"*>((.|\n|\r)*)<\/div>/im;
+    let match = pattern.exec(page)[1];
+
+    log (match)
+
+    let p = document.createElement("div");
+    p.className='p m';
+    c.insertAdjacentElement("beforeend", p)
+    p.innerHTML = match;
+
+
+    setTimeout(() => {
+        dy(".ti > * >  *", 600, 3, "transform", 110, 0, 50);
+    }, 1000);
+
+
+        
+    let pgns = document.querySelector(".pgn > * > *")
+    
+    setTimeout(() => {
+        pgns.textContent = window.location.href.split("=")[1];
+    }, 850)
+    
+    setTimeout(() => {
+        dy(".pgn > * > *", 250, 3, "opacity", 0,1, 500);
+        dy(".bg", 300, 3, "opacity", 1, 0)
+
+        setTimeout(() => {
+            dy(".pgn > * > *", 1050, 3, "transform", 110, 0);
+        }, 100)
+    }, 500);
+
+
+
+
+            setTimeout(() => {
+            [...document.querySelectorAll(".p")][0].remove();
+            setTimeout(() => {
+                [...document.querySelectorAll(".p")][0].querySelector(".s").remove()
+            }, 500);
+        }, 800);
+})
 
 
 
