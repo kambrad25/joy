@@ -362,7 +362,7 @@ function click () {
 
                 window.history.pushState(null, null, url.href)
                  
-                let pgns = document.querySelector(".pgn > * > span")
+                let pgns = document.querySelector(".pgn > * > *")
                 pgns.textContent = u.querySelector("span").textContent;
 
                 let nextPage = await fetch(url);
@@ -372,7 +372,7 @@ function click () {
                 
                 
                 dy(".s", 1050, 110, 0);
-                dy(".pgn > *", 1000, 110, 0);
+                dy(".pgn > * > *", 1000, 110, 0);
             })
         })
     }
