@@ -317,19 +317,29 @@ function update() {
 }
 
 
-function dy (ele, dur, from, to, delay=0) {
+function dy (ele, dur, easing, style, from, to, delay=0) {
     let s, id;
     function y (t) {
         if (!s) s = t;
         let m = Math.min((t-s)/dur, 1);
-        let e = ease()[3](m);
-        let d = lerp(from, to, e);
+        let e = ease()[easing](m);
+        
+        let dyy = lerp(from, to, e);
+        let dop = lerp(from, to, e);
 
         
         [...document.querySelectorAll(ele)].map((u, idx) => {
-            setTimeout(() => {
-                u.style.transform=`translate3d(0,${d}%,0)`;
-            }, idx * delay);
+            if (style == "transform") {
+               setTimeout(() => {
+                  u.style[style]=`translate3d(0,${d}%,0)`;
+                }, idx * delay);
+            } 
+            
+            if (style == "opacity") {
+               setTimeout(() => {
+                  u.style[style] = dop;
+               }, idx * delay);
+            }
         })
 
         if (m < 2) {
@@ -365,8 +375,15 @@ function click () {
                 let pgns = document.querySelector(".pgn > * > *")
                 pgns.textContent = u.querySelector("span").textContent;
                 
-                dy(".s", 1050, 110, 0);
-                dy(".pgn > * > *", 1000, 110, 0);
+                dy(".s", 1050,3,"transform", 110, 0);
+                
+                setTimeout(() => {
+                    dy(".pgn > * > *", 250, 3,"opacity", 110, 0);
+                    setTimeout(() => {
+                      dy(".pgn > * > *", 1000, 3,"transform", 110, 0);
+                    }, 500)
+                }, 1000)
+
             })
         })
     }
