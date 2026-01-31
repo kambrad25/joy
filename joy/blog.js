@@ -354,15 +354,25 @@ function click () {
 
     if (ti.length > 1) {
         ti = ti.map((u, idx) => {
-            u.addEventListener("click", (e) => {
+            u.addEventListener("click", async (e) => {
                 e.preventDefault();
 
                 path = window.location.pathname + "?page="+ u.querySelector("span").textContent;
                 let url = new URL(path, origin);
 
                 window.history.pushState(null, null, url.href)
+                 
+                let pgns = document.querySelector(".pgn > * > span")
+                pgns.textContent = u.querySelector("span").textContent;
 
-                dy(".s", 1050, 110, 0)
+                let nextPage = await fetch(url);
+                nextPage = await nextPage.json();
+                
+                
+                
+                
+                dy(".s", 1050, 110, 0);
+                dy(".pgn > *", 1000, 110, 0);
             })
         })
     }
