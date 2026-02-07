@@ -603,12 +603,84 @@ function updatesh () {
 
 }
 
+function mscroll() {
+    let ops = { passive: false};
+
+    let o = 0, n = 0,id;
+    let st,nt,vel;
+
+
+    document.addEventListener("touchstart",(e) => {
+        e.preventDefault();
+        const touch= e.touches[0];
+        o = touch.screenY;
+        st = Date.now();
+        if (id) cancelAnimationFrame(id);
+    }, ops);
+
+    document.addEventListener("touchmove",(e) => {
+        e.preventDefault();
+        const touch=e.touches[0];
+        nt=Date.now();
+        n = touch.screenY;
+        let td = nt - st;
+        let dy = n - o;
+        o =n;
+
+        if (td > 5) {
+            vel = dy / td;
+            st = Date.now();
+        }        
+
+    }, ops);
+    
+    document.addEventListener("touchend", (e)=> {
+        requestAnimationFrame(ma)
+    },ops);
+
+    function ma () {
+        vel*=.95;
+        pos-=vel;
+
+        pos=Math.min(Math.max(0, pos),80);
+
+        document.querySelector(".r").style.transform=`translate3d(0,${-pos}%,0)`;
+
+        [...document.querySelectorAll(".ti")].map((u, idx) => {
+            if (idx > 2) {
+                let ta = document.querySelector(".ta");
+                tat = ta.getBoundingClientRect().top;
+                let ut = u.getBoundingClientRect().top;
+
+            
+
+                let dif = (tat - ut) / u.getBoundingClientRect().height;
+
+                if (dif > 1) {
+                    u.style.opacity=1;
+                } else {
+                    u.style.opacity=0;
+                }
+            }
+
+
+        })
+
+        if (Math.abs(vel) > .001) {
+            id=requestAnimationFrame(ma);
+        }
+    }
+
+
+}
+
 
 function init() {
     pre();
     update();
-    updatesh()
-    click()
+    updatesh();
+    click();
+    mscroll();
 }
 
 function ease () {
