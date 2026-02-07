@@ -139,6 +139,7 @@ ul {
     top: 2rem;
     left: 2rem;
     z-index: 10;
+    pointer-events: all;
 }
 .lin > * > * {
     line-height: 1;
@@ -187,6 +188,7 @@ ul {
     /* border: 3px solid red; */
     width: calc(100% - 3.5rem);
     height: calc(100% - 4rem);
+    overflow: hidden;
 }
 .r {
     /* border: 2px solid; */
@@ -199,6 +201,7 @@ ul {
     height: 30%;
     padding-top: 1rem;
     pointer-events: none;
+    transition: opacity 500ms cubic-bezier(0.83, 0, 0.17, 1);
 }
 .ti > p {
     font-style: italic;
@@ -217,6 +220,56 @@ ul {
     opacity: 0;
 }
 
+.tr {
+    display: flex;
+    max-width: calc(100rem / 4.5);
+    margin: auto;
+    gap: 2rem;
+    align-items: center;
+    position: relative;
+    /* justify-content: space-evenly; */
+}
+.tr > *:first-child {
+    text-transform: uppercase;
+    font-size: 2rem;
+    letter-spacing: .8px;
+}
+.tr > *:nth-child(2) {
+    color:rgb(109, 52, 52);
+}
+.tr > *:last-child {
+    position: absolute;
+    right: 0;
+    width: 100px;
+    height: 100%;
+    text-align: end;
+    padding-top: 1.5px;
+    text-align: center;
+    mix-blend-mode: difference;
+    color: white;
+    align-content: center;
+}
+
+.tr > *:last-child >*:first-child {
+    color: white;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.tb {
+    overflow: hidden;
+}
+.tbb {
+    position: absolute;
+    right: 0;
+    top: 0;
+    background-color: black;
+    height: 2px;
+    width: 0;
+    z-index: -1;
+    border-radius: 5px;
+    pointer-events: all;
+}
 .s {
     position: absolute;
     top: 0;
@@ -237,7 +290,13 @@ ul {
     pointer-events: none;
     opacity: 0;
 }
-
+.ta {
+    position: absolute;
+    /* border: 1px solid red; */
+    top: 95%;
+    left: 0;
+    width: 100%;
+}
 
 @media (max-width: 400px) {
     .pre > *:nth-child(1) {

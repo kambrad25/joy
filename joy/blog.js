@@ -5,6 +5,11 @@ let pgg = [...document.querySelectorAll(".pgg")];
 let lo = [...document.querySelectorAll(".log > * > h3")];
 let li = [...document.querySelectorAll(".lin > * > * > * > a")];
 let pggs = [...document.querySelectorAll(".pgg > *")];
+let ta = document.querySelector(".ta");
+let ti = [...document.querySelectorAll(".ti")];
+
+
+let pos = 0;
 
 
 function lerp (start, end, t) {
@@ -20,7 +25,7 @@ const data = async () => {
     let dta = await fetch(url);
     let dtaj = await dta.json();
 
-    log (dtaj)
+    // log (dtaj)
 }
 
 // log (data());
@@ -220,6 +225,12 @@ let pre = () => {
 
                         setTimeout(() => {
                             ptiy(document.querySelectorAll(".ti > * > *"), 350, 110, 0, 60)
+
+                            setTimeout(() =>{
+                                lia(".tbb", 1000, 0, 100,2,20,0,1,200,0)
+                            }, 50);
+
+
                         })
                     },400)
                 }, 300);
@@ -281,9 +292,46 @@ let pre = () => {
 }
 
 
+log(document.querySelectorAll(".tbb")[0].previousElementSibling)
+function lia (ele, dur, f1, t1, f2=null, t2=null, f3=null, t3=null,d1=0,d2=0) {
+    let s, id;
+    function a (t) {
+        if (!s) s = t;
+        let m = Math.min((t-s)/dur,1);
+        let e = ease()[3](m);
+        let w = f1 + (t1 - f1) * e;
+        let h = f2 + (t2-f2)*e;
+        let o = f3 + (t3 - f3) * e;
+
+        [...document.querySelectorAll(ele)].map((u,idx)=> {
+            setTimeout(() =>{
+                u.style.width = `${w}%`;
+
+                setTimeout(()=>{
+                    u.style.height = `${h}px`;
+
+                    setTimeout(() => {
+                        u.previousElementSibling.style.opacity=o;
+                    }, 200);
+                }, 1000);
+            },idx*d1);
+        })
+        if (m < 2) {
+            id =requestAnimationFrame(a);
+        }
+    }
+
+    id=requestAnimationFrame(a);
+
+    setTimeout(() => {
+        cancelAnimationFrame(id);
+    }, dur * [...document.querySelectorAll(ele)].length);
+}
+
 function update() {
     let resizeTimeout;
     let animationFrameId;
+    let height;
 
     function handleResizeRAF() {
     // Cancel any pending animation frame
@@ -303,6 +351,7 @@ function update() {
                 u.style.transform=`translate3d(-${window.innerWidth / 3}px, ${window.innerHeight / 2.3}px, 0)`;
             })
         }
+
         animationFrameId = null; 
     });
     }
@@ -372,6 +421,7 @@ function click () {
         ti = ti.map((u, idx) => {
             u.addEventListener("click", async (e) => {
                e.preventDefault();
+               pos = 0;
                 
                 dy(".p > .s", 1050,3,"transform", 110, 0);
                 dy(".pgn > * > *", 650, 3, "opacity", 1, 0);
@@ -522,9 +572,42 @@ window.addEventListener("popstate", async (e) => {
 
 
 
+function updatesh () {
+    let id;
+    let timeout;
+    let h;
+
+    function hraf () {
+        cancelAnimationFrame(id);
+
+        id = requestAnimationFrame(() => {
+
+            h = window.innerHeight;
+            document.addEventListener("touchstart", (e) => {
+                log (h);
+            })
+
+        })
+
+        id = null;
+    }
+
+    window.addEventListener("resize", (e) => {
+        clearTimeout(timeout);
+
+
+        setTimeout(() => {
+            hraf();
+        }, 100);
+    })
+
+}
+
+
 function init() {
     pre();
     update();
+    updatesh()
     click()
 }
 
@@ -551,6 +634,113 @@ function ease () {
     
 }
 
+document.addEventListener("touchmove", (e) => {
+    if (e.scale !== 1) {
+        e.preventDefault();
+    }
+}, {passive: false})
+
+
+
+
+document.addEventListener("wheel", (e) => {
+    if (e.ctrlKey || e.metaKey) {
+        e.preventDefault()
+    }
+
+    let y = e.deltaY / 120;
+
+    pos +=y;
+
+    pos = Math.min(Math.max(0, pos), 60);
+
+    document.querySelector(".r").style.transform=`translate3d(0,${-pos}%,0)`;
+
+    // find ti query inside wheel event so it can target 'new' items;
+
+    let ti = [...document.querySelectorAll(".ti")];
+    ti.map((u, idx) => {
+        if (idx > 2) {
+            let tatp = ta.getBoundingClientRect().top;
+            let utp = u.getBoundingClientRect().top;
+            let deltp = (tatp - utp) / u.getBoundingClientRect().height;
+
+            if (deltp > .5) {
+                u.style.opacity=1;
+            }else {
+                u.style.opacity=0
+            }
+           
+
+           
+
+            
+        }
+
+    })
+
+
+    
+
+    // let options = {
+    //     root: null,
+    //     rootMargin: '0px',
+    //     threshold:1.0
+
+    // }
+
+    // let cb = ((e, obs) => {
+    //     e.forEach((u) => {
+    //         if(u.isIntersecting) {
+    //             u.target.style.opacity = 1;
+    //             // e.target.style.opacity = 1;
+    //         }
+    //     })
+    // })
+
+    // let ins = new IntersectionObserver(cb, options);
+    // [...document.querySelectorAll(".ti")].map((u, idx) => {
+    //     ins.observe(u);
+    // })
+
+
+}, {passive:false})
+
+
+let id;
+function aop (ele, dur, from, to) {
+    let s;
+    
+   function op(t) {
+    // if (!r) return;
+    if (!s) s = t;
+    let m = Math.min((t-s)/dur, 1);
+    let e = ease()[3](m);
+    let d = from + (to - from) * e;
+    
+    ele.style.opacity = d;
+
+
+
+    if (m < 2) {
+        id = requestAnimationFrame(op);
+    }
+     }
+     id = requestAnimationFrame(op);
+
+
+        setTimeout(() => {
+            cancelAnimationFrame(id)    
+        }, dur);
+
+
+   }
+
+ 
+   
+   
+    
+        
 
 
 
