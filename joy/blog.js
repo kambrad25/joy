@@ -187,7 +187,7 @@ let pre = () => {
 
                 setTimeout(() => {
                     cancelAnimationFrame(id);
-                }, dur);
+                }, dur+50);
             }
 
             // blog content
@@ -407,9 +407,14 @@ function dy (ele, dur, easing, style, from, to, delay=0) {
     }, dur);
 }
 
+document.querySelector(".pg1").addEventListener("click",(E) => {
+    E.target.style.pointerEvents="none";
+})
+
+
 
 function click () {
-    let ti = [...document.querySelectorAll(".pgg")];
+    let pg = [...document.querySelectorAll(".pgg")];
     let s = document.querySelector(".s");
     let c = document.querySelector(".c");
     let origin = window.location.origin;
@@ -417,12 +422,17 @@ function click () {
 
     let pages = ["page1.html", "page2.html", "page3.html", "page4.html"];
 
-    if (ti.length > 1) {
-        ti = ti.map((u, idx) => {
+    if (pg.length > 1) {
+        pg = pg.map((u, idx) => {
             u.addEventListener("click", async (e) => {
                e.preventDefault();
-               pos = 0;
-                
+               setTimeout(() => {
+                pos=0;
+               }, 1000);
+
+
+            //    e.target.style.pointerEvents='none';
+                            
                 dy(".p > .s", 1050,3,"transform", 110, 0);
                 dy(".pgn > * > *", 650, 3, "opacity", 1, 0);
                 dy(".bg", 800, 3, "opacity", 0, 1)
@@ -446,7 +456,7 @@ function click () {
                 // log (url.href.split("blog.html").join(`templates/${pages[idx]}`).split("?")[0])
                 // let tpath = `${window.location.origin}/templates/${pages[idx]}`;
                 tpath = tpath.split(",")[0];
-                log (tpath)
+                // log (tpath)
                 
 
                 let page = await fetch(tpath, { method: "GET" });
@@ -493,6 +503,7 @@ function click () {
                         [...document.querySelectorAll(".p")][0].querySelector(".s").remove()
                     }, 500);
                 }, 800);
+
             })
         })
     }
@@ -540,6 +551,9 @@ window.addEventListener("popstate", async (e) => {
 
     setTimeout(() => {
         dy(".ti > * >  *", 600, 3, "transform", 110, 0, 50);
+        setTimeout(() => {
+            // u.style.pointerEvents = "all";
+        }, 1500);
     }, 1000);
 
 
@@ -583,9 +597,9 @@ function updatesh () {
         id = requestAnimationFrame(() => {
 
             h = window.innerHeight;
-            document.addEventListener("touchstart", (e) => {
-                log (h);
-            })
+            // document.addEventListener("touchstart", (e) => {
+            //     log (h);
+            // })
 
         })
 
@@ -611,15 +625,23 @@ function mscroll() {
 
 
     document.addEventListener("touchstart",(e) => {
-        e.preventDefault();
+        // e.preventDefault();
         const touch= e.touches[0];
         o = touch.screenY;
         st = Date.now();
         if (id) cancelAnimationFrame(id);
+
+
+        [...document.querySelectorAll(".pgg")].map(u => {
+            u.addEventListener("click", (e) => {
+                setTimeout(() => {
+                    pos=0;
+                }, 1000);
+            })
+        })
     }, ops);
 
     document.addEventListener("touchmove",(e) => {
-        e.preventDefault();
         const touch=e.touches[0];
         nt=Date.now();
         n = touch.screenY;
@@ -630,7 +652,7 @@ function mscroll() {
         if (td > 5) {
             vel = dy / td;
             st = Date.now();
-        }        
+        }
 
     }, ops);
     
@@ -642,12 +664,12 @@ function mscroll() {
         vel*=.95;
         pos-=vel;
 
-        pos=Math.min(Math.max(0, pos),80);
+        pos=Math.min(Math.max(0, pos),60);
 
         document.querySelector(".r").style.transform=`translate3d(0,${-pos}%,0)`;
 
         [...document.querySelectorAll(".ti")].map((u, idx) => {
-            if (idx > 2) {
+            if (idx>=0) {
                 let ta = document.querySelector(".ta");
                 tat = ta.getBoundingClientRect().top;
                 let ut = u.getBoundingClientRect().top;
@@ -656,7 +678,7 @@ function mscroll() {
 
                 let dif = (tat - ut) / u.getBoundingClientRect().height;
 
-                if (dif > 1) {
+                if (dif > .5) {
                     u.style.opacity=1;
                 } else {
                     u.style.opacity=0;
@@ -679,8 +701,9 @@ function init() {
     pre();
     update();
     updatesh();
-    click();
     mscroll();
+    click();
+  
 }
 
 function ease () {
@@ -732,7 +755,7 @@ document.addEventListener("wheel", (e) => {
 
     let ti = [...document.querySelectorAll(".ti")];
     ti.map((u, idx) => {
-        if (idx > 2) {
+        if (idx >= 0) {
             let tatp = ta.getBoundingClientRect().top;
             let utp = u.getBoundingClientRect().top;
             let deltp = (tatp - utp) / u.getBoundingClientRect().height;
