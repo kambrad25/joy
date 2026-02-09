@@ -325,7 +325,9 @@ function lia (ele, dur, f1, t1, f2=null, t2=null, f3=null, t3=null,d1=0,d2=0) {
 
     setTimeout(() => {
         cancelAnimationFrame(id);
+        s = null;
     }, dur * [...document.querySelectorAll(ele)].length);
+    s=null;
 }
 
 function update() {
@@ -475,6 +477,10 @@ function click () {
 
                 setTimeout(() => {
                     dy(".ti > * >  *", 600, 3, "transform", 110, 0, 50);
+                     setTimeout(() =>{
+                        log (true)
+                                lia(".tbb", 1000, 0, 100,2,20,0,1,200,0)
+                            }, 50);
                 }, 1000);
 
 
@@ -836,6 +842,19 @@ function aop (ele, dur, from, to) {
    
     
         
+   document.addEventListener("click", (e) => {
+        [...document.querySelectorAll(".pgg > *")].map((u) => {
+            log (u)
+            u.parentElement.style.pointerEvents = "none";
+            u.style.pointerEvents="none";
+
+
+
+            setTimeout(() => {
+                u.style.parentElement.pointerEvents = u.style.pointerEvents = "all";
+            }, 5000);
+        })
+   })
 
 
 
