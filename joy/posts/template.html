@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="Content-Security-Policy" content="style-src 'unsafe-inline'; script-src 'unsafe-inline'"/>
+    <title>Blog Template</title>
+    <style>
+        @font-face {
+            src: url('../public/font/Bueno\ Regular\ Free/OpenType-TT/Bueno-Regular.ttf');
+            font-family: "Bueno";
+            font-weight: 400;
+        }
+        :root {
+            --main-font: "Bueno"; 
+        }
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            overscroll-behavior: none;
+            font-family: var(--main-font);
+        }
+        .h {
+            overflow: hidden;
+        }
+        html {
+            font-size: 62.5%;
+        }
+        body {
+            font-size: 1.6rem;
+            font-weight: 400;
+            line-height: 1.4;
+        }
+        .c {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: white;
+        }
+        .cl {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+        }
+        .cl > * > * {
+            text-transform: uppercase;
+            transform: translate3d(0,110%,0);
+            display: inline-block;
+            /* border: 2px solid; */
+        }
+        .cl > * {
+            line-height: .95;
+            padding-top: .5rem;
+        }
+        .pi {
+            position: absolute;
+            top: 2rem;
+            left: 4vw;
+            width: 25%;
+            aspect-ratio: 1;
+        }
+        .pi.h {
+            overflow: visible;
+        }
+        .pi > * {
+            max-width: 100%;
+            clip-path: polygon(100% 100%, 0% 100%, 0% 100%, 100% 100%);
+        }
+        .hd {
+            position: absolute;
+            bottom: 2vw;
+            right: 4vw;
+        }
+        .hd > * {
+            line-height: .6;
+            font-size: 1.2rem;
+            padding-bottom: .3rem;
+            padding-left: .4rem;
+            padding-top: .6rem;
+            text-transform: uppercase;
+        }
+        .hd > * > * {
+            transform: translate3d(0,160%,0);
+        }
+        .t {
+            position: absolute;
+            top: 2rem;
+            left: 60%;
+            transform: translate3d(-50%,0,0);
+            text-align: center;
+        }
+        .t > * {
+            line-height: .8;
+            padding-top: .2rem;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+        }
+        .t > * > * {
+            font-weight: 100;
+            transform: translate3d(0,110%,0);
+        }
+        .t > *:last-child > * {
+            color: gray;
+            transform: translate3d(0,110%,0);
+            display: inline-block;
+        }
+        .d {
+            position: absolute;
+            bottom: 1rem;
+            left: 4vw;
+        }
+        .d > * {
+            line-height: .8;
+            padding-top: .2rem;
+        }
+        .d > * > * {
+            display: inline-block;
+            transform: translate3d(0,110%,0);
+        }
+        .pa {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 999;
+            pointer-events: none;
+        }
+        .r {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        .pah {
+            display: flex;
+            width: 50%;
+            position: absolute;
+            right: 6vw;
+            top: 7rem;
+            gap: 2rem;
+        }
+        .pa1, .pa2, .pa3 {
+            pointer-events: all;
+        }
+        .pah > * > * {
+            line-height: .9;
+            overflow: visible;
+            overflow-y: hidden;
+        }
+        .pah > * > * > * {
+            font-size: 2vw;
+            transform: translate3d(0,150%,0);
+            white-space: nowrap;
+        }
+    
+    </style>
+    <body>
+        <div class="c">
+            <div class="pi h">
+                <img src="https://i1.wp.com/box5341.temp.domains/~freejoyp/wp-content/uploads/2022/04/Joy-5x7-4x6-4-2-629x1024.png?strip=info&w=692">
+            </div>
+
+            <div class="t">
+                <div class="h">
+                    <h1>title</h1>
+                </div>
+                <div class="h">
+                    <span>author</span>
+                </div>
+            </div>
+
+
+            <div class="d">
+                <div class="h">
+                    <span>01/25</span>
+                </div>
+            </div>
+
+            <div class="pa">
+                <div class="r">
+                    <div class="pah">
+                        <div class="pa1">
+                            <div class="h">
+                                <p>Lorem ipsum dolor sit amet.</p>
+                            </div>
+                            <div class="h">
+                                <p>consectetur adipisicing elit</p>
+                            </div>
+                            <div class="h">
+                                <p>Ullam mollitia laboriosam autem,</p>
+                            </div>
+                            <div class="h">
+                                <p> tempore deleniti officia ex!</p>
+                            </div>
+                            <div class="h">
+                                <p>Molestias possimus sit cum quaerat</p>
+                            </div>
+                            <div class="h">
+                                <p>recusandae? Praesentium ducimus repellat</p>
+                            </div>
+                            <div class="h">
+                                <p>perferendis consequatur suscipit,</p>
+                            </div>
+                            <div class="h">
+                                <p>amet voluptas!</p>
+                            </div>
+                        </div>
+                        <div class="pa2">
+                             <div class="h">
+                                <p>Lorem ipsum dolor sit amet.</p>
+                            </div>
+                            <div class="h">
+                                <p>consectetur adipisicing elit</p>
+                            </div>
+                            <div class="h">
+                                <p>Ullam mollitia laboriosam autem,</p>
+                            </div>
+                            <div class="h">
+                                <p> tempore deleniti officia ex!</p>
+                            </div>
+                            <div class="h">
+                                <p>Molestias possimus sit cum quaerat</p>
+                            </div>
+                            <div class="h">
+                                <p>recusandae? Praesentium ducimus repellat</p>
+                            </div>
+                            <div class="h">
+                                <p>perferendis consequatur suscipit,</p>
+                            </div>
+                            <div class="h">
+                                <p>amet voluptas!</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pa3"></div>
+                </div>
+            </div>
+        </div>
+        <div class="cl">
+            <div class="h">
+                <span>close</span>
+            </div>
+        </div>
+        <div class="hd">
+                <div class="h">
+                    <h1>joy</h1>
+                </div>
+                <div class="h">
+                    <h1>powell</h1>
+                </div>
+        </div>
+        <script>
+            
+            const { log } = console;
+            // log("hey")
+            const pi = document.querySelector(".pi > *");
+            let h = [...document.querySelectorAll(".h > *")];
+
+            const imgs = [
+                "https://i1.wp.com/box5341.temp.domains/~freejoyp/wp-content/uploads/2022/04/joy-photo-17-3.jpg?strip=info&w=484",
+                "https://i0.wp.com/box5341.temp.domains/~freejoyp/wp-content/uploads/2022/04/joy-photo-18-3.jpg?strip=info&w=484",
+                "https://i2.wp.com/box5341.temp.domains/~freejoyp/wp-content/uploads/2022/04/joy-photo-11-3.jpg?strip=info&w=667",
+                "https://i1.wp.com/box5341.temp.domains/~freejoyp/wp-content/uploads/2022/04/Joy-5x7-4x6-4-2-629x1024.png?strip=info&w=692"
+            ]
+
+            let mr = Math.floor(Math.random() * 4);
+            
+
+            function lerp (start, end, t) {
+                return start + (end - start) * t;
+            }
+
+            function init() {
+                function hero () {
+                    pi.src = imgs[mr];
+
+                    setTimeout(() => {
+                        pre_h()
+                    }, 500);
+                }
+
+
+                function pre_h() {
+                    let s, s2, id, id2;
+                    function a (t) {
+                        if (!s) s = t;
+                        let m = Math.min((t-s)/1000, 1);
+                        let m2 = Math.min((t-s)/650, 1);
+
+                        let e = 1 - (Math.pow(1-m, 3));
+                        let e2 = 1 - (Math.pow(1-m2, 2));
+                        let e3 = m2 < 0.5 ? 16 *m2 *m2 *m2 *m2 *m2 : 1 - Math.pow(-2 *m2 + 2, 5) / 2;
+
+
+
+                        let d = 100 + (0 - 100) * e;
+                        let d2 = 160 + (0 - 160) * e3;
+                        
+                        // log(d);
+                       
+                        h.filter(u => u.tagName.toLowerCase() !== "p").map((u, idx) => {
+                            if (u.tagName == "p") return;
+                            if (idx == 0) {
+                                u.style.clipPath=`polygon(100% 100%, 0% 100%, 0% ${d}%, 100% ${d}%)`
+                            } 
+                               if (idx == 1) {
+                                    setTimeout(() => {
+                                        u.style.transform=`translate3d(0,${d2}%,0)`
+                                    }, 50);
+                                }
+                                if (idx == 2) {
+                                setTimeout(() => {
+                                    u.style.transform=`translate3d(0,${d2}%,0)`
+                                }, 200);
+                            }
+
+                            if (idx == 3) {
+                                setTimeout(() => {
+                                    u.style.transform=`translate3d(0,${d2}%,0)`
+                                }, 1000)
+                            }
+                            if (idx >=4 && idx <= 6) {
+                                setTimeout(() => {
+                                    u.style.transform=`translate3d(0,${d2}%,0)`;
+                                }, idx * 140);
+                            }
+                        })
+
+                        if (m < 2) {
+                            id=requestAnimationFrame(a);
+                        }
+                    }
+
+                    function ap(t) {
+                        if (!s2) s2 = t;
+                        let m = Math.min((t-s2)/1000,1);
+                        let e = m < 0.5 ? 16 *m *m *m *m *m : 1 - Math.pow(-2 *m + 2, 5) / 2;
+                        let d = 150 + (0 - 150) * e;
+
+                        [...document.querySelectorAll(".h > *")].filter(u => u.tagName.toLowerCase().includes("p") && !u.tagName.includes("SPAN")).map((u, idx) => {
+                            // log (u.tagName)
+                            setTimeout(() => {
+                                u.style.transform=`translate3d(0,${d}%,0)`
+                            }, idx * 30);
+                        })
+                        if (m < 2) {
+                            id2 = requestAnimationFrame(ap);
+                        }
+                    }
+                     id=requestAnimationFrame(a);
+                     setTimeout(() => {
+                        id2 = requestAnimationFrame(ap);
+                     }, 800)
+
+                    setTimeout(() => {
+                        cancelAnimationFrame(id);
+                    }, 4000); 
+                    setTimeout(() => {
+                        cancelAnimationFrame(id2)
+                    },2000)
+                }
+                // pre_h()
+                hero()
+            }
+
+
+            document.addEventListener("DOMContentLoaded", (e) => {
+                init()
+            });
+
+
+
+
+
+            let df = [...document.querySelectorAll(".h > *")].filter(u => u.tagName !== "P");
+            // log(df)
+
+
+            let str="Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident, ratione aliquid sint nesciunt officiis adipisci. Deserunt, quibusdam. Vero dolor, suscipit eaque, necessitatibus adipisci doloribus quidem deleniti quaerat, eos ea cum";
+            // str = str.trim();
+            let start = 0;
+            let end = 7;
+            let br = [];
+            str = str.split(" ");
+            while (end < str.length) {
+                let p = document.createElement("p");
+                p.textContent = str.slice(start, end);
+                br.push(p);
+                start = end;
+                end += 7;
+
+            }
+
+            br.map((u, idx) => {
+                u = u.textContent.split(",").join(" ").trim();
+                // log (u)
+            })
+            
+            
+            
+
+
+
+            let pos=0;
+          
+            let p=0;
+
+                document.addEventListener("wheel", (e) => {
+                    let y = e.deltaY;
+
+                    log ((pos+10)/1000)
+                    if(y < .5) {
+                        pos+=1;
+                    } else {
+                        pos-=1;
+                    }
+                    p = lerp(p,pos,Math.abs(p+2)/1000);
+                    p = Math.min(p, 100);
+
+                    document.querySelector(".r").style.transform=`translate3d(0,${p}px,0)`;
+                })
+
+
+
+             
+
+
+
+        </script>
+    </body>
+</html>
