@@ -338,7 +338,7 @@ function init() {
             velocity*=damp;
             pos-=velocity;
             
-            if (pos < 0) pos = 0;
+            //if (pos < 0) pos = 0;
             document.querySelector(".slider").style.transform=`translate3d(${-pos}%,0,0)`;
             if (Math.abs(velocity) > .001) {
                 tID = requestAnimationFrame(animateTouch);
