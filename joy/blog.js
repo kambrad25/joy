@@ -703,12 +703,63 @@ function mscroll() {
 }
 
 
+function more () {
+    let tb = document.querySelector(".tb");
+    let hd = document.querySelector(".hd");
+    let log = document.querySelector(".log");
+
+
+    function move(dur) {
+        let s, id;
+        function a (t) {
+            if (!s) s = t;
+            let m = Math.min((t-s)/dur, 1);
+            let e = ease()[3](m);
+            let d = 50 + (92 - 50) * e;
+            let d2 = 4 + (90 - 4) * e;
+
+
+            hd.style.left=`${d}%`;
+            log.style.top = `${d2}%`;
+
+            if (m < 2) {
+                id = requestAnimationFrame(a);
+            }
+        }
+
+         id = requestAnimationFrame(a);
+
+        setTimeout(()=> {
+            cancelAnimationFrame(id);
+        },dur)
+    }
+
+    function atb (ele, dur, from, to) {
+        let s, id;
+        function a (t) {
+            if (!s) s = t;
+            let m = Math.min((t-s)/2000, 1);
+
+
+            if (m < 2) {
+                id = requestAnimationFrame(a);
+            }            
+        }
+    }
+
+    tb.addEventListener("click", (e) => {
+        move(1000);
+    })
+
+}
+
 function init() {
     pre();
     update();
     updatesh();
     mscroll();
     click();
+    more();
   
 }
 
@@ -843,7 +894,10 @@ function aop (ele, dur, from, to) {
     
         
    document.addEventListener("click", (e) => {
-        [...document.querySelectorAll(".pgg > *")].map((u) => {
+
+    if (!e.target.matches(".pgg")) return;
+
+        [...document.querySelectorAll(".pgg")].map((u) => {
             log (u)
             u.parentElement.style.pointerEvents = "none";
             u.style.pointerEvents="none";
@@ -852,7 +906,7 @@ function aop (ele, dur, from, to) {
 
             setTimeout(() => {
                 u.style.parentElement.pointerEvents = u.style.pointerEvents = "all";
-            }, 5000);
+            }, 2000);
         })
    })
 
