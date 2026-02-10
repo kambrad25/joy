@@ -282,7 +282,7 @@ function init() {
         document.addEventListener("touchstart", (e) => {
              //touched=true;
              const touch = e.touches[0];
-            oldY = touch.screenY;
+            oldY = touch.screenX;
             if (tID) { cancelAnimationFrame(tID)};
             startTime = Date.now();
         }, { passive: false});
@@ -290,7 +290,7 @@ function init() {
         document.addEventListener("touchmove", (e) => {
             if (!touched) return;        
             const touch = e.touches[0];
-            newY = touch.screenY;
+            newY = touch.screenX;
             let yDelta = newY - oldY;
             oldY=newY;
             newTime=Date.now();
