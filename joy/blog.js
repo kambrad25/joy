@@ -704,23 +704,63 @@ function mscroll() {
 
 
 function more () {
-    let tb = document.querySelector(".tb");
+    let tb = [...document.querySelectorAll(".tb")];
     let hd = document.querySelector(".hd");
-    let log = document.querySelector(".log");
+    let lo = document.querySelector(".log");
+    let pgg = [...document.querySelectorAll(".pgg")];
+    let pgn = document.querySelector(".pgn > * > *");
+    let lin = [...document.querySelectorAll(".lin > * > * > * > *")];
+    let clb = document.querySelector(".clb > * > *");
+    let p = document.querySelector(".p");
+    let c = document.querySelector(".c");
 
+    let thtd = document?.querySelector(".thdt > * > *");
+    let shtd = document.querySelector(".shtd > * > *");
 
+    pgg = pgg.reverse();
     function move(dur) {
         let s, id;
         function a (t) {
             if (!s) s = t;
-            let m = Math.min((t-s)/dur, 1);
+            let m = Math.min((t-s)/dur, .95);
+            let m2 = Math.min((t-s)/650, 1);
             let e = ease()[3](m);
+
+            let e2 = ease()[4](m2);
             let d = 50 + (92 - 50) * e;
             let d2 = 4 + (90 - 4) * e;
+            let d3 = 1 + (0 - 1) * e;
+            let d4 = 0 + (150 - 0) * e;
+            let d5 = 0 + (-110 + 0) * e;
+
+            let d6 = 110 + (0 - 110) * e;
+
+            let d7p = 1 + (0 - 1) * e;
+            let d8 = 110 + (0 - 110) * e;
 
 
-            hd.style.left=`${d}%`;
-            log.style.top = `${d2}%`;
+            setTimeout(() => {
+                hd.style.left=`${d}%`;
+                setTimeout(() => {
+                    clb.style.transform=`translate3d(0, ${d6}%, 0)`;
+                    p.style.opacity = d7p;
+                }, 50);
+            })
+            lo.style.top = `${d2}%`;
+            pgg.map((u, idx) => {
+                setTimeout(() => {
+                    u.style.opacity = d3;
+                }, idx * 80);
+            })
+
+            lin.map((u, idx) => {
+                setTimeout(() => {
+                    u.style.transform=`translate3d(0,${d5}%,0)`
+                }, idx * 80);
+            })
+
+            pgn.style.transform = `translate3d(0, ${d4}%, 0)`;
+
 
             if (m < 2) {
                 id = requestAnimationFrame(a);
@@ -732,6 +772,35 @@ function more () {
         setTimeout(()=> {
             cancelAnimationFrame(id);
         },dur)
+    }
+
+
+    function move2 () {
+        let thtd = document?.querySelector(".thdt > * > *");
+        let shtd = document.querySelector(".shdt > * > *");
+        let s, id;
+        function a (t) {
+            if (!s) s = t;
+            let m = Math.min((t-s)/1000, 1);
+            let e = ease()[3](m);
+            let d = 110 + (0 - 110) * e;
+
+            setTimeout(() => {
+                thtd.style.transform=`translate3d(0,${d}%,0)`;
+                setTimeout(() => {
+                    shtd.style.transform=`translate3d(0,${d}%,0)`;
+                }, 100);
+            }, 100);
+
+            if (m < 2) {
+                id=requestAnimationFrame(a);
+            }
+        }
+
+        id=requestAnimationFrame(a);
+        setTimeout(() => {
+            cancelAnimationFrame(id);
+        }, 1000);
     }
 
     function atb (ele, dur, from, to) {
@@ -747,8 +816,60 @@ function more () {
         }
     }
 
-    tb.addEventListener("click", (e) => {
-        move(2000);
+    tb.map((u, idx) => {
+        u.addEventListener("click", async (e) => {
+            move(1000);
+
+            let getTitle = "";
+            let title = 
+            e.target.parentElement.parentElement.
+            parentElement.children[0].children[0].textContent.toLowerCase();
+
+            getTitle = title;
+            getTitle = getTitle.split(" ").join("-").toString();
+            log (getTitle)
+
+            let origin = window.location.origin;
+            let path = "/blog.html" + "/" + getTitle;
+            log (getTitle);
+
+            let url = new URL(path, origin);
+
+            
+
+            window.history.pushState(null, null, url.href);
+
+            let tb_path = `/posts/${getTitle}.html`;
+
+            getTitle = "";
+
+
+            let tb_url = new URL(tb_path, origin);
+            let info = await fetch(tb_url.href, { method: "GET" });
+            let text = await info.text();
+
+            let pattern=/<body[^>]*>((.|\n|\r)*)<\/body>/im;
+            let matches=pattern.exec(text);
+            let count = matches ? matches[1] : '';
+
+            let pd = document.createElement("div");
+            pd.className="p";
+            pd.innerHTML = count;
+            c.insertAdjacentElement("beforeend", pd);
+
+       
+
+
+            setTimeout(() => {
+               p.remove();
+               setTimeout(() => {
+                    move2()
+               }, 100);
+            }, 650);
+
+
+
+        })
     })
 
 }
