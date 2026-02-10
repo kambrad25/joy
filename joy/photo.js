@@ -255,7 +255,13 @@ function init() {
 
         // window.addEventListener("resize", resizepa);
 
-        let y2=0;
+        let oldY=0;
+        let newY=0;
+        let velocity=0;
+        let startTime, newTime;
+        let tID;
+        
+        
         document.addEventListener("wheel", (e) => {
             if (!isClickedView) return;
 
@@ -274,15 +280,28 @@ function init() {
 
 
         document.addEventListener("touchstart", (e) => {
-            y2 = e.touches[0].clientY;
-
+             touched=true;
+             const touch = e.touches[0];
+            oldY = touch.screenY;
+            cancelAnimationFrame(tID);
+            startTime = Date.now();
         }, { passive: false});
 
         document.addEventListener("touchmove", (e) => {
             if (!touched) return;        
-            let y = e.touches[0].clientY;
+            const touch = e.touches[0];
+            newY = touch.screenY;
+            let yDelta = newY - oldY;
+            oldY=newY;
+            newTime=Date.now();
+            let deltaTime=startTime - newTime;
+            if (deltaTime>5) {
+             velocity = yDelta / deltaTime;
+             startTime=Date.now();   
+            }
+            
 
-            let diff = y - y2;
+            /*let diff = y - y2;
 
             let threshold = 10;
 
@@ -306,9 +325,26 @@ function init() {
 
 
             document.querySelector(".slider").style.transform=`translate3d(${-pos}%, 0,0)`;
+            */
         }, { passive: false});
 
+        document.addEventListener("touchend", (e) => {
+           requestAnimationFrame(animateTouch) 
+        });
 
+
+        function animateTouch() {
+            let damp=.95;
+            velocity*=damp;
+            pos-=velocity;
+            
+            if (pos < 0) pos = 0;
+            document.querySelector(".slider").style.transform=`translate3d(${-pos}%,0,0)`;
+            if (Math.abs(velocity) > .001) {
+                tID = requestAnimationFrame(animateTouch);
+            }
+            
+        }
 
       
        
