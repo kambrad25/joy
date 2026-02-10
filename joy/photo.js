@@ -334,7 +334,7 @@ function init() {
 
 
         function animateTouch() {
-            let damp=.95;
+            let damp=.7;
             velocity*=damp;
             pos-=velocity;
             
