@@ -295,7 +295,7 @@ function init() {
             oldY=newY;
             newTime=Date.now();
             let deltaTime=newTime - startTime;
-            if (deltaTime>1) {
+            if (deltaTime>.5) {
              velocity = yDelta / deltaTime;
              startTime=Date.now();   
             }
@@ -334,7 +334,7 @@ function init() {
 
 
         function animateTouch() {
-            let damp=.3;
+            let damp=1;
             velocity*=damp;
             pos-=velocity;
             
