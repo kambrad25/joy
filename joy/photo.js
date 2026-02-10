@@ -294,7 +294,7 @@ function init() {
             let yDelta = newY - oldY;
             oldY=newY;
             newTime=Date.now();
-            let deltaTime=startTime - newTime;
+            let deltaTime=newTime - startTime;
             if (deltaTime>5) {
              velocity = yDelta / deltaTime;
              startTime=Date.now();   
