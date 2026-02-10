@@ -340,7 +340,7 @@ function init() {
             
             //if (pos < 0) pos = 0;
             document.querySelector(".slider").style.transform=`translate3d(${-pos}%,0,0)`;
-            if (Math.abs(velocity) > .001) {
+            if (Math.abs(velocity) > .01) {
                 tID = requestAnimationFrame(animateTouch);
             }
             
