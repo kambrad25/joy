@@ -280,7 +280,7 @@ function init() {
 
 
         document.addEventListener("touchstart", (e) => {
-             touched=true;
+             //touched=true;
              const touch = e.touches[0];
             oldY = touch.screenY;
             cancelAnimationFrame(tID);
