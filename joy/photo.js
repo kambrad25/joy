@@ -283,7 +283,7 @@ function init() {
              //touched=true;
              const touch = e.touches[0];
             oldY = touch.screenY;
-            cancelAnimationFrame(tID);
+            if (tID) { cancelAnimationFrame(tID)};
             startTime = Date.now();
         }, { passive: false});
 
