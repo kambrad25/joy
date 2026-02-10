@@ -748,7 +748,7 @@ function more () {
     }
 
     tb.addEventListener("click", (e) => {
-        move(1000);
+        move(2000);
     })
 
 }
