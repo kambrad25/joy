@@ -302,6 +302,12 @@ ul {
     left: 0;
     width: 100%;
 }
+.trac {
+    position: absolute;
+    width: 100%;
+    /* border: 2px solid red; */
+    top: 80%;
+}
 .clb {
     position: absolute;
     top: 0;
@@ -312,7 +318,7 @@ ul {
 .clb > * {
     position: absolute;
     left: 50%;
-    top: 1.5rem;
+    top: 3.5%;
     transform: translateX(-50%);
 }
 .clb > * > * {
@@ -347,7 +353,49 @@ ul {
     transform: translate3d(0,110%,0);
     will-change: transform;
 }
+.p1 {
+    position: absolute;
+    top: 20%;
+    left: 0%;
+    transform: translate(5%, -20%);
+}
+.p1 > * {
+    white-space: nowrap;
+    font-size: clamp(1rem, 3vw, 5rem);
+    line-height: .9;
+}
+.p1 > * > * {
+    transform: translate3d(0,150%,0);
+}
+.p2 {
+    position: absolute;
+    top: 45%;
+    left: 0%;
+    transform: translate(5%, -20%);
+}
+.p2 > * {
+    white-space: nowrap;
+    font-size: clamp(1rem, 3vw, 5rem);
+    line-height: .9;
+}
+.p2 > * > * {
+    transform: translate3d(0,150%,0);
+}
 
+.p3 {
+    position: absolute;
+    top: 90%;
+    left: 0%;
+    transform: translate(5%, -20%);
+}
+.p3 > * {
+    white-space: nowrap;
+    font-size: clamp(1rem, 3vw, 5rem);
+    line-height: .9;
+}
+.p3 > * > * {
+    transform: translate3d(0,150%,0);
+}
 
 @media (max-width: 400px) {
     .pre > *:nth-child(1) {

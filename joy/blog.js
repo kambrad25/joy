@@ -784,13 +784,21 @@ function more () {
             let m = Math.min((t-s)/1000, 1);
             let e = ease()[3](m);
             let d = 110 + (0 - 110) * e;
+            let d2 = 150 + (0 - 150) * e;
 
             setTimeout(() => {
                 thtd.style.transform=`translate3d(0,${d}%,0)`;
                 setTimeout(() => {
                     shtd.style.transform=`translate3d(0,${d}%,0)`;
-                }, 100);
-            }, 100);
+                    setTimeout(() => {
+                        [...document.querySelectorAll(".r > * > .h > *")].map((u, idx) => {
+                            setTimeout(() => {
+                                u.style.transform=`translate3d(0,${d2}%,0)`;
+                            }, idx * 50);   
+                        })
+                    }, 30);
+                }, 20);
+            }, 10);
 
             if (m < 2) {
                 id=requestAnimationFrame(a);
@@ -818,28 +826,39 @@ function more () {
 
     tb.map((u, idx) => {
         u.addEventListener("click", async (e) => {
+            if (e.target.className == "tbb") return;
             move(1000);
 
             let getTitle = "";
+            
             let title = 
             e.target.parentElement.parentElement.
             parentElement.children[0].children[0].textContent.toLowerCase();
 
             getTitle = title;
             getTitle = getTitle.split(" ").join("-").toString();
-            log (getTitle)
+         
 
             let origin = window.location.origin;
-            let path = "/blog.html" + "/" + getTitle;
-            log (getTitle);
+            
+            let path = !origin.startsWith("https") ? "/blog.html" + "/" + getTitle : `/joy/joy/${getTitle}`;
+            // log (getTitle);
 
             let url = new URL(path, origin);
 
             
 
             window.history.pushState(null, null, url.href);
+            let tb_path="";
 
-            let tb_path = `/posts/${getTitle}.html`;
+            if (window.location.origin.includes("joy")) {
+                tb_path = `/joy/joy/posts/${getTitle}.html`;
+            } else {
+                tb_path = `/posts/${getTitle}.html`;
+            }
+
+            log (tb_path);
+
 
             getTitle = "";
 
@@ -862,10 +881,28 @@ function more () {
 
             setTimeout(() => {
                p.remove();
-               setTimeout(() => {
-                    move2()
-               }, 100);
+                 move2();
+                 [...document.querySelectorAll(".sp")].map((u) => {
+                    let trac = document.querySelector(".trac");
+
+                    let topTrac = trac.getBoundingClientRect().top;
+
+                    let uTop = u.getBoundingClientRect().top;
+
+                    let delta = topTrac - uTop;
+
+                    if (delta < 0) {
+                        u.style.opacity=0;
+                        ta()
+                    } 
+                 })
             }, 650);
+
+
+            function ta() {
+                
+                requestAnimationFrame(ta);
+            }
 
 
 
