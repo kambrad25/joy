@@ -852,19 +852,20 @@ function more () {
             let tb_path="";
 
             if (window.location.origin.includes("joy")) {
-                tb_path = `/joy/joy/posts/${getTitle}.html`;
+                tb_path = `${window.location.origin}/joy/joy/posts/${getTitle}.html`;
             } else {
-                tb_path = `/posts/${getTitle}.html`;
+                tb_path = `${window.location.href}/posts/${getTitle}.html`;
             }
 
             log (tb_path);
 
+            document.title = getTitle.split("-").join(" ").toUpperCase();
 
             getTitle = "";
 
 
-            let tb_url = new URL(tb_path, origin);
-            let info = await fetch(tb_url.href, { method: "GET" });
+            //let tb_url = new URL(tb_path, origin);
+            let info = await fetch(tb_path, { method: "GET" });
             let text = await info.text();
 
             let pattern=/<body[^>]*>((.|\n|\r)*)<\/body>/im;
