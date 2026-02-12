@@ -851,7 +851,7 @@ function more () {
             window.history.pushState(null, null, url.href);
             let tb_path="";
 
-            if (window.location.href.includes("joy")) {
+            if (window.location.href.split("/").includes("joy")) {
                 tb_path = `${window.location.origin}/joy/joy/posts/${getTitle}.html`;
             } else {
                 tb_path = `${window.location.href}/posts/${getTitle}.html`;
