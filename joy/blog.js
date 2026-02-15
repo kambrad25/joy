@@ -808,13 +808,17 @@ function more () {
             let d = 110 + (0 - 110) * e;
             let d2 = 150 + (0 - 150) * e;
 
-            document.querySelector(".p").style.opacity=1
+            document.querySelector(".p").style.opacity=1;
             setTimeout(() => {
-                thtd.style.transform=`translate3d(0,${d}%,0)`;
+                if (thtd) {
+                    thtd.style.transform=`translate3d(0,${d}%,0)`;
+                }
                 setTimeout(() => {
-                    shtd.style.transform=`translate3d(0,${d}%,0)`;
+                    if (shtd) {
+                        shtd.style.transform=`translate3d(0,${d}%,0)`;
+                    }
                     setTimeout(() => {
-                        [...document.querySelectorAll(".r > * > .h > *")].map((u, idx) => {
+                        [...document?.querySelectorAll(".r > * > .h > *")].map((u, idx) => {
                             setTimeout(() => {
                                 u.style.transform=`translate3d(0,${d2}%,0)`;
                             }, idx * 50);   
@@ -910,6 +914,19 @@ function more () {
 
                 if (document.querySelector(".aa")) {
                     document.querySelector(".aa").style.opacity=1;
+                }
+                if (document.querySelector(".bimg")) {
+                    document.querySelector(".bimg").style.opacity=1;
+                }
+                if (document.querySelector("iframe")) {
+                    document.querySelector("iframe").style.opacity=1;
+                }
+                if (document.querySelector(".p2b > * > a")) {
+                    document.querySelector(".p2b > * > a").style.opacity = 1;
+                }
+
+                if (document.querySelector(".pimg")) {
+                    document.querySelector(".pimg > *").style.opacity = 1;
                 }
                  move2();
                  [...document.querySelectorAll(".sp")].map((u) => {
@@ -1272,7 +1289,7 @@ function aop (ele, dur, from, to) {
 
 
             setTimeout(() => {
-                u.style.parentElement.pointerEvents = u.style.pointerEvents = "all";
+                // u.style.parentElement.pointerEvents = u.style.pointerEvents = "all";
             }, 2000);
         })
    })

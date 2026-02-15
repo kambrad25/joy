@@ -373,10 +373,11 @@ ul {
 .p1 > * {
     white-space: nowrap;
     font-size: clamp(1rem, 3vw, 5rem);
-    line-height: .9;
-}
+    line-height: .95;
+    padding-top: .15rem;}
 .p1 > * > * {
     transform: translate3d(0,150%,0);
+    font-size: clamp(1rem, 4vw, 3rem);
 }
 .p2 {
     position: absolute;
@@ -387,10 +388,11 @@ ul {
 .p2 > * {
     white-space: nowrap;
     font-size: clamp(1rem, 3vw, 5rem);
-    line-height: .9;
-}
+    line-height: .95;
+    padding-top: .15rem;}
 .p2 > * > * {
     transform: translate3d(0,150%,0);
+    font-size: clamp(1rem, 4vw, 3rem);
 }
 
 .p3 {
@@ -402,10 +404,12 @@ ul {
 .p3 > * {
     white-space: nowrap;
     font-size: clamp(1rem, 3vw, 5rem);
-    line-height: .9;
+    line-height: .95;
+    padding-top: .15rem;    
 }
 .p3 > * > * {
     transform: translate3d(0,150%,0);
+    font-size: clamp(1rem, 4vw, 3rem);
 }
 .p4 {
     position: absolute;
@@ -420,6 +424,7 @@ ul {
 }
 .p4 > * > * {
     transform: translate3d(0,150%,0);
+    font-size: clamp(1rem, 4vw, 3rem);
 }
 
 .p5 {
@@ -465,14 +470,91 @@ ul {
 }
 .aa > * > h2 {
     text-align: center;
+    white-space: nowrap;
     font-size: 1.5rem;
+}
+.bimg {
+    width: 50%;
+    height: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate3d(-50%,-50%,0);
+    opacity: 0;
+    transition: opacity 650ms 350ms ease;
+}
+.bimg > * {
+    width: 100%;
 }
 audio {
     pointer-events: all;
+}
+.ps {
+    position: absolute;
+    top: 170px;
+    left: 3%;
+}
+.ps > * > * {
+    transform: translate3d(0,110%,0);
+}
+iframe {
+    border-radius: 12px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate3d(-50%, -50%, 0);
+    width: 100%;
+    max-width: 80%;
+    opacity: 0;
+    transition: opacity 650ms 350ms ease;
+}
+.p2b {
+    top: 25%;
+    transform: unset;
+    left: 2%;
+}
+.p2b > * > a {
+    opacity: 0;
+    transition: opacity 650ms 850ms ease;
+    pointer-events: all;
+}
+.pimg {
+    position: absolute;
+    top: 65%;
+    width: 50%;
+    height: 50%;
+    left: 27%;
+    transform: translate3d(-50%,-50%,0);
+}
+.pimg > * {
+    width: 100%;
+    opacity: 0;
+    transition: opacity 650ms 950ms ease;
+}
+.iss {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    place-content: center;
+    background: white;
+    z-index: 999;
+    opacity: 0;
+    pointer-events: none;
+}
+.iss > * {
+    white-space: nowrap;
 }
 @media (max-width: 500px) {
     .pre > *:nth-child(1) {
         padding: 0 .3rm;
     }
-    
+}
+
+@media(orientation: landscape) and (max-height: 460px) {
+    .iss {
+        opacity: 1;
+    }
 }
