@@ -459,12 +459,13 @@ ul {
     left: 50%;
     transform: translate3d(-50%,-50%,0);
     display: grid;
-    gap: 2rem;
+    gap: 5rem;
     opacity: 0;
     transition: opacity 650ms 450ms ease;
 }
 .aa > * > h2 {
     text-align: center;
+    font-size: 1.5rem;
 }
 audio {
     pointer-events: all;

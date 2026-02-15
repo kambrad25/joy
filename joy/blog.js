@@ -1048,7 +1048,12 @@ function close () {
     let pages = ["/page1.html","/page2.html","/page3.html","/page4.html"];
     clse.addEventListener("click", async (e) => {
         pos = 0;
-        history.pushState(null, null, "/blog.html")
+        let w = window.location;
+        if(!w.href.split("/").includes("joy")) {
+            history.pushState(null, null, "/blog.html")
+        } else {
+            history.pushState(null, null, "/joy/joy/blog.html")
+        }
         clsA(1000);
 
         setTimeout(() => {
@@ -1060,8 +1065,8 @@ function close () {
                     idx -= 1;
                     log (pages[idx]);
                     let w = window.location;
-                    if (w.href.split("").includes("joy")) {
-                        w = window.location.origin+"/joy/joy"+pages[idx];
+                    if (w.href.split("/").includes("joy")) {
+                        w = window.location.origin+"/joy/joy/"+pages[idx];
                     } else {
                         w = window.location.origin+"/templates/"+pages[idx];
                     }
