@@ -292,7 +292,7 @@ let pre = () => {
 }
 
 
-log(document.querySelectorAll(".tbb")[0].previousElementSibling)
+// log(document.querySelectorAll(".tbb")[0].previousElementSibling)
 function lia (ele, dur, f1, t1, f2=null, t2=null, f3=null, t3=null,d1=0,d2=0) {
     let s, id;
     function a (t) {
@@ -479,7 +479,7 @@ function click () {
                     dy(".ti > * >  *", 600, 3, "transform", 110, 0, 50);
                      setTimeout(() =>{
                         log (true)
-                                lia(".tbb", 1000, 0, 100,2,20,0,1,200,0)
+                                // lia(".tbb", 1000, 0, 100,2,20,0,1,200,0)
                             }, 50);
                 }, 1000);
 
@@ -519,77 +519,99 @@ function click () {
 let pages = ["page1.html", "page2.html", "page3.html", "page4.html"];
 
 
-window.addEventListener("popstate", async (e) => {
-    // window.location.reload()
+// window.addEventListener("popstate", async (e) => {
+//     // window.location.reload()
 
-    let c = document.querySelector(".c");
+//     let c = document.querySelector(".c");
 
-    dy(".p > .s", 1050,3,"transform", 110, 0);
-    dy(".pgn > * > *", 650, 3, "opacity", 1, 0);
-    dy(".bg", 800, 3, "opacity", 0, 1)
+//     dy(".p > .s", 1050,3,"transform", 110, 0);
+//     dy(".pgn > * > *", 650, 3, "opacity", 1, 0);
+//     dy(".bg", 800, 3, "opacity", 0, 1)
 
     
-    path = window.location.pathname + "?page=3"
-    let url = new URL(path, origin);
+//     path = window.location.pathname + "?page=3"
+//     let url = new URL(path, origin);
 
-    window.history.pushState(null, null, url.href);
+//     window.history.pushState(null, null, url.href);
 
 
-    // log (url.href.split("blog.html").join(`templates/${pages[idx]}`).split("?")[0])
-    let tpath = `${window.location.origin}/templates/${pages[(parseInt(window.location.href.split("=")[1]) - 1)]}`;
-    tpath = tpath.split(",")[0];
-    log (tpath)
+//     // log (url.href.split("blog.html").join(`templates/${pages[idx]}`).split("?")[0])
+//     let tpath = `${window.location.origin}/templates/${pages[(parseInt(window.location.href.split("=")[1]) - 1)]}`;
+//     tpath = tpath.split(",")[0];
+//     log (tpath)
     
 
-    let page = await fetch(tpath, { method: "GET" });
-    page = await page.text();
+//     let page = await fetch(tpath, { method: "GET" });
+//     page = await page.text();
 
-    let pattern = /<div[^>]class="p"*>((.|\n|\r)*)<\/div>/im;
-    let match = pattern.exec(page)[1];
+//     let pattern = /<div[^>]class="p"*>((.|\n|\r)*)<\/div>/im;
+//     let match = pattern.exec(page)[1];
 
-    log (match)
+//     log (match)
 
-    let p = document.createElement("div");
-    p.className='p m';
-    c.insertAdjacentElement("beforeend", p)
-    p.innerHTML = match;
+//     let p = document.createElement("div");
+//     p.className='p m';
+//     c.insertAdjacentElement("beforeend", p)
+//     p.innerHTML = match;
 
 
-    setTimeout(() => {
-        dy(".ti > * >  *", 600, 3, "transform", 110, 0, 50);
-        setTimeout(() => {
-            // u.style.pointerEvents = "all";
-        }, 1500);
-    }, 1000);
+//     setTimeout(() => {
+//         dy(".ti > * >  *", 600, 3, "transform", 110, 0, 50);
+//         setTimeout(() => {
+//             // u.style.pointerEvents = "all";
+//         }, 1500);
+//     }, 1000);
 
 
         
-    let pgns = document.querySelector(".pgn > * > *")
+//     let pgns = document.querySelector(".pgn > * > *")
     
-    setTimeout(() => {
-        pgns.textContent = window.location.href.split("=")[1];
-    }, 850)
+//     setTimeout(() => {
+//         pgns.textContent = window.location.href.split("=")[1];
+//     }, 850)
     
-    setTimeout(() => {
-        dy(".pgn > * > *", 250, 3, "opacity", 0,1, 500);
-        dy(".bg", 300, 3, "opacity", 1, 0)
+//     setTimeout(() => {
+//         dy(".pgn > * > *", 250, 3, "opacity", 0,1, 500);
+//         dy(".bg", 300, 3, "opacity", 1, 0)
 
-        setTimeout(() => {
-            dy(".pgn > * > *", 1050, 3, "transform", 110, 0);
-        }, 100)
-    }, 500);
-
-
+//         setTimeout(() => {
+//             dy(".pgn > * > *", 1050, 3, "transform", 110, 0);
+//         }, 100)
+//     }, 500);
 
 
-            setTimeout(() => {
-            [...document.querySelectorAll(".p")][0].remove();
-            setTimeout(() => {
-                [...document.querySelectorAll(".p")][0].querySelector(".s").remove()
-            }, 500);
-        }, 800);
+
+
+//             setTimeout(() => {
+//             [...document.querySelectorAll(".p")][0].remove();
+//             setTimeout(() => {
+//                 [...document.querySelectorAll(".p")][0].querySelector(".s").remove()
+//             }, 500);
+//         }, 800);
+// })
+
+let ow = window.location.href;
+window.addEventListener("popstate", (e) => {
+    let w = window.location;
+    
+    log (w)
+    // production
+    // let 
+
+
+    // development
+    
+    let path = "/blog.html";
+    let ori = window.location.origin;
+
+    let url = new URL(path, ori);
+
+    history.pushState(null,null,url);
+
+    location.reload()
+
+
 })
-
 
 
 function updatesh () {
@@ -711,7 +733,7 @@ function more () {
     let pgn = document.querySelector(".pgn > * > *");
     let lin = [...document.querySelectorAll(".lin > * > * > * > *")];
     let clb = document.querySelector(".clb > * > *");
-    let p = document.querySelector(".p");
+    // let p = document.querySelector(".p");
     let c = document.querySelector(".c");
 
     let thtd = document?.querySelector(".thdt > * > *");
@@ -743,7 +765,7 @@ function more () {
                 hd.style.left=`${d}%`;
                 setTimeout(() => {
                     clb.style.transform=`translate3d(0, ${d6}%, 0)`;
-                    p.style.opacity = d7p;
+                    document.querySelector(".p").style.opacity= d7p;
                 }, 50);
             })
             lo.style.top = `${d2}%`;
@@ -786,6 +808,7 @@ function more () {
             let d = 110 + (0 - 110) * e;
             let d2 = 150 + (0 - 150) * e;
 
+            document.querySelector(".p").style.opacity=1
             setTimeout(() => {
                 thtd.style.transform=`translate3d(0,${d}%,0)`;
                 setTimeout(() => {
@@ -796,9 +819,9 @@ function more () {
                                 u.style.transform=`translate3d(0,${d2}%,0)`;
                             }, idx * 50);   
                         })
-                    }, 30);
-                }, 20);
-            }, 10);
+                    }, 10);
+                }, 4);
+            }, 2);
 
             if (m < 2) {
                 id=requestAnimationFrame(a);
@@ -824,48 +847,49 @@ function more () {
         }
     }
 
-    tb.map((u, idx) => {
-        u.addEventListener("click", async (e) => {
-            if (e.target.className == "tbb") return;
+    // tb.map((u, idx) => {
+        document.addEventListener("click", async (e) => {
+            if (!e.target.matches(".tbs")) return;
             move(1000);
 
-            let getTitle = "";
-            
-            let title = 
-            e.target.parentElement.parentElement.
-            parentElement.children[0].children[0].textContent.toLowerCase();
 
-            getTitle = title;
-            getTitle = getTitle.split(" ").join("-").toString();
+            let getTitle = e.target.dataset.id;
+            
+            // let getTitle = "";
+            
+            // let title = 
+            // e.target.parentElement.parentElement.
+            // parentElement.children[0].children[0].textContent.toLowerCase();
+
+            // getTitle = title;
+            // getTitle = getTitle.split(" ").join("-").toString();
          
 
-            let origin = window.location.origin;
+            // let origin = window.location.origin;
             
-            let path = !origin.startsWith("https") ? "/blog.html" + "/" + getTitle : `/joy/joy/${getTitle}`;
-            // log (getTitle);
+            // let path = !origin.startsWith("https") ? "/blog.html" + "/" + getTitle : `/joy/joy/${getTitle}`;
+            // // log (getTitle);
 
-            let url = new URL(path, origin);
+            // let url = new URL(path, origin);
 
             
 
-            window.history.pushState(null, null, url.href);
+            // window.history.pushState(null, null, url.href);
             let tb_path="";
 
             if (window.location.href.split("/").includes("joy")) {
-                tb_path = `${window.location.origin}/joy/joy/posts/${getTitle}.html`;
+                tb_path = `/joy/joy/posts/${getTitle}.html`;
             } else {
-                tb_path = `${window.location.href}/posts/${getTitle}.html`;
+                tb_path = `/posts/${getTitle}.html`;
             }
 
-            log (tb_path);
 
-            document.title = getTitle.split("-").join(" ").toUpperCase();
 
             getTitle = "";
 
 
-            //let tb_url = new URL(tb_path, origin);
-            let info = await fetch(tb_path, { method: "GET" });
+            let tb_url = new URL(tb_path, origin);
+            let info = await fetch(tb_url.href, { method: "GET" });
             let text = await info.text();
 
             let pattern=/<body[^>]*>((.|\n|\r)*)<\/body>/im;
@@ -881,7 +905,11 @@ function more () {
 
 
             setTimeout(() => {
-               p.remove();
+                [...document.querySelectorAll(".p")][0].remove();
+
+                if (document.querySelector(".aa")) {
+                    document.querySelector(".aa").style.opacity=1;
+                }
                  move2();
                  [...document.querySelectorAll(".sp")].map((u) => {
                     let trac = document.querySelector(".trac");
@@ -908,8 +936,176 @@ function more () {
 
 
         })
-    })
+    // })
 
+}
+
+function convertPixToPerc (ele, style) {
+    // ele = document.querySelectorAll(ele)[0];
+    let t = parseInt(window.getComputedStyle(ele)[style].split("px").join(""));
+    let m = (t / window.innerWidth) * 100;
+    return m;
+}
+function convertPercToPix(ele, style) {
+    // ele = document.querySelectorAll(ele)[0];
+     let t = parseInt(window.getComputedStyle(ele)[style].split("px").join(""));
+    let percent = (t / window.innerWidth) * 100;
+
+    let pix = (percent * window.innerWidth) / 100;
+    return pix;
+}
+
+function close () {
+    let clse = document.querySelector(".clse");
+    let lo = document.querySelector(".log");
+    let hd = document.querySelector(".hd");
+    let lin = [...document.querySelectorAll(".lin > * > *> * > *")];
+    lin = lin.reverse()
+    let pgg = [...document.querySelectorAll(".pgg")];
+
+    let pgn = document.querySelector(".pgn > * > *");
+    let pgnn = pgn.textContent;
+
+    function clsA(dur) {
+        let convhd = convertPixToPerc(hd, "left");
+        let convlo = convertPercToPix(lo, "top");
+        clse.classList.add(pgnn)
+        let s, id;
+        function a (t) {
+            if (!s) s = t;
+            let m = Math.min((t-s)/dur, 1);
+            let m2 = Math.min((t-s)/350,1); 
+            let e = ease()[3](m);
+            let e2 = ease()[0](m2);
+
+            // close btn
+            let d = 0 + (-150 - 0) * e;
+            
+            // translate blog span
+            let d1 = convhd + (50 - convhd) * e;
+
+            // top log span
+            let d2 = 89.9 + (4 - 89.9) * e;
+
+            // links 
+            let d3 = 150 + (0 - 150) * e;
+
+            // opacity
+            let d4 = 1 + (0 - 1) * e2;
+            let d5 = 0 + (1 - 0) * e;
+
+
+
+
+            clse.style.transform=`translate3d(0,${d}%,0)`;
+
+            if(document.querySelector(".p")) {
+                document.querySelector(".p").style.opacity = d4;
+            } 
+            setTimeout(() => {
+                document.querySelector(".m").style.opacity=d5;
+            }, 1000);
+        
+            // [...document.querySelectorAll(".p")].map((u, idx) => {
+            //     if (idx == (document.querySelectorAll(".p").length -1)) {
+            //         u.style.opacity=d4;
+            //     }
+            // })
+            setTimeout(() => {
+                hd.style.left=`${d1}%`;
+                lo.style.top=`${d2}%`;
+                lin.map((u, idx) => {
+                    setTimeout(() => {
+                        u.style.transform=`translate3d(0,${d3}%,0)`;
+                    }, idx * 50);
+                });
+
+                setTimeout(() => {
+                    pgg.map((u, idx) => {
+                        setTimeout(() => {
+                            u.style.opacity=d5;
+                        }, idx * 50);
+                    })
+                    setTimeout(() => {
+                        pgn.style.transform=`translate3d(0,${d3}%,0)`
+                    }, 55);
+                }, 50);
+            }, 30);
+
+            if (m < 2) {
+                id = requestAnimationFrame(a);
+            }
+        }
+        id = requestAnimationFrame(a);
+
+        setTimeout(() => {
+            cancelAnimationFrame(id);
+        }, dur);
+    }
+
+
+    let pages = ["/page1.html","/page2.html","/page3.html","/page4.html"];
+    clse.addEventListener("click", async (e) => {
+        pos = 0;
+        history.pushState(null, null, "/blog.html")
+        clsA(1000);
+
+        setTimeout(() => {
+            document.querySelector(".p").remove();
+
+            setTimeout( async () => {
+                pages.map( async (u, idx) => {
+                   if(idx == parseInt(pgnn)) {
+                    idx -= 1;
+                    log (pages[idx]);
+                    let w = window.location.origin+"/templates/"+pages[idx];
+                    let p = await fetch(w);
+                    let t = await p.text();
+
+                    let pattern = /<div[^>]class="p"*>((.|\n|\r)*)<\/div>/im;
+                    let match = pattern.exec(t)[1];
+
+                    let cp = document.createElement("div");
+                    cp.className="p m";
+                    cp.innerHTML = match;
+
+                    document.querySelector(".c").insertAdjacentElement("beforeend", cp);
+
+                    setTimeout(() => {
+                        let s, id;
+                           function cani (t) {
+                                if (!s) s= t;
+                                let m = Math.min((t-s)/1000,1);
+                                let e = ease()[3](m);
+                                let d = 110 + (0 - 110) * e;
+
+                                [...document.querySelectorAll(".ti > * > *")].map((u,idx) => {
+                                    setTimeout(() => {
+                                        u.style.transform=`translate3d(0,${d}%,0)`;
+                                    }, idx * 80);
+                                });
+                                // [...document.querySelectorAll(".tbb")].map((u) => {
+                                //     u.style.width = "100%";
+                                //     u.style.height = "100%";
+                                //     u.parentElement.querySelector("span").style.opacity = 1;
+                                // })
+
+                                if (m < 2) {
+                                    id=requestAnimationFrame(cani);
+                                }
+                           }    
+                           id = requestAnimationFrame(cani);
+
+                           setTimeout(() => {
+                            cancelAnimationFrame(id);
+                           }, 1000);
+                    }, 10)
+                    return;
+                   }
+                })
+            },3);
+        },750);
+    })
 }
 
 function init() {
@@ -919,6 +1115,7 @@ function init() {
     mscroll();
     click();
     more();
+    close();
   
 }
 

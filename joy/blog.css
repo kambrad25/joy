@@ -256,13 +256,21 @@ ul {
 }
 
 .tr > *:last-child >*:first-child {
+   opacity: 1;
+    background: black;
+    width: 100px;
     color: white;
-    opacity: 0;
-    pointer-events: none;
+    display: grid;
+    place-content: center;
+    padding: .4rem;
 }
 
 .tb {
     overflow: hidden;
+    pointer-events: none;
+}
+.tb > * {
+    pointer-events: all;
 }
 .tbb {
     position: absolute;
@@ -353,6 +361,9 @@ ul {
     transform: translate3d(0,110%,0);
     will-change: transform;
 }
+.hd {
+    padding: 0 .3rem;
+}
 .p1 {
     position: absolute;
     top: 20%;
@@ -396,9 +407,68 @@ ul {
 .p3 > * > * {
     transform: translate3d(0,150%,0);
 }
+.p4 {
+    position: absolute;
+    top: 120%;
+    left: 0%;
+    transform: translate(5%, -20%);
+}
+.p4 > * {
+    white-space: nowrap;
+    font-size: clamp(1rem, 3vw, 5rem);
+    line-height: .9;
+}
+.p4 > * > * {
+    transform: translate3d(0,150%,0);
+}
 
-@media (max-width: 400px) {
+.p5 {
+    position: absolute;
+    top: 150%;
+    left: 0%;
+    transform: translate(5%, -20%);
+}
+.p5 > * {
+    white-space: nowrap;
+    font-size: clamp(1rem, 3vw, 5rem);
+    line-height: .9;
+}
+.p5 > * > * {
+    transform: translate3d(0,150%,0);
+}
+.p6 {
+    position: absolute;
+    top: 180%;
+    left: 0%;
+    transform: translate(5%, -20%);
+}
+.p6 > * {
+    white-space: nowrap;
+    font-size: clamp(1rem, 3vw, 5rem);
+    line-height: .9;
+}
+.p6 > * > * {
+    transform: translate3d(0,150%,0);
+}
+.tb > span {
+    border: none;
+}
+.aa {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate3d(-50%,-50%,0);
+    display: grid;
+    gap: 2rem;
+    opacity: 0;
+    transition: opacity 650ms 450ms ease;
+}
+.aa > * > h2 {
+    text-align: center;
+}
+@media (max-width: 500px) {
     .pre > *:nth-child(1) {
-        padding-right: .3px;
+        padding: 0 .3rm;
     }
+    
 }
