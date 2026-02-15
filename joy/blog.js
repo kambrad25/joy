@@ -850,6 +850,7 @@ function more () {
     // tb.map((u, idx) => {
         document.addEventListener("click", async (e) => {
             if (!e.target.matches(".tbs")) return;
+            pos=0;
             move(1000);
 
 
@@ -1058,7 +1059,12 @@ function close () {
                    if(idx == parseInt(pgnn)) {
                     idx -= 1;
                     log (pages[idx]);
-                    let w = window.location.origin+"/templates/"+pages[idx];
+                    let w = window.location;
+                    if (w.href.split("").includes("joy")) {
+                        w = window.location.origin+"/joy/joy"+pages[idx];
+                    } else {
+                        w = window.location.origin+"/templates/"+pages[idx];
+                    }
                     let p = await fetch(w);
                     let t = await p.text();
 
