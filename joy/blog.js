@@ -1066,7 +1066,7 @@ function close () {
                     log (pages[idx]);
                     let w = window.location;
                     if (w.href.split("/").includes("joy")) {
-                        w = window.location.origin+"/joy/joy/"+pages[idx];
+                        w = window.location.origin+"/joy/joy/templates/"+pages[idx];
                     } else {
                         w = window.location.origin+"/templates/"+pages[idx];
                     }
