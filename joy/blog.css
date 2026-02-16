@@ -547,6 +547,7 @@ iframe {
 }
 .iss > * {
     white-space: nowrap;
+    text-align: center;
 }
 
 @media (max-width: 500px) {
