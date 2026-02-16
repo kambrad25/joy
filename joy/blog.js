@@ -857,7 +857,7 @@ function more () {
             move(1000)
             setTimeout(() => {
                 pos=0;
-            },100)
+            },1000)
             
 
 
