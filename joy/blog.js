@@ -766,7 +766,9 @@ function more () {
                 setTimeout(() => {
                     clb.style.transform=`translate3d(0, ${d6}%, 0)`;
                     document.querySelector(".p").style.opacity= d7p;
-                    pos=0;
+                    setTimeout(() => {
+                        pos=0;
+                    }, 200)
                 }, 50);
             })
             lo.style.top = `${d2}%`;
