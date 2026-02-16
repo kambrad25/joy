@@ -854,10 +854,11 @@ function more () {
     // tb.map((u, idx) => {
         document.addEventListener("click", async (e) => {
             if (!e.target.matches(".tbs")) return;
+            move(1000)
             setTimeout(() => {
                 pos=0;
-            },1100)
-            move(1000);
+            },100)
+            
 
 
             let getTitle = e.target.dataset.id;
