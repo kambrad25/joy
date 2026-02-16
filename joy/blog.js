@@ -856,7 +856,7 @@ function more () {
             if (!e.target.matches(".tbs")) return;
             setTimeout(() => {
                 pos=0;
-            },1000)
+            },1500)
             move(1000);
 
 
