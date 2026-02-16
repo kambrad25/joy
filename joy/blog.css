@@ -507,6 +507,7 @@ iframe {
     max-width: 80%;
     opacity: 0;
     transition: opacity 650ms 350ms ease;
+    pointer-events: all;
 }
 .p2b {
     top: 25%;
@@ -547,6 +548,7 @@ iframe {
 .iss > * {
     white-space: nowrap;
 }
+
 @media (max-width: 500px) {
     .pre > *:nth-child(1) {
         padding: 0 .3rm;
