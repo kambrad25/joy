@@ -766,6 +766,7 @@ function more () {
                 setTimeout(() => {
                     clb.style.transform=`translate3d(0, ${d6}%, 0)`;
                     document.querySelector(".p").style.opacity= d7p;
+                    pos=0;
                 }, 50);
             })
             lo.style.top = `${d2}%`;
@@ -855,12 +856,7 @@ function more () {
         document.addEventListener("click", async (e) => {
             if (!e.target.matches(".tbs")) return;
             move(1000)
-            setTimeout(() => {
-                pos=0;
-            },1000)
-            
-
-
+        
             let getTitle = e.target.dataset.id;
             
             // let getTitle = "";
