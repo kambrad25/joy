@@ -766,9 +766,9 @@ function more () {
                 setTimeout(() => {
                     clb.style.transform=`translate3d(0, ${d6}%, 0)`;
                     document.querySelector(".p").style.opacity= d7p;
-                    setTimeout(() => {
+                    setTimeout(()=>{
                         pos=0;
-                    }, 1000)
+                    },1000);
                 }, 50);
             })
             lo.style.top = `${d2}%`;
@@ -857,8 +857,9 @@ function more () {
     // tb.map((u, idx) => {
         document.addEventListener("click", async (e) => {
             if (!e.target.matches(".tbs")) return;
-            move(1000)
-        
+            move(1000);
+
+
             let getTitle = e.target.dataset.id;
             
             // let getTitle = "";
@@ -929,6 +930,9 @@ function more () {
                 if (document.querySelector(".pimg")) {
                     document.querySelector(".pimg > *").style.opacity = 1;
                 }
+                if (document.querySelector(".v")) {
+                    document.querySelector(".v").style.opacity=1;
+                }
                  move2();
                  [...document.querySelectorAll(".sp")].map((u) => {
                     let trac = document.querySelector(".trac");
@@ -983,7 +987,7 @@ function close () {
     let pgg = [...document.querySelectorAll(".pgg")];
 
     let pgn = document.querySelector(".pgn > * > *");
-    let pgnn = pgn.textContent;
+    let pgnn;
 
     function clsA(dur) {
         let convhd = convertPixToPerc(hd, "left");
@@ -1022,7 +1026,9 @@ function close () {
                 document.querySelector(".p").style.opacity = d4;
             } 
             setTimeout(() => {
-                document.querySelector(".m").style.opacity=d5;
+                if (document.querySelector(".m")) {
+                    document.querySelector(".m").style.opacity=d5;
+                }
             }, 1000);
         
             // [...document.querySelectorAll(".p")].map((u, idx) => {
@@ -1063,10 +1069,11 @@ function close () {
     }
 
 
-    let pages = ["/page1.html","/page2.html","/page3.html","/page4.html"];
+    let pages = ["", "/page1.html","/page2.html","/page3.html"];
     clse.addEventListener("click", async (e) => {
         pos = 0;
         let w = window.location;
+        pgnn = pgn.textContent;
         if(!w.href.split("/").includes("joy")) {
             history.pushState(null, null, "/blog.html")
         } else {
@@ -1080,8 +1087,7 @@ function close () {
             setTimeout( async () => {
                 pages.map( async (u, idx) => {
                    if(idx == parseInt(pgnn)) {
-                    idx -= 1;
-                    log (pages[idx]);
+                    // idx -= 1;
                     let w = window.location;
                     if (w.href.split("/").includes("joy")) {
                         w = window.location.origin+"/joy/joy/templates/"+pages[idx];
@@ -1276,23 +1282,28 @@ function aop (ele, dur, from, to) {
  
    
    
-    
+     let blsty = {
+        zIndex: 999,
+        pointerEvents: "all"
+    }
+    let blstyn = {
+        zIndex: -1,
+        pointerEvents: "none"
+    }
         
    document.addEventListener("click", (e) => {
 
-    if (!e.target.matches(".pgg")) return;
+    if (e.target.matches(".pgg") || e.target.matches(".pgg > *")) {
 
-        [...document.querySelectorAll(".pgg")].map((u) => {
-            log (u)
-            u.parentElement.style.pointerEvents = "none";
-            u.style.pointerEvents="none";
+        document.querySelector(".bl").style.pointerEvents = "all";
 
 
+        setTimeout(() => {
+            document.querySelector(".bl").style.pointerEvents = "none";
+        }, 1500)
+   
+    }
 
-            setTimeout(() => {
-                // u.style.parentElement.pointerEvents = u.style.pointerEvents = "all";
-            }, 2000);
-        })
    })
 
 
