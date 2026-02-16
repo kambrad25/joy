@@ -854,7 +854,9 @@ function more () {
     // tb.map((u, idx) => {
         document.addEventListener("click", async (e) => {
             if (!e.target.matches(".tbs")) return;
-            pos=0;
+            setTimeout(() => {
+                pos=0;
+            },500)
             move(1000);
 
 
