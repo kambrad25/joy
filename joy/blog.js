@@ -768,7 +768,7 @@ function more () {
                     document.querySelector(".p").style.opacity= d7p;
                     setTimeout(() => {
                         pos=0;
-                    }, 200)
+                    }, 1000)
                 }, 50);
             })
             lo.style.top = `${d2}%`;
