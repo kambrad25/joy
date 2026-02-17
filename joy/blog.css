@@ -60,7 +60,7 @@ ul {
 .pre > * > h4 {
     text-transform: uppercase;
     font-weight: 300;
-    font-size: 1.5rem;
+    font-size: clamp(1.5rem, 3vw, 2rem);
     transform: translate3d(0,110%,0);
     will-change: transform;
 }
@@ -130,7 +130,7 @@ ul {
 }
 .log >*>h3{
     text-transform: uppercase;
-    font-size: 1.4rem;
+    font-size: clamp(1.4rem, 1.6vw, 1.8rem);
     transform: translate3d(0,110%,0);
     will-change: transform;
 }
@@ -375,12 +375,12 @@ ul {
 }
 .p1 > * {
     white-space: nowrap;
-    font-size: clamp(1rem, 3vw, 5rem);
+   font-size: clamp(1.3rem, 1.5vw, 2rem);
     line-height: .95;
     padding-top: .15rem;}
 .p1 > * > * {
     transform: translate3d(0,150%,0);
-    font-size: clamp(1rem, 4vw, 3rem);
+    font-size: clamp(1.8rem, 2vw, 2rem);
 }
 .p1.op {
     left: 3%;
@@ -388,7 +388,11 @@ ul {
     top: 15%;
 }
 .p1.op > * > * {
-    font-size: clamp(1rem,2vw,3rem);
+    font-size: clamp(1.3rem, 2vw, 2rem);
+}
+
+.p2.ap {
+    top: 38%;
 }
 .p2 {
     position: absolute;
@@ -398,14 +402,24 @@ ul {
 }
 .p2 > * {
     white-space: nowrap;
-    font-size: clamp(1rem, 3vw, 5rem);
+    font-size: clamp(1.8rem, 2vw, 2rem);
     line-height: .95;
-    padding-top: .15rem;}
+    padding-top: .15rem;
+}
 .p2 > * > * {
     transform: translate3d(0,150%,0);
-    font-size: clamp(1rem, 4vw, 3rem);
+    font-size: clamp(1.8rem, 2vw, 2rem);
 }
-
+.p2.ais {
+    top: 50%;
+}
+.p2.bf {
+    top: 30%;
+}
+.p2.aar {
+    top: 27%;
+    left: 1%;
+}
 .p3 {
     position: absolute;
     top: 90%;
@@ -414,13 +428,19 @@ ul {
 }
 .p3 > * {
     white-space: nowrap;
-    font-size: clamp(1rem, 3vw, 5rem);
+    font-size: clamp(1.8rem, 2vw, 2rem);
     line-height: .95;
     padding-top: .15rem;    
 }
 .p3 > * > * {
     transform: translate3d(0,150%,0);
-    font-size: clamp(1rem, 4vw, 3rem);
+    font-size: clamp(1.8rem, 2vw, 2rem);
+}
+.p3.ap {
+    top: 57%;
+}
+.p3.aar {
+    top: 36%;   
 }
 .p4 {
     position: absolute;
@@ -430,12 +450,19 @@ ul {
 }
 .p4 > * {
     white-space: nowrap;
-    font-size: clamp(1rem, 3vw, 5rem);
+    font-size: clamp(1.8rem, 2vw, 2rem);
     line-height: .9;
 }
 .p4 > * > * {
     transform: translate3d(0,150%,0);
-    font-size: clamp(1rem, 4vw, 3rem);
+    font-size: clamp(1.8rem, 2vw, 2rem);
+}
+.p4.ap {
+    top: 75%;
+}
+.p4.aar {
+    top: 50%;
+    left: 1%;
 }
 
 .p5 {
@@ -446,11 +473,15 @@ ul {
 }
 .p5 > * {
     white-space: nowrap;
-    font-size: clamp(1rem, 3vw, 5rem);
+    font-size: clamp(1.8rem, 2vw, 2rem);
     line-height: .9;
 }
 .p5 > * > * {
     transform: translate3d(0,150%,0);
+}
+.p5.aar {
+top: 55%;
+left: 1%;   
 }
 .p6 {
     position: absolute;
@@ -460,11 +491,121 @@ ul {
 }
 .p6 > * {
     white-space: nowrap;
-    font-size: clamp(1rem, 3vw, 5rem);
+    font-size: clamp(1.8rem, 2vw, 2rem);
     line-height: .9;
 }
 .p6 > * > * {
     transform: translate3d(0,150%,0);
+}
+.p6.ap {
+    top: 90%;
+}
+.p6.aar {
+    top: 60%;
+    left: 1%;
+}
+.p7{
+    position: absolute;
+    top: 180%;
+    left: 0%;
+    transform: translate(5%, -20%);
+}
+.p7 > * {
+    white-space: nowrap;
+    font-size: clamp(1.8rem, 2vw, 2rem);
+    line-height: .9;
+}
+.p7 > * > * {
+    transform: translate3d(0,150%,0);
+}
+.p7.aar {
+    top: 65%;
+}
+.p8 {
+    position: absolute;
+    top: 180%;
+    left: 0%;
+    transform: translate(5%, -20%);
+}
+.p8 > * {
+    white-space: nowrap;
+    font-size: clamp(1.8rem, 2vw, 2rem);
+    line-height: .9;
+}
+.p8 > * > * {
+    transform: translate3d(0,150%,0);
+}
+.p8.aar {
+    top: 70%;
+    left: 1%;
+}
+.p9 {
+    position: absolute;
+    top: 180%;
+    left: 0%;
+    transform: translate(5%, -20%);
+}
+.p9 > * {
+    white-space: nowrap;
+    font-size: clamp(1.8rem, 2vw, 2rem);
+    line-height: .9;
+}
+.p9 > * > * {
+    transform: translate3d(0,150%,0);
+}
+.p9 {
+    position: absolute;
+    top: 180%;
+    left: 0%;
+    transform: translate(5%, -20%);
+}
+.p9 > * {
+    white-space: nowrap;
+    font-size: clamp(1.8rem, 2vw, 2rem);
+    line-height: .9;
+}
+.p9 > * > * {
+    transform: translate3d(0,150%,0);
+}
+.p9.aar {
+    top: 75%;
+    left: 1%;
+}
+.p10 {
+    position: absolute;
+    top: 180%;
+    left: 0%;
+    transform: translate(5%, -20%);
+}
+.p10 > * {
+    white-space: nowrap;
+    font-size: clamp(1.8rem, 2vw, 2rem);
+    line-height: .9;
+}
+.p10 > * > * {
+    transform: translate3d(0,150%,0);
+}
+.p10.aar {
+    top: 82%;
+    left: 1%;
+}
+.p11 {
+    position: absolute;
+    top: 180%;
+    left: 0%;
+    transform: translate(5%, -20%);
+}
+.p11 > * {
+    white-space: nowrap;
+    font-size: clamp(1.8rem, 2vw, 2rem);
+    line-height: .9;
+}
+.p11 > * > * {
+    transform: translate3d(0,150%,0);
+}
+.p11.aar {
+    top: 8%0;
+    left: 1%;
 }
 .tb > span {
     border: none;
@@ -524,8 +665,10 @@ audio {
 
 .ps {
     position: absolute;
-    top: 170px;
-    left: 3%;
+    top: 33%;
+    left: 1.6%;
+    transform: unset;
+    font-size: clamp(1.8rem, 2vw, 2rem);
 }
 .ps > * > * {
     transform: translate3d(0,110%,0);
@@ -545,7 +688,7 @@ iframe {
 .p2b {
     top: 25%;
     transform: unset;
-    left: 2%;
+    left: 1.2%;
 }
 .p2b > * > a {
     opacity: 0;
@@ -592,9 +735,26 @@ iframe {
     z-index: 999;
     pointer-events: none;
 }
+
 @media (max-width: 500px) {
     .pre > *:nth-child(1) {
         padding: 0 .3rm;
+    }
+}
+
+@media (min-width: 700px) {
+    .pimg {
+        /* right: 0; */
+        /* top: 0; */
+        left: 15px;
+        max-width: 300px;
+        transform: translate(0px, -50%);
+        /* transform: translate(0%, -50%,0) */
+        /* left: unset; */
+    }
+    ul {
+        display: flex;
+        gap: .4rem;
     }
 }
 
