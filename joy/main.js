@@ -124,6 +124,8 @@ function init () {
 
 
 window.addEventListener("load", () => {
-  document.addEventListener("DOMContentLoaded", init);
+  document.addEventListener("DOMContentLoaded", () => {
+      init();
+    });
 })
 
