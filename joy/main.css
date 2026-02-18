@@ -1,0 +1,96 @@
+@font-face {
+    font-family: "Bueno";
+    src: url("./public/font/Bueno\ Regular\ Free/OpenType-TT/Bueno-Regular.ttf");
+    font-weight: 400;
+}
+
+*::before,
+*::after,
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    overscroll-behavior: none;
+    scroll-behavior: smooth;
+    font-family: 'Bueno';
+}
+
+html {
+    font-size: 62.5%;
+}
+body {
+    font-size: 1.6rem;
+    font-weight: 400;
+    font-family: "Bueno";
+    line-height: 1.4;
+}
+
+.h {
+    overflow: hidden;
+}
+
+
+.pre {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: #f5f5f5;
+}
+.pre > .ti {
+    color: black;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    font-size: clamp(10rem, 2.4vw, 4rem);
+    text-transform: uppercase;
+    /* color: white; */
+}
+.pre > .ti > * {
+    padding: 0 1.5rem;
+}
+
+.pre > .ti > * > * {
+    padding: 0 .5rem;
+    /* letter-spacing: -.3rem; */
+    mix-blend-mode: difference;
+    color: black;
+    pointer-events: all;
+}
+.li {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    mix-blend-mode: difference;
+    transform: translate3d(0,110%,0);
+}
+
+.m {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+.th {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -20%);
+    pointer-events: all;
+    text-transform: uppercase;
+    font-size: 7.5rem;
+    letter-spacing: -.12rem;
+    display: flex;
+    line-height: 1;
+}
+.th > * > * {
+    transform: translate3d(0,110%, 0);
+}
