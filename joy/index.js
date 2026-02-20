@@ -195,7 +195,7 @@ function init () {
                     an(".mf > * > *", "transform", 1000, 3, 110, 0, 50);
 
                     setTimeout(() => {
-                        an(".ms > * > *", "transform", 1000, 3, 110, 0, 80)
+                        an(".ms > * > *", "transform", 1000, 3, 150, 0, 80)
                     }, 250);
                 }, 250)
             }, 100);
