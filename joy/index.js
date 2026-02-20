@@ -203,9 +203,42 @@ function init () {
     }
 
 
+    function scroll () {
+        let tstart, tcurr, velocity=0;
+        
+        document.addEventListener("touchstart", (e) => {
+            tstart = e.touches[0].screenY;
+        });
+
+        document.addEventListener("touchmove", (e) => {
+            tcurr = e.touches[0].screenY;
+            let del = tstart - tcurr;
+
+            velocity += del;
+
+            if (velocity < 0) {
+                velocity = 0;
+            }
+
+            document.querySelector(".mh").style.transform=`translate3d(0,${-velocity}px,0)`
+
+
+            if(velocity > 150) {
+                document.querySelector(".mthimg > *").style.opacity=1;
+            }
+
+            tstart =  tcurr;
+        });
+
+        document.addEventListener("touchend", (e) => {
+
+        })
+    }
+
     preLoad()
     preA();
     enter();
+    scroll()
 
 
 

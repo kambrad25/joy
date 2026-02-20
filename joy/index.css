@@ -327,3 +327,24 @@ body {
     white-space: nowrap;
     color: brown;
 }
+.dimg {
+    width: 30px;
+    height: 30px;
+}
+.dimg > img {
+    width: 100%;
+}
+.mth {
+    padding-top: 4rem;
+}
+.mthimg {
+    width: 500px;
+    height: 300px;
+}
+.mthimg > * {
+    width: 100%;
+    object-fit: cover;
+    height: 100%;
+    transition: opacity 650ms ease;
+    opacity: 0;
+}
