@@ -320,7 +320,7 @@ body {
 }
 .ms > * {
     line-height: .8;
-    padding: .1rem 0;
+    padding: .15rem 0;
 }
 .ms > * > * {
     transform: translate3d(0,150%,0);
