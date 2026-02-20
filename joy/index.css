@@ -306,8 +306,9 @@ body {
 }
 .mfb > * {
     text-transform: uppercase;
-    font-weight: 100;
+    font-weight: 900;
     letter-spacing: .1px;
+    font-size: 5rem;
 }
 .ms {
     padding-top: 2rem;
