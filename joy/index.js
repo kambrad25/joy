@@ -23,6 +23,8 @@ function init () {
     let dsth = [...document.querySelectorAll(".dsth > h1")];
     let ent = document.querySelector(".ent");
 
+    let touched = false;
+
     function preA () {
         let s, id;
         function a (t) {
@@ -147,6 +149,8 @@ function init () {
 
     }
 
+    
+
     function enter () {
         function an (ele,style, dur, easing, from, to, dx=0) {
             let s, id;
@@ -185,6 +189,7 @@ function init () {
             }, dur + 500);
         }
         ent.addEventListener("click", (e) => {
+            touched=true;
             an(".ent", "transform", 350, 0, 0, -110);
 
             setTimeout(() => {
@@ -202,37 +207,106 @@ function init () {
         })
     }
 
+    let done = false;
+    function rve (ele, style, dur, easing, from, to, dx=0) {
+        let s, id;
+        function a (t) {
+            // if (done) return;
+            if(!s) s = t;
+            let m = Math.min((t-s)/dur, 1);
+            let e = ease()[easing](m);
+            let d = lerp(from, to, e);
+
+
+            if (style == "opacity") {
+                [...document.querySelectorAll(ele)].map((u, idx) => {
+                    setTimeout(() => {
+                        u.style.opacity = d;
+                    }, idx * dx);
+                })
+            } 
+
+            if (m < 1) {
+                id=requestAnimationFrame(a);
+            }
+            // done = true;
+        }
+
+        id = requestAnimationFrame(a);
+
+        setTimeout(() => {
+            cancelAnimationFrame(id);
+        }, dur += 500);
+    }
+
+    function rv (s) {
+        let { top } = document.querySelector(".tr").getBoundingClientRect();
+        let ele = document.querySelector(".mth").getBoundingClientRect().top;
+        let eleh = document.querySelector(".mth").getBoundingClientRect().height;
+
+        let del = (top - ele) / eleh;
+
+        if (del > 0 && !done) {
+            done=true;
+            rve(".mthimg > *", "opacity", 500, 3, 0, 1);
+            
+            // document.querySelector(".mthimg > *").style.opacity=1;
+        }
+    }
 
     function scroll () {
-        let tstart, tcurr, velocity=0;
+        let tstart, tcurr, velocity=0,s=0, c = 0;
+        let ttstart, ttcur, id;
         
         document.addEventListener("touchstart", (e) => {
+            if (!touched) return;
             tstart = e.touches[0].screenY;
+            ttstart = new Date();
+            if (id) cancelAnimationFrame(id)
         });
 
         document.addEventListener("touchmove", (e) => {
+            if (!touched) return;
             tcurr = e.touches[0].screenY;
             let del = tstart - tcurr;
+            ttcur = new Date();
 
-            velocity += del;
+            let ttdelta = ttcur - ttstart;
 
-            if (velocity < 0) {
-                velocity = 0;
-            }
-
-            document.querySelector(".mh").style.transform=`translate3d(0,${-velocity}px,0)`
-
-
-            if(velocity > 150) {
-                document.querySelector(".mthimg > *").style.opacity=1;
+            if (ttdelta > 5) {
+                velocity = del / ttdelta;
+                ttstart = new Date();
             }
 
             tstart =  tcurr;
         });
 
         document.addEventListener("touchend", (e) => {
-
+            requestAnimationFrame(a);
         })
+
+
+        function a () {
+            // velocity *= .95;
+            // s+=velocity;
+
+            if (s < 0) {
+                s = 0;
+            }
+            c = lerp(c, s, .3);
+
+             velocity *= .95;
+            s+=velocity;
+
+
+
+            rv(s);
+
+            document.querySelector(".mh").style.transform=`translate3d(0,${-c}%,0)`
+            if (Math.abs(velocity) > .0001) {
+                id =requestAnimationFrame(a);
+            }
+        }
     }
 
     preLoad()
@@ -299,6 +373,10 @@ let scaled = true;
         
     })
 })
+
+function lerp (start, end, t) {
+    return start + (end - start) * t;
+} 
 
 
 
