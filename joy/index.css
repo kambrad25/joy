@@ -348,6 +348,28 @@ body {
     width: 100%;
     object-fit: cover;
     height: 100%;
-    transition: opacity 650ms ease;
+    /* transition: opacity 650ms ease; */
     opacity: 0;
+}
+.mtf {
+    padding-top: 10rem;
+    /* border: 2px solid; */
+    text-align: center;
+    letter-spacing: -.5px;
+}
+.mtfs {
+    padding: 2rem 0;
+}
+.mtfs > * {
+    text-transform: uppercase;
+    font-size: 5rem;
+    line-height: .8;
+}
+.mtfs > *:first-child {
+    font-weight: 900;
+}
+
+.mtfs > *:last-child {
+    font-weight: 900;
+    transform: skew(-20deg);
 }

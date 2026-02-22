@@ -190,6 +190,7 @@ function init () {
         }
         ent.addEventListener("click", (e) => {
             touched=true;
+            document.querySelector(".mh").style.pointerEvents = "all";
             an(".ent", "transform", 350, 0, 0, -110);
 
             setTimeout(() => {
@@ -207,7 +208,7 @@ function init () {
         })
     }
 
-    let done = false;
+    let done = false, done2 = false;
     function rve (ele, style, dur, easing, from, to, dx=0) {
         let s, id;
         function a (t) {
@@ -219,11 +220,13 @@ function init () {
 
 
             if (style == "opacity") {
-                [...document.querySelectorAll(ele)].map((u, idx) => {
-                    setTimeout(() => {
-                        u.style.opacity = d;
-                    }, idx * dx);
-                })
+                // [...document.querySelectorAll(ele)].map((u, idx) => {
+                //     setTimeout(() => {
+                //         ele.style.opacity = d;
+                //     }, idx * dx);
+                // })
+                    ele.style.opacity = d;
+
             } 
 
             if (m < 1) {
@@ -236,21 +239,38 @@ function init () {
 
         setTimeout(() => {
             cancelAnimationFrame(id);
-        }, dur += 500);
+        }, dur += 1000);
     }
 
-    function rv (s) {
-        let { top } = document.querySelector(".tr").getBoundingClientRect();
-        let ele = document.querySelector(".mth").getBoundingClientRect().top;
-        let eleh = document.querySelector(".mth").getBoundingClientRect().height;
+    function rv () {
+        let trt=document.querySelector(".tr").getBoundingClientRect().top;
 
-        let del = (top - ele) / eleh;
+        let mth = document.querySelector(".mthimg > *");
+        let mth2 = document.querySelector(".mthhimg > *");
 
-        if (del > 0 && !done) {
-            done=true;
-            rve(".mthimg > *", "opacity", 500, 3, 0, 1);
-            
-            // document.querySelector(".mthimg > *").style.opacity=1;
+        let mtht = mth.getBoundingClientRect().top;
+        let mtht2 = mth2.getBoundingClientRect().top;
+
+
+        let mthh = mth.getBoundingClientRect().height;
+        let mthht2 = mth2.getBoundingClientRect().height;
+
+        let del1 = (trt - mtht) / mthh;
+        let del2 = (trt - mtht2) / mthht2;
+
+        if (del1 > 0 && !done) {
+            done = true;
+            rve(mth,"opacity", 350, 0,0,1)
+        } 
+        // if (del1 < 0 && done) {
+        //     // mth.style.opacity=0;
+        //     rve(mth, "opacity", 350, 0,1,0);
+        //     done = false
+        // }
+
+        if (del2 > 0 && !done2) {
+            done2 = true;
+            rve(mth2,"opacity", 350, 0,0,1)
         }
     }
 
@@ -300,7 +320,7 @@ function init () {
 
 
 
-            rv(s);
+            rv();
 
             document.querySelector(".mh").style.transform=`translate3d(0,${-c}%,0)`
             if (Math.abs(velocity) > .0001) {
