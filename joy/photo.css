@@ -90,10 +90,7 @@ nav {
     top: 2rem;
     right: 2rem;
 }
-.links > *:nth-child(2) {
-    text-decoration: line-through;
-    pointer-events: none;
-}
+
 .pre {
     position: fixed;
     top: 0;
