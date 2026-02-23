@@ -395,7 +395,6 @@ body {
 }
 .mtfth > * {
     height: 100%;
-    overflow: hidden;
 }
 .mtfthi {
     position: relative;
