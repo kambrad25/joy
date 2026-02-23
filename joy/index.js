@@ -323,13 +323,18 @@ function init () {
             let dy3 = lerp(-150, 0, e);
             let dy4 = lerp(150, -20, e);
 
-            document.querySelector(".mtfthimg:nth-child(1)").style.transform=`translate3d(${dx1}%,${dy1}%,0)`;
-            document.querySelector(".mtfthimg:nth-child(2)").style.transform=`translate3d(${dx2}%,${dy2}%,0)`;
-            document.querySelector(".mtfthimg:nth-child(3)").style.transform=`translate3d(${dx3}%,${dy3}%,0)`;
-            document.querySelector(".mtfthimg:nth-child(4)").style.transform=`translate3d(${dx4}%,${dy4}%,0)`;
+            let op = lerp(100, 0, e);
 
+            document.querySelector(".mtfthimg:nth-child(1)").style.transform=`translate3d(${dx1}%,${dy1}%,0) rotate(-25deg)`;
+            document.querySelector(".mtfthimg:nth-child(2)").style.transform=`translate3d(${dx2}%,${dy2}%,0) rotate(-25deg)`;
+            document.querySelector(".mtfthimg:nth-child(3)").style.transform=`translate3d(${dx3}%,${dy3}%,0) rotate(25deg)`;
+            document.querySelector(".mtfthimg:nth-child(4)").style.transform=`translate3d(${dx4}%,${dy4}%,0) rotate(25deg)`;
 
-
+            setTimeout(() => {
+                [...document.querySelectorAll(".mtfthimg > *")].map((u) => {
+                    u.style.filter=`grayscale(${op}%)`;
+                })
+            }, 1000);
             if (m < 1) {
                 id = requestAnimationFrame(a);
             }

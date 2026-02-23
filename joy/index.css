@@ -412,20 +412,20 @@ body {
 }
 
 .mtfthimg:nth-child(1) {
-    left: 15%;
-    transform: translate3d(-500%,-150%,0);    
+    left: 5%;
+    transform: translate3d(-500%,-150%,0) rotate(-25deg);    
 }
 .mtfthimg:nth-child(2) {
-    left: 25%;
+    left: 5%;
     top: 50%;
-    transform: translate3d(-500%,150%,0);    
+    transform: translate3d(-500%,150%,0) rotate(-25deg);    
 }
 .mtfthimg:nth-child(3) {
-    right: 15%;
-    transform: translate3d(500%,-150%,0);    
+    right: 5%;
+    transform: translate3d(500%,-150%,0) rotate(25deg);    
 }
 .mtfthimg:nth-child(4) {
-    right: 10%;
+    right: 5%;
     top: 50%;
-    transform: translate3d(500%,150%,0);    
+    transform: translate3d(500%,150%,0) rotate(25deg);    
 }
