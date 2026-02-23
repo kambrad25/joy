@@ -390,7 +390,7 @@ body {
     transform: skew(-20deg);
 }
 .mtfth {
-    padding-top: 10rem;
+    padding-top: 5rem;
     height: 100vw;
 }
 .mtfth > * {
@@ -408,6 +408,7 @@ body {
     width: 100%;
     height: 100%;
     object-fit: contain;
+    filter: grayscale(100%);
 }
 
 .mtfthimg:nth-child(1) {
