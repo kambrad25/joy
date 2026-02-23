@@ -341,8 +341,8 @@ body {
     padding-top: 4rem;
 }
 .mthimg {
-    width: 500px;
-    height: 300px;
+    width: 100%;
+    height: 100%;
 }
 .mthimg > * {
     width: 100%;
@@ -359,6 +359,22 @@ body {
 }
 .mtfs {
     padding: 2rem 0;
+    overflow: hidden;
+    position: relative;
+    /* border: 2px solid; */
+    max-width: fit-content;
+    margin: auto;
+}
+.mtfsl {
+    position: absolute;
+    bottom: 0;
+    height: 3px;
+    background-color: black;
+    width: 100%;
+    left: 0;
+    border-radius: 10px;
+    transform: translate3d(-100%,-15px,0);
+    display: inline-block;
 }
 .mtfs > * {
     text-transform: uppercase;
@@ -369,7 +385,47 @@ body {
     font-weight: 900;
 }
 
-.mtfs > *:last-child {
+.mtfs > *:nth-child(2) {
     font-weight: 900;
     transform: skew(-20deg);
+}
+.mtfth {
+    padding-top: 10rem;
+    height: 100vw;
+}
+.mtfth > * {
+    height: 100%;
+    overflow: hidden;
+}
+.mtfthi {
+    position: relative;
+}
+.mtfthimg {
+    width: 30vw;
+    aspect-ratio: 1;
+    position: absolute;
+}
+.mtfthimg > * {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.mtfthimg:nth-child(1) {
+    left: 15%;
+    transform: translate3d(-500%,-150%,0);    
+}
+.mtfthimg:nth-child(2) {
+    left: 25%;
+    top: 50%;
+    transform: translate3d(-500%,150%,0);    
+}
+.mtfthimg:nth-child(3) {
+    right: 15%;
+    transform: translate3d(500%,-150%,0);    
+}
+.mtfthimg:nth-child(4) {
+    right: 10%;
+    top: 50%;
+    transform: translate3d(500%,150%,0);    
 }

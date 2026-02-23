@@ -225,11 +225,18 @@ function init () {
                 //         ele.style.opacity = d;
                 //     }, idx * dx);
                 // })
-                    ele.style.opacity = d;
-
+                    ele.style.opacity = d
             } 
 
-            if (m < 1) {
+            if (style == "transformX") {
+                ele.style.transform = `translate3d(${d}%,-15px,0)`;
+            }
+
+            if (style == "transformY") {
+                ele.style.transform=`translate3d(0,${d}%,0)`;
+            }
+
+            if (m < 1.5) {
                 id=requestAnimationFrame(a);
             }
             // done = true;
@@ -272,6 +279,71 @@ function init () {
             done2 = true;
             rve(mth2,"opacity", 350, 0,0,1)
         }
+    }
+
+    let mtfdone=false, mtfdone2 = false;
+    function rv2 () {
+        let tr = document.querySelector(".tr");
+        let mtfsl = document.querySelector(".mtfsl");
+        let mtfhit = document.querySelector(".mtfthi");
+        let trt = tr.getBoundingClientRect().top;
+        let mtfhitt = mtfhit.getBoundingClientRect().top;
+
+
+        let mtf = document.querySelector(".mtf");
+        let mtft = mtf.getBoundingClientRect().top;
+
+        let del = (trt - mtft) / mtf.getBoundingClientRect().height;
+        let del2 = (trt - mtfhitt) / mtfhit.getBoundingClientRect().height;
+
+        if (del > 0 && !mtfdone) {
+            mtfdone=true;
+            rve(mtfsl, "transformX", 300, 0, -100, 0)
+        }
+
+        if (del2 > 0 && !mtfdone2) {
+            mtfdone2 = true;
+            rv_mtfimg(2000, 2);
+        }
+    }
+
+    function rv_mtfimg(dur, easing) {
+        let s, id;
+        function a (t) {
+            if (!s) s = t;
+            let m = Math.min((t-s)/dur, 1);
+            let e = ease()[easing](m);
+            let dx1 = lerp(-500, 0, e);
+            let dx2 = lerp(-500, 0, e);
+            let dx3 = lerp(500, 0, e);
+            let dx4 = lerp(500, 0, e);
+
+            let dy1 = lerp(-150, 20, e);
+            let dy2 = lerp(150, 0, e);
+            let dy3 = lerp(-150, 0, e);
+            let dy4 = lerp(150, -20, e);
+
+            document.querySelector(".mtfthimg:nth-child(1)").style.transform=`translate3d(${dx1}%,${dy1}%,0)`;
+            document.querySelector(".mtfthimg:nth-child(2)").style.transform=`translate3d(${dx2}%,${dy2}%,0)`;
+            document.querySelector(".mtfthimg:nth-child(3)").style.transform=`translate3d(${dx3}%,${dy3}%,0)`;
+            document.querySelector(".mtfthimg:nth-child(4)").style.transform=`translate3d(${dx4}%,${dy4}%,0)`;
+
+
+
+            if (m < 1) {
+                id = requestAnimationFrame(a);
+            }
+
+
+
+        }
+
+        id = requestAnimationFrame(a);
+
+
+        setTimeout(() => {
+            cancelAnimationFrame(id);
+        }, 5000);
     }
 
     function scroll () {
@@ -321,6 +393,7 @@ function init () {
 
 
             rv();
+            rv2();
 
             document.querySelector(".mh").style.transform=`translate3d(0,${-c}%,0)`
             if (Math.abs(velocity) > .0001) {
