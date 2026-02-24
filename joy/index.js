@@ -414,8 +414,51 @@ function init () {
         },  dur + 500);
     }
 
+        function rv_mtffiv (dur, ese, tx=0) {
+        let s, id, f = document.querySelector(".mtffivline");
+
+        let st = {
+            borderTop: '1px solid',
+            borderLeft: '1px solid',
+            borderRight: '1px solid'
+        }
+
+        for (let i in st) {
+            f.style[i] = st[i];
+        }
+        function a (t) {
+            if(!s) s = t;
+            let m = Math.min((t-s)/dur, 1);
+            let e = ease()[ese](m);
+            let d1 = lerp(0, 95, e);
+            let d2 = lerp(0, 200, e);
+
+            f.style.maxWidth = `${d1}%`;
+            
+            setTimeout(() => {
+                f.style.height=`${d2}px`;
+            }, 1000);
+
+
+
+            if (m < 1) {
+                id = requestAnimationFrame(a);
+            }
+        }
+
+        id = requestAnimationFrame(a);
+
+
+        setTimeout(() => {
+            cancelAnimationFrame(a);
+        },  dur + 500);
+    }
+
+
+
 
     let tqd = false;
+    let tqdd = false;
 
     function rv3() {
         let trt = document.querySelector(".tr").getBoundingClientRect().top;
@@ -424,14 +467,27 @@ function init () {
 
         let del = (trt - top) / height;
 
-        log (del);
+        // log (del);
 
         if (del > -.1 && !tqd) {
             tqd = true;
             rv_mtfthq(2000,3, 100);
         }
+    }
 
+    function rv4() {
+        let trr = document.querySelector(".trr").getBoundingClientRect().top;
+        let mtfiv = document.querySelector(".mtffiv");
 
+        let t = mtfiv.getBoundingClientRect().top;
+        let h = mtfiv.getBoundingClientRect().height;
+
+        let del = (trr - t) / h;
+
+        if (del > .5 && !tqdd) {
+            tqdd = true;
+            rv_mtffiv(1000, 0)
+        }
     }
 
     function scroll () {
@@ -483,6 +539,7 @@ function init () {
             rv();
             rv2();
             rv3();
+            rv4()
             // rv_mtfthq(1000,)
             // move_y(s);
 

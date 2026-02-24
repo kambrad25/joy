@@ -488,9 +488,6 @@ body {
     letter-spacing: -.9px;
     will-change: transform;
 }
-.mtffiv {
-    border: 2px solid red;
-}
 .mtfline {
     position: absolute;
     width: 100%;
@@ -512,8 +509,37 @@ body {
     transform: translateX(-10%);
     will-change: opacity;
 }
-
-
+.mtfyear > * > * > span {
+    display: inline-block;
+    transform: skew(-10deg);
+    font-weight: 100;
+}
+.mtffiv {
+    padding-top: 5rem;
+}
+.mtffivline {
+    height: 1px;
+    /* height: 200px; */
+    max-width: 0%;
+    /* max-width: 95%; */
+    margin: auto;
+    /* border-top: 1px solid; */
+    /* border-left: 1px solid; */
+    /* border-right: 1px solid; */
+    border-bottom: transparent;
+    /* border: 1px solid; */
+}
+.trr {
+    position: absolute;
+    top: 95%;
+    left: 0;
+    width: 100%;
+    opacity: 0;
+    height: 1px;
+    background-color: black;
+    pointer-events: none;
+    z-index: 99;
+}
 
 
 @media (min-width: 300px) {
