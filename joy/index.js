@@ -351,6 +351,89 @@ function init () {
         }, 5000);
     }
 
+
+    function move_y (y) {
+        let mtfo = document.querySelector(".mtffo");
+        let mtcur = 0;
+
+        let tr = document.querySelector(".tr");
+        let trt = tr.getBoundingClientRect().top;
+        
+
+        let mtfot = mtfo.getBoundingClientRect().top;
+
+        let del = (trt - mtfot) / mtfo.getBoundingClientRect().height;
+
+        
+        mtcur = lerp(mtcur, 50, del);
+
+        mtcur += 20;
+
+        if(mtcur < 0) {
+            mtcur = 0;
+        }
+
+        if (mtcur >= 100) {
+            mtcur = 100;
+        }
+        
+
+        mtfo.style.transform=`translate3d(0,${mtcur}px,0)`;
+
+
+    }
+
+    function rv_mtfthq (dur, ese, tx=0) {
+        let s, id;
+        function a (t) {
+            if(!s) s = t;
+            let m = Math.min((t-s)/dur, 1);
+            let e = ease()[ese](m);
+            let d1 = lerp(200, 0, e);
+            let d2 = lerp(0, 1, e);
+
+            [...document.querySelectorAll(".quo > * > *")].map((u, idx) => {
+                setTimeout(() => {
+                    u.style.transform=`translate3d(0,${d1}%,0)`;
+                }, tx * idx);
+            })
+            setTimeout(() => {
+                document.querySelector(".mtfyear").style.opacity=d2
+            }, 500);
+
+            if (m < 1) {
+                id = requestAnimationFrame(a);
+            }
+        }
+
+        id = requestAnimationFrame(a);
+
+
+        setTimeout(() => {
+            cancelAnimationFrame(a);
+        },  dur + 500);
+    }
+
+
+    let tqd = false;
+
+    function rv3() {
+        let trt = document.querySelector(".tr").getBoundingClientRect().top;
+
+        let { top, height } = document.querySelector(".mtffo").getBoundingClientRect();
+
+        let del = (trt - top) / height;
+
+        log (del);
+
+        if (del > -.1 && !tqd) {
+            tqd = true;
+            rv_mtfthq(2000,3, 100);
+        }
+
+
+    }
+
     function scroll () {
         let tstart, tcurr, velocity=0,s=0, c = 0;
         let ttstart, ttcur, id;
@@ -399,6 +482,9 @@ function init () {
 
             rv();
             rv2();
+            rv3();
+            // rv_mtfthq(1000,)
+            // move_y(s);
 
             document.querySelector(".mh").style.transform=`translate3d(0,${-c}%,0)`
             if (Math.abs(velocity) > .0001) {

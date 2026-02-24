@@ -429,3 +429,104 @@ body {
     top: 50%;
     transform: translate3d(500%,150%,0) rotate(25deg);    
 }
+.mtffo {
+    padding-top: 5rem;
+    height: 50vw;
+    will-change: transform;
+}
+.mtfquote1 {
+    position: absolute;
+    left: 1rem;
+    /* border: 1px solid; */
+    /* line-height: .2; */
+    text-transform: uppercase;
+    text-align: start;
+    font-size: 3.6rem;
+}
+.mtfquote1 > *  {
+    padding: .65rem .05rem;
+    line-height: .6;
+    color: brown;
+}
+.mtfquote1 > *:nth-child(2) {
+    transform: skew(-20deg);
+}
+
+/* .mtfquote1 > *:last-child {
+    position: absolute;
+    right: 30%;
+    font-size: 1.8rem;
+} */
+
+.mtfquote2 {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    /* border: 1px solid; */
+    /* line-height: .2; */
+    text-transform: uppercase;
+    text-align: end;
+    font-size: 2.6rem;
+}
+.mtfquote2 > *:nth-child(3) {
+    transform: skew(-20deg);
+}
+.mtfquote2 > *{
+    /* border: 1px solid; */
+    padding: .5rem .05rem;
+    line-height: .6;
+    color: brown;
+}
+/* .mtfquote2 > *:last-child {
+    position: absolute;
+    left: 50%;
+    font-size: 1.8rem;
+} */
+
+.quo > * > * {
+    transform: translate3d(0,200%,0);
+    letter-spacing: -.9px;
+    will-change: transform;
+}
+.mtffiv {
+    border: 2px solid red;
+}
+.mtfline {
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    background-color: black;
+}
+
+
+
+.mtfyear {
+    opacity: 0;
+    position: absolute;
+    bottom: 0;
+    font-size: 5rem;
+    text-transform: uppercase;
+    font-weight: 900;
+    letter-spacing: -.9px;
+    left: 10%;
+    transform: translateX(-10%);
+    will-change: opacity;
+}
+
+
+
+
+@media (min-width: 300px) {
+    .mtffo {
+        height: 65vw;
+    }
+}
+@media (min-width: 414px) {
+    .mtffo {
+        height: 70vw;
+    }
+}
+
+@media (min-width: 768px) {
+
+}
