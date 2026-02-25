@@ -284,6 +284,7 @@ function init () {
     let mtfdone=false, mtfdone2 = false;
     function rv2 () {
         let tr = document.querySelector(".tr");
+        let trr = document.querySelector(".trr").getBoundingClientRect().top;
         let mtfsl = document.querySelector(".mtfsl");
         let mtfhit = document.querySelector(".mtfthi");
         let trt = tr.getBoundingClientRect().top;
@@ -293,15 +294,16 @@ function init () {
         let mtf = document.querySelector(".mtf");
         let mtft = mtf.getBoundingClientRect().top;
 
-        let del = (trt - mtft) / mtf.getBoundingClientRect().height;
+        let del = (trr - mtft) / mtf.getBoundingClientRect().height;
         let del2 = (trt - mtfhitt) / mtfhit.getBoundingClientRect().height;
 
-        if (del > 0 && !mtfdone) {
+        if (del > .3 && !mtfdone) {
             mtfdone=true;
             rve(mtfsl, "transformX", 300, 0, -100, 0)
         }
 
-        if (del2 > 0 && !mtfdone2) {
+        log (del2);
+        if (del2 > -.5 && !mtfdone2) {
             mtfdone2 = true;
             rv_mtfimg(2000, 2);
         }
@@ -463,13 +465,14 @@ function init () {
     function rv3() {
         let trt = document.querySelector(".tr").getBoundingClientRect().top;
 
+        let trrt = document.querySelector(".trr").getBoundingClientRect().top;
         let { top, height } = document.querySelector(".mtffo").getBoundingClientRect();
 
-        let del = (trt - top) / height;
+        let del = (trrt - top) / height;
 
-        // log (del);
+        log (del);
 
-        if (del > -.1 && !tqd) {
+        if (del > 0 && !tqd) {
             tqd = true;
             rv_mtfthq(2000,3, 100);
         }
@@ -484,7 +487,7 @@ function init () {
 
         let del = (trr - t) / h;
 
-        if (del > .5 && !tqdd) {
+        if (del > -.5 && !tqdd) {
             tqdd = true;
             rv_mtffiv(1000, 0)
         }
