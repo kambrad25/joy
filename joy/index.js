@@ -297,12 +297,14 @@ function init () {
         let del = (trr - mtft) / mtf.getBoundingClientRect().height;
         let del2 = (trt - mtfhitt) / mtfhit.getBoundingClientRect().height;
 
-        if (del > .3 && !mtfdone) {
+        log (del);
+
+        if (del >= .05 && !mtfdone) {
             mtfdone=true;
             rve(mtfsl, "transformX", 300, 0, -100, 0)
         }
 
-        log (del2);
+        // log (del2);
         if (del2 > -.5 && !mtfdone2) {
             mtfdone2 = true;
             rv_mtfimg(2000, 2);
@@ -470,7 +472,7 @@ function init () {
 
         let del = (trrt - top) / height;
 
-        log (del);
+        // log (del);
 
         if (del > 0 && !tqd) {
             tqd = true;
@@ -493,6 +495,72 @@ function init () {
         }
     }
 
+
+    let rvp_flag = false, rvt_flag=false;
+
+    function rvp_a (dur,ea) {
+        let ps = document.querySelector("#path").getTotalLength();
+        let id, s;
+        function a (t) {
+            if (!s) s = t;
+            let m = Math.min((t-s)/dur, 1);
+            let e = ease()[ea](m);
+            let d = lerp(parseInt(ps), 0, e);
+            let d2 = lerp(.5, 1, e);
+
+            document.querySelector(".mtffivf").style.opacity=d2;
+
+            document.querySelector("#path").style.strokeDashoffset = d;
+            if (m < 1) {
+                id=requestAnimationFrame(a);
+            }
+        }
+
+        id = requestAnimationFrame(a);
+
+        setTimeout(() => {
+            cancelAnimationFrame(id);
+        }, dur +500);
+    }
+
+    function rvp () {
+        let t = document.querySelector(".mtffivline");
+        let tp = t.getBoundingClientRect().top;
+        let ht = t.getBoundingClientRect().height;
+        
+        let ed = tp + ht;
+
+
+        let trr = document.querySelector(".trr").getBoundingClientRect().top;
+
+
+        let del = (trr - ed) / ht;
+        
+        if (del >= 0 && !rvp_flag) {
+            rvp_flag = true;
+            rvp_a(1000, 3);
+        }
+    }
+
+    function rvt () {
+        let t = [...document.querySelectorAll(".mtffivtext > *")];
+        let trr = document.querySelector(".trr").getBoundingClientRect().top;
+
+        t.map((u, idx) => {
+            let { top, height } = u.getBoundingClientRect();
+            let ta = top + height;
+
+            let del = (trr - ta) / height;
+            
+            if (del > 0) {
+                u.style.opacity=1;
+            } else {
+                u.style.opacity=0;
+            }
+        })
+
+        
+    }
     function scroll () {
         let tstart, tcurr, velocity=0,s=0, c = 0;
         let ttstart, ttcur, id;
@@ -542,7 +610,9 @@ function init () {
             rv();
             rv2();
             rv3();
-            rv4()
+            rv4();
+            rvp();
+            rvt();
             // rv_mtfthq(1000,)
             // move_y(s);
 
@@ -566,29 +636,6 @@ function init () {
     // }, 2700)
 
     // log (document.querySelector(".th").offsetTop - document.querySelector(".ti").offsetTop)
-
-
-    function ease () {
-        function easeOutCubic(x) {
-            return 1 - Math.pow(1 - x, 3);
-        }
-        function easeInOutCubic(x){
-            return x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2;
-        }
-        function easeOutQuint(x) {
-            return 1 - Math.pow(1 - x, 5);
-        }
-        function easeInOutQuint(x) {
-            return x < 0.5 ? 16 * x * x * x * x * x : 1 - Math.pow(-2 * x + 2, 5) / 2;
-        }
-    function easeInOutCirc(x) {
-            return x < 0.5
-            ? (1 - Math.sqrt(1 - Math.pow(2 * x, 2))) / 2
-            : (Math.sqrt(1 - Math.pow(-2 * x + 2, 2)) + 1) / 2;
-        }
-
-        return [easeOutCubic,easeInOutCubic,easeOutQuint,easeInOutQuint,easeInOutCirc]
-    }
 }
 
 
@@ -618,14 +665,96 @@ let scaled = true;
     })
 })
 
+function ease () {
+    function easeOutCubic(x) {
+        return 1 - Math.pow(1 - x, 3);
+    }
+    function easeInOutCubic(x){
+        return x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2;
+    }
+    function easeOutQuint(x) {
+        return 1 - Math.pow(1 - x, 5);
+    }
+    function easeInOutQuint(x) {
+        return x < 0.5 ? 16 * x * x * x * x * x : 1 - Math.pow(-2 * x + 2, 5) / 2;
+    }
+function easeInOutCirc(x) {
+        return x < 0.5
+        ? (1 - Math.sqrt(1 - Math.pow(2 * x, 2))) / 2
+        : (Math.sqrt(1 - Math.pow(-2 * x + 2, 2)) + 1) / 2;
+    }
+
+    return [easeOutCubic,easeInOutCubic,easeOutQuint,easeInOutQuint,easeInOutCirc]
+}
+
 function lerp (start, end, t) {
     return start + (end - start) * t;
 } 
+
+function aaa() {
+    function ao (dur, ee) {
+        let s = 0, mx=.3, tr=0, end=.99, tt = 0;
+        function o (t) {
+            s += Math.min((1 * .5) / 100, 1);
+            
+
+            let d = lerp(1, 0, s);
+
+            [...document.querySelectorAll(".simg")].map((u, idx) => {
+                if (idx == tr) {
+                    u.style.opacity= tt;
+                }
+            })
+
+            if (s > end) {
+                tr += 1;
+                s = 0;
+            }
+
+            if (tr > 2) {
+                tr = 0;
+                [...document.querySelectorAll(".simg")].map((u, idx) => {
+                    u.style.opacity=1;
+                 }) 
+            }
+
+            if (tr > 1.5) {
+                setTimeout(() => {
+                    [...document.querySelectorAll(".simg")].map((u, idx) => {
+                        if (idx == 0) {
+                            u.style.opacity=1;
+                        }
+                 }) 
+                },0);   
+            }
+
+         
+            log (tr);
+
+            // log (s);
+
+            requestAnimationFrame(o);
+            
+        }
+        requestAnimationFrame(o);
+
+       
+
+
+         
+    }
+
+    ao(1000, 3);
+
+
+}
 
 
 
 
 window.addEventListener("load", () => {
     init();
+    aaa();
+
 })
 // document.addEventListener("DOMContentLoaded", init);

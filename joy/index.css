@@ -1,7 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Sedgwick+Ave+Display&display=swap');
 @font-face {
     font-family: "Bueno";
     src: url("./public/font/Bueno\ Regular\ Free/OpenType-TT/Bueno-Regular.ttf");
     font-weight: 400;
+}
+
+:root {
+    --main-font: "Bueno";
+    --secondary-font: "Sedgwick Ave Display", cursive;
+    --secondary-weight: 400;
+    --secondary-style: normal;
 }
 
 *::before,
@@ -516,17 +524,23 @@ body {
 }
 .mtffiv {
     padding-top: 5rem;
+    position: relative;
+    height: 730px;
 }
 .mtffivline {
     height: 1px;
     /* height: 200px; */
+    width: 100%;
     max-width: 0%;
+    left: 50%;
+    transform: translate3d(-50%,0,0);
     /* max-width: 95%; */
     margin: auto;
     /* border-top: 1px solid; */
     /* border-left: 1px solid; */
     /* border-right: 1px solid; */
     border-bottom: transparent;
+    position: absolute;
     /* border: 1px solid; */
 }
 .trr {
@@ -540,8 +554,135 @@ body {
     pointer-events: none;
     z-index: 99;
 }
+.mtffivf {
+    position: absolute;
+    transform: translate3d(0%,100%,0);
+    display: flex;
+    width: 100%;
+    max-width: calc(100% - 50px);
+    justify-content: center;
+    line-height: 1;
+    font-size: 3rem;
+    opacity: .5;
+}
+.mtffivf > h3 {
+    font-family: "Sedgwick Ave Display", cursive;
+    align-content: center;
+    padding-top: 1.5rem;
+    transform: translateX(55%);
+    /* border: 1px solid; */
+}
+.mtffivf > ._ > * {
+    font-family: "Sedgwick Ave Display", cursive;;
+}
+.mtffiv> svg{
+    position: absolute;
+    top: 5rem;
+    height: 300px;
+    width: 100%;
+    max-width: calc(100% - 25px);
+    left: 50%;
+    transform: translate3d(-50%, 0, 0);
+}
+.mtffivtext {
+    transform: translate3d(0,200px,0);
+    margin: auto;
+    max-width: calc(100% - 25px);
+    text-align: center;
+    line-height: .95;
+    font-size: 3rem;
+    padding-top: 7rem;
+}
+.mtffivtext > *,
+.mtffivtext > * > *
+ {
+    display: inline-block;
+}
+.mtffivtext > * {
+    opacity: 0;
+    transition: opacity 600ms ease-in;
+}
+.mtffivtext > *:nth-child(2) {
+    color: brown;
+    padding: 3rem;
+}
+.mtffivtext > *:first-child,
+.mtffivtext > *:last-child {
+    max-width: 600px;
+    text-transform: uppercase;
+    font-size: 1.4rem;
+    /* font-weight: 100; */
+    /* font-weight: 600; */
+}
+.mtffivtext > *:first-child > *,
+.mtffivtext > *:last-child > * {
+    font-weight: 500;
+    /* letter-spacing: -1px; */
+}
+.mtffivtext > *:first-child {
+    text-align: start;
+}
+.mtffivtext > *:last-child {
+    text-align: end;
+}
+.mtffivtext > *:nth-child(2) > *{
+    transform: skew(-20deg);
+}
+#path {
+    transform: translate3d(-75px, -50px, 0);
+    stroke-dashoffset: 408;
+    stroke-dasharray: 408;
+}
+.mtfsix {
+    /* border: 1px solid black; */
+    padding-top: 2rem;
+    position: absolute;
+    width: 100%;
+    height: 100vw;
+}
+.mtfsixi { 
+    width: 100%;
+    max-width: calc(100% - 25px);
+    margin: auto;
+    height: 100%;
+}
+.simg { 
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 200px;
+    aspect-ratio: 1;
+    left: 50%;
+    transform: translate3d(-50%, 0, 0);
+    width: calc(100% - 25px);
+    transition: opacity 650ms ease;
 
-
+}
+.simg > * {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 2.5px 0;
+}
+.simg:nth-child(1) {
+    z-index: 3;
+}
+.simg:nth-child(2) {
+    z-index: 2;
+}
+.simg:nth-child(3) {
+    z-index: 1;
+}
+.mtfsvg {
+    height: 320px;
+    transform: translateY(-50%);
+}
+.mtfsvg > * {
+    position: absolute;
+    left: 50%;
+    height: 100%;
+    transform: translate3d(-50%,0,0);
+}
 @media (min-width: 300px) {
     .mtffo {
         height: 65vw;
