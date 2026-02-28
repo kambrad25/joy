@@ -297,7 +297,7 @@ function init () {
         let del = (trr - mtft) / mtf.getBoundingClientRect().height;
         let del2 = (trt - mtfhitt) / mtfhit.getBoundingClientRect().height;
 
-        log (del);
+        // log (del);
 
         if (del >= .05 && !mtfdone) {
             mtfdone=true;
@@ -558,8 +558,96 @@ function init () {
                 u.style.opacity=0;
             }
         })
+    }
 
-        
+    let rv6_ = false;
+    function rvs_6 (dur, ee) {
+        let s, id;
+        function a (t) {
+            if (!s) s = t;
+            let m = Math.min((t-s)/dur, 1);
+            let e = ease()[ee](m);
+            let d = lerp(parseFloat(document.querySelector(".mtfsvg > * > *").getTotalLength()), 0, e);
+
+
+            document.querySelector(".mtfsvg > * > *").style.strokeDashoffset=d;
+
+            if (m < 1) {
+                id=requestAnimationFrame(a);
+            }
+        }
+
+        id=requestAnimationFrame(a);
+
+        setTimeout(() => {
+            cancelAnimationFrame(id);
+        }, dur+500);
+    }
+
+    
+    let rv7_ = false;
+    function rvs_7 (dur, ee, tx=0) {
+        let s, id;
+        function a (t) {
+            if (!s) s = t;
+            let m = Math.min((t-s)/dur, 1);
+            let e = ease()[ee](m);
+            let d = lerp(100, 0, e);
+
+
+            // document.querySelector(".mtfsvg > * > *").style.strokeDashoffset=d;
+            [...document.querySelectorAll(".sevt > *:last-child > *")].map((u, idx) => {
+                setTimeout(() => {
+                    u.style.clipPath=`inset(0 0 0 ${d})`;
+                }, idx * t)
+            })
+            if (m < 1) {
+                id=requestAnimationFrame(a);
+            }
+        }
+
+        id=requestAnimationFrame(a);
+
+        setTimeout(() => {
+            cancelAnimationFrame(id);
+        }, dur+500);
+    }
+
+
+    function rvs6 () {
+        let trr = document.querySelector(".trr").getBoundingClientRect().top;
+        let { top, height, bottom } = document.querySelector(".mtfsvg").getBoundingClientRect();
+
+        let tb = top + height;
+
+        let del = (trr - tb) / height;
+
+
+        if (del > 0 && !rv6_) {
+            rv6_ = true;
+            rvs_6(1000, 2)
+        }
+    }
+
+
+    function rv7h () {
+        let trr = document.querySelector(".trr").getBoundingClientRect().top;
+        let { top, height, bottom } = document.querySelector(".mtfsev").getBoundingClientRect();
+
+        let tb = top + height;
+
+        let del = (trr - tb) / height;
+
+
+        if (del > 0 && !rv7_) {
+            rv7_ = true;
+               [...document.querySelectorAll(".sevt > *:last-child > *")].map((u, idx) => {
+                setTimeout(() => {
+                    u.style.clipPath=`inset(0 0 0 0)`;
+                }, idx * 100)
+            })
+            // rvs_7(500, 2, 10)
+        }
     }
     function scroll () {
         let tstart, tcurr, velocity=0,s=0, c = 0;
@@ -613,6 +701,10 @@ function init () {
             rv4();
             rvp();
             rvt();
+            rvs6();
+            rv7h();
+
+         
             // rv_mtfthq(1000,)
             // move_y(s);
 
@@ -729,7 +821,7 @@ function aaa() {
             }
 
          
-            log (tr);
+            // log (tr);
 
             // log (s);
 
@@ -757,4 +849,10 @@ window.addEventListener("load", () => {
     aaa();
 
 })
+
+document.querySelectorAll(".sevt > *:last-child > *").forEach((u, idx) => log (u.getTotalLength()))
+
 // document.addEventListener("DOMContentLoaded", init);
+
+
+// log (document.querySelector(".mtfsvg > * > *").getTotalLength())

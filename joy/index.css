@@ -638,7 +638,7 @@ body {
     padding-top: 2rem;
     position: absolute;
     width: 100%;
-    height: 100vw;
+    height: 145vw;
 }
 .mtfsixi { 
     width: 100%;
@@ -675,7 +675,7 @@ body {
 }
 .mtfsvg {
     height: 320px;
-    transform: translateY(-50%);
+    transform: translateY(-100%);
 }
 .mtfsvg > * {
     position: absolute;
@@ -683,6 +683,41 @@ body {
     height: 100%;
     transform: translate3d(-50%,0,0);
 }
+.mtfsvg > * > * {
+    stroke-dashoffset:798.1852416992188;
+    stroke-dasharray: 798.1852416992188;
+}
+.mtfseven {
+    position: relative;
+    top: 145vw;
+}
+.sevo {
+    padding: 2.4rem;
+}
+.sevt {
+    line-height: .9;
+}
+.sevt > * {
+    text-transform: uppercase;
+    font-size: 6rem;
+}
+.sevt > *:nth-child(2) {
+    transform: skew(-20deg);
+}
+.sevt > *:last-child {
+    transform: translate(-50%, -35%);
+    position: absolute;
+    left: 45%;
+    top: 100%;
+}
+.sevt > *:last-child > * {
+    clip-path: inset(0% 0% 0% 100%);
+    transition: clip-path 350ms ease;
+}
+.sevt > * > span {
+    font-family: "Sedgwick Ave Display", cursive;
+}
+
 @media (min-width: 300px) {
     .mtffo {
         height: 65vw;
