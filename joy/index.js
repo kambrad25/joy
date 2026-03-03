@@ -3,6 +3,7 @@ const { log } = console;
 
 function init () {
     let s =0, c = 0, ms=false;
+    let endsc = 0;
 
 
     function pre () {
@@ -824,17 +825,37 @@ function init () {
             requestAnimationFrame(a);
         })
 
+        let f = false;
+
+        log (document.querySelector(".sty").getBoundingClientRect().top / 466 * 100)
+
         function a () {
             // velocity *= .95;
             // s+=velocity;
+            let trr = document.querySelector(".trr").getBoundingClientRect().top;
+            let es = document.querySelector(".sty");
+            let est = es.getBoundingClientRect().top;
+            let esh = es.getBoundingClientRect().height;
+            let ee = (trr - (est + esh)) / esh;
+            // log (ee);
 
             if (s < 0) {
                 s = 0;
             }
-            if (s > 1215) {
-                s = 1215;
-            }
+            // if (ee >= 0) {
+            //     ee=0;
+            //     endsc = s;
+            //     if (s >= endsc) {
+            //         s = endsc;
+            //     }
+            // } 
+
+         
+
+           
             c = lerp(c, s, .3);
+
+            
 
             velocity *= .95;
             s+=velocity;
@@ -879,6 +900,8 @@ function init () {
             if (c > 1215) {
                 c = 1215;
             }
+
+            
 
 
             
@@ -1061,3 +1084,5 @@ document.querySelectorAll(".sevt > *:last-child > *").forEach((u, idx) => log (u
 
 
 // log (document.querySelector(".mtfsvg > * > *").getTotalLength())
+
+

@@ -894,8 +894,9 @@ body {
     line-height: .9;
     border: 1px solid;
     border-radius: 30px;
-    max-width: calc(100% - .5rem);
+    max-width: calc(100% - 2rem);
     margin: auto;
+    text-align: start;
 }
 .styth {
     padding-top: 4rem;
@@ -916,7 +917,7 @@ body {
     line-height: .9;
 }
 #q {
-    color: red;
+    color: #bf0000;
     transform: skew(-10deg);
     display: inline-block;
     padding: 1rem;
