@@ -2,6 +2,7 @@ const { log } = console;
 
 
 function init () {
+    let s =0, c = 0, ms=false;
 
 
     function pre () {
@@ -649,8 +650,150 @@ function init () {
             // rvs_7(500, 2, 10)
         }
     }
+
+      let dm = false;
+
+    function rv_mtfso () {
+        let mtfso = [...document.querySelectorAll(".mtfso")];
+        let mtfsevth = document.querySelector(".mtfsevth");
+        let trr = document.querySelector(".trr").getBoundingClientRect();
+
+        let trrt = trr.top;
+
+      
+        
+        mtfso.map((u, idx) => {
+            let { top, height } = u.getBoundingClientRect();
+
+            let del = (trrt - top) / height;
+
+            if (del > .5) {
+                u.style.opacity = 1;
+            } else {
+                u.style.opacity=0;
+            }
+        })
+
+
+        function mtfsa (dur, ee) {
+            let s,id;
+            function a(t) {
+                if (!s) s=t;
+                let m = Math.min((t-s)/dur,1);
+                let e = ease()[ee](m);
+                let d1 = 200 + (0 - 200) * e;
+                let d2 = 0 + (1 - 0) * e;
+
+                document.querySelector("#mtfsevthh").style.opacity=d2;
+                setTimeout(() => {
+                    [...document.querySelectorAll(".point_o")].map((u, idx) => {
+                        setTimeout(() => {
+                            u.style.opacity=d2;
+
+                        }, idx*80)  
+                    })
+                }, 50)
+
+                setTimeout(() => {
+                    [...document.querySelectorAll(".mtfsevth > *:last-child > * ")].map((u, idx) => {
+                        setTimeout(() => {
+                            u.style.strokeDashoffset=d1;
+                        }, idx * 500)
+                    })
+                }, 100);
+
+                
+
+                if (m < 1) {
+                    id=requestAnimationFrame(a);
+                }
+            }
+
+            id=requestAnimationFrame(a);
+            setTimeout(() => {
+                cancelAnimationFrame(id);
+            }, dur +1000)
+        }
+
+
+        if (((trrt - mtfsevth.getBoundingClientRect().top) / mtfsevth.getBoundingClientRect().height) > .5 && !dm) {
+            dm = true;
+            mtfsa(1000, 3);
+        }
+    }
+
+
+
+    let dm2 = false;
+
+     function rv_eith () {
+        let mtfeig = document.querySelector(".mtfeig");
+        let eiht = document.querySelector(".eiht");
+        let trr = document.querySelector(".trr").getBoundingClientRect();
+
+        let trrt = trr.top;
+
+        let del1 = (trrt - (eiht.getBoundingClientRect().top + eiht.getBoundingClientRect().height)) / eiht.getBoundingClientRect().height;
+
+        function mtfsa (dur, ee) {
+            let s,id;
+            function a(t) {
+                if (!s) s=t;
+                let m = Math.min((t-s)/dur,1);
+                let e = ease()[ee](m);
+                let d1 = 1180 + (0 - 1180) * e;
+                let d2x = lerp(130, 50, e);
+                let d2y = lerp(100, 50, e);
+                let d3x = lerp(60, -50, e);
+                let d3y = lerp(-110, 50,e);
+                let sc = lerp(.2,1,e);
+            
+
+                document.querySelector(".eiht > *:last-child > path").style.strokeDashoffset = d1;
+
+
+                [...document.querySelectorAll(".eit")].map((u, idx) => {
+                    setTimeout(() => {
+                        if (idx == 0) {
+                            u.style.transform=`translate3d(${-d2x}%,${-d2y}%,0) scale(${sc})`;
+                        } else {
+                            u.style.transform=`translate3d(${d3x}%,${d3y}%,0) scale(${sc})`;
+                        }
+                    }, idx * 100);
+                })
+
+
+                
+
+                if (m < 1) {
+                    id=requestAnimationFrame(a);
+                }
+            }
+
+            id=requestAnimationFrame(a);
+            setTimeout(() => {
+                cancelAnimationFrame(id);
+            }, dur +1000)
+        }
+
+
+        if ( del1 > 0 && !dm2) {
+            dm2 = true;
+            mtfsa(2000, 1);
+        }
+    }
+
+
+
+
+
+
+
+
+
+    
     function scroll () {
-        let tstart, tcurr, velocity=0,s=0, c = 0;
+        let tstart, tcurr, velocity=0;
         let ttstart, ttcur, id;
         
         document.addEventListener("touchstart", (e) => {
@@ -677,9 +820,9 @@ function init () {
         });
 
         document.addEventListener("touchend", (e) => {
+            ms=true;
             requestAnimationFrame(a);
         })
-
 
         function a () {
             // velocity *= .95;
@@ -688,9 +831,12 @@ function init () {
             if (s < 0) {
                 s = 0;
             }
+            if (s > 1215) {
+                s = 1215;
+            }
             c = lerp(c, s, .3);
 
-             velocity *= .95;
+            velocity *= .95;
             s+=velocity;
 
 
@@ -703,6 +849,8 @@ function init () {
             rvt();
             rvs6();
             rv7h();
+            rv_mtfso();
+            rv_eith()
 
          
             // rv_mtfthq(1000,)
@@ -715,10 +863,67 @@ function init () {
         }
     }
 
+
+    let dy = 0;
+
+    function sc() {
+        document.addEventListener("wheel", (e) => {
+            if (ms) {
+            let y = e.deltaY / 15;
+               
+            c+=y * .3;
+
+            if (c < 0) {
+                c = 0;
+            }
+            if (c > 1215) {
+                c = 1215;
+            }
+
+
+            
+            rv();
+            rv2();
+            rv3();
+            rv4();
+            rvp();
+            rvt();
+            rvs6();
+            rv7h();
+            rv_mtfso();
+            rv_eith()
+
+
+            document.querySelector(".mh").style.transform=`translate3d(0,${-c}%,0)`;
+
+                
+
+
+            }
+
+        
+            // if (y < 0) {
+            //     dy++;
+            // } else {
+            //     dy--;
+            // }
+
+            // c = dy;
+            // log (dy, c);
+            // dy +=  s;
+
+            // document.querySelector(".mh").style.transform=`translate3d(0,${s}%,0)`;
+        })
+    }
+ 
+
+
+
     preLoad()
     preA();
     enter();
     scroll()
+    sc()
 
 
 
