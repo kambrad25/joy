@@ -791,7 +791,7 @@ function init () {
 
 
 
-
+ let f = false;
     
     function scroll () {
         let tstart, tcurr, velocity=0;
@@ -816,6 +816,11 @@ function init () {
                 velocity = del / ttdelta;
                 ttstart = new Date();
             }
+            // log (velocity)
+
+            if (velocity <= 0) {
+                f = false;
+            }
 
             tstart =  tcurr;
         });
@@ -825,31 +830,57 @@ function init () {
             requestAnimationFrame(a);
         })
 
-        let f = false;
 
-        log (document.querySelector(".sty").getBoundingClientRect().top / 466 * 100)
+       
 
+        // log (document.querySelector(".sty").getBoundingClientRect().top / 466 * 100)
+        let ee;
         function a () {
+            if (f) {
+                ee = 0;
+                return;
+            }
             // velocity *= .95;
             // s+=velocity;
-            let trr = document.querySelector(".trr").getBoundingClientRect().top;
-            let es = document.querySelector(".sty");
+            let trr = document.querySelector(".tpp").getBoundingClientRect().top;
+            let es = document.querySelector(".edd");
             let est = es.getBoundingClientRect().top;
-            let esh = es.getBoundingClientRect().height;
-            let ee = (trr - (est + esh)) / esh;
-            // log (ee);
+            ee = (trr - est);
+
+            log (ee);
 
             if (s < 0) {
                 s = 0;
             }
+        
+
+            if (ee >= 0) {
+                ee =0;
+                f = true;
+            }
+
+            // log (velocity);
+
+        
+            // log ('ee', ee);
+
             // if (ee >= 0) {
-            //     ee=0;
+            //     f = true;
             //     endsc = s;
-            //     if (s >= endsc) {
+
+
+            //     if (s > endsc) {
             //         s = endsc;
+            //         ee = 0;
             //     }
             // } 
 
+            
+         
+            
+        
+
+            // log (f);
          
 
            
@@ -878,7 +909,7 @@ function init () {
             // move_y(s);
 
             document.querySelector(".mh").style.transform=`translate3d(0,${-c}%,0)`
-            if (Math.abs(velocity) > .0001) {
+            if (Math.abs(velocity) > .0001 && !f) {
                 id =requestAnimationFrame(a);
             }
         }
@@ -889,6 +920,7 @@ function init () {
 
     function sc() {
         document.addEventListener("wheel", (e) => {
+            if (f) return;
             if (ms) {
             let y = e.deltaY / 15;
                
@@ -897,10 +929,24 @@ function init () {
             if (c < 0) {
                 c = 0;
             }
-            if (c > 1215) {
-                c = 1215;
+
+        
+            let trr = document.querySelector(".trr").getBoundingClientRect().top;
+            let es = document.querySelector(".sty");
+            let est = es.getBoundingClientRect().top;
+            let esh = es.getBoundingClientRect().height;
+            let ee = (trr - (est + esh)) / esh;
+
+
+
+            if (ee >= 0) {
+                f = true;
+                setTimeout(() => {
+                    f = false;
+                }, 50);
             }
 
+         
             
 
 
@@ -1084,5 +1130,7 @@ document.querySelectorAll(".sevt > *:last-child > *").forEach((u, idx) => log (u
 
 
 // log (document.querySelector(".mtfsvg > * > *").getTotalLength())
+
+
 
 
