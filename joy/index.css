@@ -913,7 +913,7 @@ body {
 }
 .styth > *:last-child {
     border: none;
-    font-size: 6.5vw;
+    font-size: 5.5vw;
     color: black;
 }
 .styhhh {
@@ -949,14 +949,14 @@ body {
     /* border: 1px solid red; */
     width: 100%;
     height: .5px;
-    background-color: red;
+    /* background-color: red; */
 }
 .tpp {
     position: absolute;
     top: 100%;
     width: 100%;
     height: .5px;
-    background-color: red;
+    /* background-color: red; */
 }
 
 @media (min-width: 300px) {
