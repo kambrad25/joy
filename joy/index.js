@@ -5,6 +5,8 @@ function init () {
     let s =0, c = 0, ms=false;
     let endsc = 0;
 
+    
+
 
     function pre () {
 
@@ -916,6 +918,9 @@ function init () {
     }
 
 
+
+
+
     let dy = 0;
 
     function sc() {
@@ -1111,16 +1116,125 @@ function aaa() {
     }
 
     ao(1000, 3);
-
-
 }
 
 
+function lks () {
+    const soc = [...document.querySelectorAll(".soc > *")];
+    let l = ["https://www.facebook.com/freejoypowell/", "https://www.instagram.com/free_joypowell/", "https://twitter.com/freejoypowell"];
+    
+    soc.map((u, idx) => {
+        u.setAttribute("href", l[idx]);
+    })
+}
 
+function qr () {
+    const ql = ["https://www.paypal.com/ncp/payment/WTHVGVGPHA54E"];
+    let eit = [...document.querySelectorAll(".eit")];
+    eit.map((u, idx)=> {
+        if (idx == 0) {
+            u.addEventListener("click", (e) => {
+                window.location.href = ql[idx];
+            })
+        }
+    })
+}
+
+async function pl() {
+    if (window.innerWidth >= 768) {
+        let b = document.querySelector("body");
+        b.remove();
+        
+        let f = "/a.html";
+        let u = window.origin;
+        log (u);
+        let pa = u + f;
+
+
+        const t = await fetch(pa, { method: "GET" });
+        const ok = await t.ok;
+
+        if (ok) {
+            const tx= await t.text();
+
+            let cb = document.createElement("body");
+
+            document.querySelector("html").append(cb)
+
+
+            let pattern=/<body[^>]*>((.|\n|\r)*)<\/body>/im;
+            let matches = pattern.exec(tx);
+            let cc = matches ? matches[1] : '';
+
+            let lnk = document.querySelector("link");
+            lnk.href="./a.css"
+
+            document.body.innerHTML = cc;
+
+
+            setTimeout(() => {
+                let upd = document?.querySelector(".update");
+
+
+              
+                if (upd) {
+                    let updC = [...document.querySelectorAll(".update > * > *")];
+                    let fsvgF = document.querySelector(".fsvgf > *");
+                    let fsvgfT = fsvgF.getTotalLength();
+
+                      function a () {
+                        let s, id;  
+                        function ai (t) {
+                            if (!s) s= t;
+                            let m = Math.min((t-s)/1000,1);
+                            let m2=Math.min((t-s)/2000,1);
+                            let e = ease()[3](m);
+                            let e2 = ease()[1](m2);
+                            let d = 110 + (0 - 110) * e;
+                            let d2 = fsvgfT + (0 - fsvgfT) * e2;
+                            let d3 = 255 + (0 - 255) * e2;
+                            fsvgF.style.strokeDashoffset=d2;
+                                updC.map((u, idx) => {
+                                    setTimeout(() => {
+                                        u.style.transform=`translate3d(0,${d}%,0)`;
+                                    }, idx * 150);
+                                })
+
+                                setTimeout(() => {
+                                    fsvgF.style.fill = `rgb(${d3},${d3},${d3})`;
+                                }, 300);
+
+                            if (m < 1) {
+                            id = requestAnimationFrame(ai);
+                            }
+                        }
+                        id=requestAnimationFrame(ai);
+
+                        setTimeout(() => {
+                            cancelAnimationFrame(id);
+                            fsvgF.style.fill="black";
+                        }, 2500)
+                    }
+
+                    a()
+                }
+
+
+
+            }, 500);
+            
+        }
+
+        
+    }
+}
 
 window.addEventListener("load", () => {
     init();
     aaa();
+    lks();
+    qr();
+    pl();
 
 })
 

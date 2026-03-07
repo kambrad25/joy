@@ -255,13 +255,7 @@ function init() {
 
         // window.addEventListener("resize", resizepa);
 
-        let oldY=0;
-        let newY=0;
-        let velocity=0;
-        let startTime, newTime;
-        let tID;
-        
-        
+        let y2=0;
         document.addEventListener("wheel", (e) => {
             if (!isClickedView) return;
 
@@ -280,28 +274,15 @@ function init() {
 
 
         document.addEventListener("touchstart", (e) => {
-             //touched=true;
-             const touch = e.touches[0];
-            oldY = touch.screenX;
-            if (tID) { cancelAnimationFrame(tID)};
-            startTime = Date.now();
+            y2 = e.touches[0].clientY;
+
         }, { passive: false});
 
         document.addEventListener("touchmove", (e) => {
             if (!touched) return;        
-            const touch = e.touches[0];
-            newY = touch.screenX;
-            let yDelta = newY - oldY;
-            oldY=newY;
-            newTime=Date.now();
-            let deltaTime=newTime - startTime;
-            if (deltaTime>.5) {
-             velocity = yDelta / deltaTime;
-             startTime=Date.now();   
-            }
-            
+            let y = e.touches[0].clientY;
 
-            /*let diff = y - y2;
+            let diff = y - y2;
 
             let threshold = 10;
 
@@ -325,26 +306,9 @@ function init() {
 
 
             document.querySelector(".slider").style.transform=`translate3d(${-pos}%, 0,0)`;
-            */
         }, { passive: false});
 
-        document.addEventListener("touchend", (e) => {
-           requestAnimationFrame(animateTouch) 
-        });
 
-
-        function animateTouch() {
-            let damp=.1;
-            velocity*=damp;
-            pos-=velocity;
-            
-            //if (pos < 0) pos = 0;
-            document.querySelector(".slider").style.transform=`translate3d(${-pos}%,0,0)`;
-            if (Math.abs(velocity) > .01) {
-                tID = requestAnimationFrame(animateTouch);
-            }
-            
-        }
 
       
        

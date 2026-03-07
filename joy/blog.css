@@ -411,7 +411,7 @@ ul {
     font-size: clamp(1.8rem, 2vw, 2rem);
 }
 .p2.ais {
-    top: 50%;
+    top: 60%;
 }
 .p2.bf {
     top: 30%;
@@ -757,7 +757,11 @@ iframe {
         gap: .4rem;
     }
 }
-
+@media (min-width: 1000px) {
+    .lin {
+        left: 3rem;
+    }
+}
 @media(orientation: landscape) and (max-height: 460px) {
     .iss {
         opacity: 1;

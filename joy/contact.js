@@ -92,7 +92,7 @@ function qmsg () {
         let m = Math.min(Math.max(0, (t-s)/1500), 1);
         let e = easings()[3](m);
         let e2 = easings()[5](m);
-        let d = 100 + (0 - 100) * e;
+        let d = 150 + (0 - 150) * e;
         let d2 = 1 + (0 - 1) * e2;
 
         if (m < 2) {
@@ -220,9 +220,14 @@ function af () {
     })
 
 
+
     lex.addEventListener("click", (e) => {
-          let id;
-         let s;
+        
+        if (document.querySelector(".err")) {
+            document.querySelector(".err").remove()
+        }
+        let id;
+        let s;
         function a(t) {
             if (!s) s= t;
             let m = Math.min((t-s)/1000,1);
@@ -405,6 +410,65 @@ function init() {
 document.addEventListener("DOMContentLoaded", init)
 
 
+
+let u = "http://localhost:6500";
+let p = "/mail/joypowell/v1/1";
+
+let pa = new URL(p, u);
+let ne = document.createElement("div");
+ne.className="err"
+log(pa)
+const postA = async (e) => {
+    e.preventDefault();
+    let body = {
+        fname: document.querySelector(".fname").value,
+        lname: document.querySelector(".lname").value,
+        email: document.querySelector(".email").value,
+        msg: document.querySelector(".msg").value
+    }
+
+
+    for (let i in body) {
+        if (body[i] === "" || body[i].split("").length <= 0) {
+
+            ne.textContent="Fill in required fields.";
+            ne.style.color='red';
+        
+            document.querySelector(".fot").prepend(ne);
+            return;
+        } else {
+            ne.textContent=`Thanks ${body.fname}! We will get back with you shortly.`;
+            ne.style.color='green';
+            document.querySelector(".fot").prepend(ne);
+        }
+    }
+    try {
+        let t = await fetch(pa.href, { method: "POST",headers: {"Content-Type": "application/json"}, body: JSON.stringify(body) });
+        let d = await t.json();
+
+        log(d);
+
+
+
+        setTimeout(() => {
+            let fields = ['.fname', '.lname', '.email', '.msg'];
+
+            fields.map((u, idx) => {
+                document.querySelector(u).value='';
+            })
+        }, 1000);
+    } catch(e) {
+        log (e.message);
+    }
+
+    // log (d)
+}
+
+
+let b = document.querySelector(".fotb");
+b.addEventListener("click", (e) => {
+    postA(e)
+});
 
 // EXAMPLE 1
 
