@@ -25,6 +25,7 @@
 
 html {
     font-size: 62.5%;
+    overflow:hidden;
 }
 body {
     font-size: 1.6rem;
@@ -973,5 +974,6 @@ body {
 }
 
 @media (min-width: 768px) {
+
 
 }
