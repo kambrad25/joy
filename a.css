@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Sedgwick+Ave+Display&display=swap');
+@font-face {
+    font-family: "Bueno";
+    src: url("./public/font/Bueno\ Regular\ Free/OpenType-TT/Bueno-Regular.ttf");
+    font-weight: 400;
+}
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Bueno";
+}
+.update {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    max-width: 100%;
+    transform: translate3d(-50%, -50%, 0 );
+    display: grid;
+    place-content: center;
+    background-color: white;
+}
+.update > * {
+    text-transform: uppercase;
+    font-size: 3vw;
+}
+.update > *:first-child {
+    font-weight: 900;
+    font-size: 5vw;
+    overflow: hidden;
+}
+.update > *:first-child > * {
+    transform: translate3d(0,110%,0);
+}
+.update > *:last-child {
+    text-align: center;
+    overflow: hidden;
+}
+.update > *:last-child > * {
+    transform: translate3d(0,110%,0);
+}
+.lk {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    padding-top: 2rem;
+    justify-content: space-around;
+}
+.lk > * {
+    /* border: 2px solid; */
+    width: 100%;
+    text-align: center;
+    pointer-events: all;
+    /* border-right: 1px solid; */
+}
+.lk > *:first-child, 
+.lk > *:nth-child(2) {
+    border-right: 1px solid;
+}
+.lk > * > * {
+    text-transform: uppercase;
+    text-decoration: none;
+    color: black;
+}
+svg {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    pointer-events: none;
+    
+}
+svg > * {
+    transform: translate3d(0,30%,0);
+    stroke-dashoffset: 1588;
+    stroke-dasharray: 1588;
+    fill: rgb(255,255,255);
+    pointer-events: all;
+}
