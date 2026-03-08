@@ -125,8 +125,8 @@ let pre = () => {
                 if (!s) s = t;
                 let m = Math.min((t-s)/1050, 1);
                 let e = ease()[4](m);
-                let x = 0 + ((window.innerWidth / 2 - 10) - 0) * e;
-                let y = 0 + ((window.innerHeight / 2 + 10) - 0) * e
+                let x = 0 + ((window.innerWidth / 2.5 - 10) - 0) * e;
+                let y = 0 + ((window.innerHeight / 2.5 + 10) - 0) * e
                 setTimeout(() => {
                     u.style.transform=`translate3d(${-x}px, ${y}px,0)`;
                     u.style.background='black'
