@@ -794,6 +794,7 @@ function init () {
 
 
  let f = false;
+ let saa = [];
     
     function scroll () {
         let tstart, tcurr, velocity=0;
@@ -808,6 +809,7 @@ function init () {
 
         document.addEventListener("touchmove", (e) => {
             if (!touched) return;
+            // if (saa.length > 0) s = -100;
             tcurr = e.touches[0].screenY;
             let del = tstart - tcurr;
             ttcur = new Date();
@@ -836,58 +838,40 @@ function init () {
        
 
         // log (document.querySelector(".sty").getBoundingClientRect().top / 466 * 100)
-        let ee;
         function a () {
-            if (f) {
-                ee = 0;
-                return;
-            }
+            // if (f) {
+            //     ee = 0;
+            //     return;
+            // }
             // velocity *= .95;
             // s+=velocity;
             let trr = document.querySelector(".tpp").getBoundingClientRect().top;
             let es = document.querySelector(".edd");
             let est = es.getBoundingClientRect().top;
-            ee = (trr - est);
+            ee = (est - trr);
 
             log (ee);
 
             if (s < 0) {
                 s = 0;
             }
-        
-
-            if (ee >= 0) {
-                ee =0;
-                f = true;
-            }
-
-            // log (velocity);
-
-        
-            // log ('ee', ee);
-
-            // if (ee >= 0) {
-            //     f = true;
-            //     endsc = s;
-
-
-            //     if (s > endsc) {
-            //         s = endsc;
-            //         ee = 0;
-            //     }
-            // } 
-
-            
-         
-            
-        
-
-            // log (f);
-         
 
            
             c = lerp(c, s, .3);
 
+
+            if (ee <= 0) {
+                saa.push(c);
+                saa = saa.slice(0, 2);
+            } else {
+                saa = [];
+            }
+
+
+
+            if (s >= saa[saa.length * 0]) {
+                s = saa[saa.length * 0];
+            }
             
 
             velocity *= .95;
@@ -923,10 +907,30 @@ function init () {
 
     let dy = 0;
 
+    let ii = 0, iflag = false, iaa = [];
+
     function sc() {
         document.addEventListener("wheel", (e) => {
             if (f) return;
-            if (ms) {
+            let m = document.querySelector(".edd");
+            m = m.getBoundingClientRect().top - document.querySelector(".tpp").getBoundingClientRect().top;
+            
+            // if (!iflag) {
+            //     iflag = true;
+            // }
+
+            if (m <= 0) {
+               iaa.push(c);
+               iaa = iaa.splice(0, 2);
+               log (iaa)
+            } else {
+                iaa = [];
+            }
+
+           if (c > iaa[iaa.length * 0]) {
+            c = iaa[iaa.length * 0]
+           }
+            // if (ms) {
             let y = e.deltaY / 15;
                
             c+=y * .3;
@@ -973,7 +977,7 @@ function init () {
                 
 
 
-            }
+            
 
         
             // if (y < 0) {
