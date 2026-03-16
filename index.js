@@ -30,6 +30,7 @@ function init () {
     let touched = false;
 
     function preA () {
+        if (window.innerWidth >= 768) return;
         let s, id;
         function a (t) {
             if (!s) s = t;

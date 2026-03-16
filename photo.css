@@ -154,6 +154,7 @@ nav {
     background: transparent;
     border: none;
     color: black;
+    white-space: nowrap;
 }
 .content {
     position: fixed;
