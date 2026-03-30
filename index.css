@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Sedgwick+Ave+Display&display=swap');
 @font-face {
     font-family: "Bueno";
-    src: url("./public/font/Bueno\ Regular\ Free/OpenType-TT/Bueno-Regular.ttf");
+    src: url("Bueno-Regular.ttf");
     font-weight: 400;
 }
 
