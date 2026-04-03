@@ -454,12 +454,12 @@ function click () {
 
                 let tpath;
 
-                if (!window.location.href.split("/").includes("joy")) {
-                    tpath = `${window.location.origin}/posts/${pages[idx]}`;
-                } else {
-                    tpath = `${window.location.origin}/joy/joy/templates/${pages[idx]}`;
+                // if (!window.location.href.split("/").includes("joy")) {
+                tpath = `${window.location.origin}/page/${pages[idx]}`;
+                // } else {
+                //     tpath = `${window.location.origin}/joy/joy/templates/${pages[idx]}`;
 
-                }
+                // }
 
 
                 // log (url.href.split("blog.html").join(`templates/${pages[idx]}`).split("?")[0])
