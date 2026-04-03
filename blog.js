@@ -455,7 +455,7 @@ function click () {
                 let tpath;
 
                 // if (!window.location.href.split("/").includes("joy")) {
-                tpath = `${window.location.origin}/page/${pages[idx]}`;
+                tpath = `${window.location.origin}/templates/${pages[idx]}`;
                 // } else {
                 //     tpath = `${window.location.origin}/joy/joy/templates/${pages[idx]}`;
 
@@ -464,7 +464,7 @@ function click () {
 
                 // log (url.href.split("blog.html").join(`templates/${pages[idx]}`).split("?")[0])
                 // let tpath = `${window.location.origin}/templates/${pages[idx]}`;
-                tpath = tpath.split(",")[0];
+                // tpath = tpath.split(",")[0];
                 // log (tpath)
                 
 
