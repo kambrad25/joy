@@ -455,7 +455,7 @@ function click () {
                 let tpath;
 
                 if (!window.location.href.split("/").includes("joy")) {
-                    tpath = `${window.location.origin}/templates/${pages[idx]}`;
+                    tpath = `${window.location.origin}/posts/${pages[idx]}`;
                 } else {
                     tpath = `${window.location.origin}/joy/joy/templates/${pages[idx]}`;
 
