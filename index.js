@@ -1,6 +1,15 @@
 const { log } = console;
 
 
+window.onload = function () {
+    let { innerWidth } = window;
+    if (innerWidth >= 768) {
+        let sca = document.getElementsByClassName("sca")[0];
+        sca.style.display="block"
+        
+    }
+}
+
 function init () {
     let s =0, c = 0, ms=false;
     let endsc = 0;

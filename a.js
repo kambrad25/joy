@@ -85,18 +85,18 @@ function init() {
         const ti = document.querySelector(".t > *");
         let getTi = ti.textContent;
         if (getTi.length > 0) {
-            ti.innerHTML = "";
+            // ti.innerHTML = "";
 
-            let len = getTi.split(" ");
+            // let len = getTi.split(" ");
 
-            len.map((u,idx) => {
-                let cd = document.createElement("div");
+            // len.map((u,idx) => {
+            //     let cd = document.createElement("div");
 
-                cd.className='ti';
-                cd.innerHTML = u;
+            //     cd.className='ti';
+            //     cd.innerHTML = u;
 
-                ti.append(cd);
-            });
+            //     ti.append(cd);
+            // });
 
 
             if (document.querySelector(".ti")) {
@@ -119,7 +119,7 @@ function init() {
     }
 
 
-    t();
+    // t();
     pre();
 };
 

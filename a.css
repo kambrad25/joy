@@ -121,11 +121,31 @@ path {
 }
 .con {
     position: absolute;
-    top: 55%;
+    top: 50%;
     left: 65%;
     transform: translate3d(-50%,-50%,0);
-    width: 35vw;
+    width: 45vw;
     aspect-ratio: 1;
+    display: grid;
+    place-content: center;
+}
+.con > *:first-child {
+    text-align: center;
+    max-width: 50vw;
+    line-height: 1;
+}
+.con > * > span {
+    color: red;
+    font-size: 3rem;
+    text-transform: uppercase;
+    letter-spacing: -.5px;
+    position: relative;
+    line-height: .5;
+}
+.con > *:last-child {
+    /* border: 2px solid; */
+    text-align: center;
+    margin: 1rem 0;
 }
 .mo {
     position: absolute;
