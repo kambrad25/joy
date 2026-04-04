@@ -29,6 +29,7 @@
     z-index: 1;
     background: red;
     color: white;
+    z-index: 999;
 }
 .pre > * {
     position: absolute;
@@ -125,13 +126,45 @@ path {
     transform: translate3d(-50%,-50%,0);
     width: 35vw;
     aspect-ratio: 1;
-    border: 2px solid;
 }
 .mo {
     position: absolute;
     left: 3vw;
     bottom: 5vw;
-    height: 20vw;
-    width: 20vw;
-    border: 1px solid;
+    width: 250px;
+    aspect-ratio: 1;
+    /* height: 20vw;
+    width: 20vw; */
+    overflow: hidden;
+}
+.moi {
+    position: absolute;
+    width: 120px;
+    height: 150px;
+    overflow: hidden;
+}
+.moi > * {
+    position: absolute;
+    width: 100%;
+    object-fit: contain;
+}
+.moi:first-child {
+    left: 20%;
+    transform: translate3d(-20%,0,0);
+    z-index: 2;
+}
+.moi:nth-child(2) {
+    left: 100%;
+    top: 50%;
+    transform: translate3d(-100%, -50%, 0);
+    z-index: 3;
+}
+.moi:last-child {
+    bottom: 0;
+    z-index: -1;
+    left: 25%;
+    top: 90%;
+    height: 110px;
+    z-index: 2;
+    transform: translate3d(-25%, -90%, 0);
 }
