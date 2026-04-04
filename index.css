@@ -970,7 +970,9 @@ body {
     height: .5px;
     /* background-color: red; */
 }
-
+.con > *{
+    opacity: 0;
+}
 @media (min-width: 300px) {
     .mtffo {
         height: 65vw;

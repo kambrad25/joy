@@ -1422,7 +1422,11 @@ function init() {
             dtop_ani(".tl", "tx", 1000, 4, -100, 50)
             setTimeout(() => {
                 dtop_ani(".subt", "opacity", 650, 3, 0, 1, 100);
-                dtop_ani(".lid > *", "opacity", 650, 3, 0, 1, 100)
+                dtop_ani(".lid > *", "opacity", 650, 3, 0, 1, 100);
+                dtop_ani(".con > *", "opacity", 650, 4, 0, 1, 100);
+                setTimeout(() => {
+                    dtop_ani(".moi", "opacity", 750, 3, 0, 1, 150);
+                }, 300);
             }, 300);
         }, 2500);
     }
@@ -1482,10 +1486,9 @@ init()
 
 document.querySelectorAll(".sevt > *:last-child > *").forEach((u, idx) => log (u.getTotalLength()))
 
-// document.addEventListener("DOMContentLoaded", init);
 
 
-// log (document.querySelector(".mtfsvg > * > *").getTotalLength())
+// (document.querySelector(".mtfsvg > * > *").getTotalLength())
 
 
 

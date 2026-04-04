@@ -129,6 +129,9 @@ path {
     display: grid;
     place-content: center;
 }
+.con > * {
+    opacity: 0;
+}
 .con > *:first-child {
     text-align: center;
     max-width: 50vw;
@@ -162,6 +165,7 @@ path {
     width: 120px;
     height: 150px;
     overflow: hidden;
+    opacity: 0;
 }
 .moi > * {
     position: absolute;
