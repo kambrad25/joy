@@ -273,45 +273,97 @@ function init() {
         })
 
 
+        // document.addEventListener("touchstart", (e) => {
+        //     y2 = e.touches[0].clientY;
+
+        // }, { passive: false});
+
+        // document.addEventListener("touchmove", (e) => {
+        //     if (!touched) return;        
+        //     let y = e.touches[0].clientY;
+
+        //     let diff = y - y2;
+
+        //     let threshold = 10;
+
+        //     if (Math.abs(diff) > threshold) {
+        //         if (diff > 0) {
+        //             pos -= 1 * 5;
+        //         } else {
+        //             pos +=1 * 5;
+        //         }
+        //         y2 = y;
+        //     }
+
+
+        //     if (pos > 1600) {
+        //         pos = 1600;
+        //     }
+        //     if (pos < 0) {
+        //         pos = 0;
+        //     }
+        //     pos = Math.min(pos, 1600);
+
+
+        //     document.querySelector(".slider").style.transform=`translate3d(${-pos}%, 0,0)`;
+        // }, { passive: false});
+
+
+
+        let x, x2, startTime, currTime, xid, xs = 0, vel = 0;
+
         document.addEventListener("touchstart", (e) => {
-            y2 = e.touches[0].clientY;
-
-        }, { passive: false});
-
-        document.addEventListener("touchmove", (e) => {
-            if (!touched) return;        
-            let y = e.touches[0].clientY;
-
-            let diff = y - y2;
-
-            let threshold = 10;
-
-            if (Math.abs(diff) > threshold) {
-                if (diff > 0) {
-                    pos -= 1 * 5;
-                } else {
-                    pos +=1 * 5;
-                }
-                y2 = y;
-            }
-
-
-            if (pos > 1600) {
-                pos = 1600;
-            }
-            if (pos < 0) {
-                pos = 0;
-            }
-            pos = Math.min(pos, 1600);
-
-
-            document.querySelector(".slider").style.transform=`translate3d(${-pos}%, 0,0)`;
-        }, { passive: false});
-
-
-
+            if (!touched) return;
+            x = e.touches[0].screenX;
+            startTime = new Date();
+            // if (xid) {
+            //     cancelAnimationFrame(xid);
+            // }
+         }, { passive: 'false' });
       
        
+         document.addEventListener("touchmove", (e) => {
+            if (!touched) return;
+            x2 = e.touches[0].screenX;
+            currTime = new Date();
+            let deltaX = x - x2;
+            let deltaTime = currTime - startTime;
+
+
+            log (deltaX, deltaTime);
+
+            if (deltaTime > 10) {
+                vel = deltaX / deltaTime;
+                startTime = new Date();
+            }
+
+
+            x = x2;
+         }, { passive: 'false'})
+
+         document.addEventListener("touchend", (e) => {
+            requestAnimationFrame(a);
+         }, { passive: 'false' })
+
+         function a () {
+            vel *= .95;
+            xs += vel;
+
+            if (xs <= 0) {
+                xs = 0
+            }
+            if (xs >= 1600) {
+                xs = 1600;
+            }
+
+            // log (xs, vel);
+
+            document.querySelector(".slider").style.transform=`translate3d(${-xs}%, 0,0)`;
+
+            if (Math.abs(vel) > .1) {
+                xid = requestAnimationFrame(a);
+            }
+         }
         click()
 
     }
