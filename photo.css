@@ -140,9 +140,10 @@ nav {
     left: 50%;
     transform: translate3d(-50%, 500%, 0);
     border: none;
-    background: #f5f5f5;
+    background: none;
+    /* background: #f5f5f5; */
     pointer-events: all;
-    color: black;
+    /* color: black; */
     border: none;
     outline: none;
     padding: .5rem;
